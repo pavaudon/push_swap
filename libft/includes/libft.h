@@ -105,4 +105,8 @@ char				*ft_itodst_base(int n, char *dst, int base);
 char				*ft_ftoa(double n);
 int					ft_flen(double n);
 char				*ft_ftodst(double n, char *str);
+int					ft_inttablen(int *tab);
+int					ft_get_min_max(int *tab, char *which);
+int					*ft_tabjoin(int *tab, int *to_add, char where, char to_free);
+int					*ft_tabcpy(int *tab, int *to_cpy);
 #endif

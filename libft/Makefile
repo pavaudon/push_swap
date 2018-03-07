@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pavaudon <lalicornede42.fr>                +#+  +:+       +#+         #
+#    By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 12:19:38 by pavaudon          #+#    #+#              #
 #    Updated: 2018/02/08 13:29:22 by pavaudon         ###   ########.fr        #
@@ -94,7 +94,11 @@ SRC = 		ft_memset.c \
 			ft_itodst_base.c \
 			ft_ftoa.c \
 			ft_flen.c \
-			ft_ftodst.c
+			ft_ftodst.c \
+			ft_inttablen.c \
+			ft_get_min_max.c \
+			ft_tabcpy.c \
+			ft_tabjoin.c
 
 SRCS =		$(addprefix $(SRC_DIR),$(SRC))
 

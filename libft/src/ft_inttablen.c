@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_inttablen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 17:23:42 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/03/07 17:23:47 by pavaudon         ###   ########.fr       */
+/*   Created: 2018/03/07 18:58:53 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/03/07 18:58:56 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "libft.h"
-
-typedef struct  s_stack		//trouver un moyen de mettre dans un tout pour stack_a et stack_b
+int		ft_inttablen(int *tab)
 {
-  int     *tab;
-  int     size;
-  int     max;
-  int     min;
-}               t_stack;
+	int len;
 
-typedef struct	s_both
-{
-	t_stack *stack_a;
-	t_stack *stack_b;
-	int		the_max;
-	int		the_min;
-	int		the_size;
-}				t_both;
-
-#endif
+	len = 0;
+	while (tab[len])
+		len++;
+	return (len);
+}

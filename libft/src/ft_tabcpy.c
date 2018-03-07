@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_tabcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 17:23:42 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/03/07 17:23:47 by pavaudon         ###   ########.fr       */
+/*   Created: 2018/03/07 20:02:41 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/03/07 20:02:43 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "libft.h"
-
-typedef struct  s_stack		//trouver un moyen de mettre dans un tout pour stack_a et stack_b
+int		*ft_tabcpy(int *tab, int *to_cpy)
 {
-  int     *tab;
-  int     size;
-  int     max;
-  int     min;
-}               t_stack;
+	int i;
 
-typedef struct	s_both
-{
-	t_stack *stack_a;
-	t_stack *stack_b;
-	int		the_max;
-	int		the_min;
-	int		the_size;
-}				t_both;
-
-#endif
+	i = -1;
+	while (tab[++i])
+		to_cpy[i] = tab[i];
+	return (to_cpy);
+}

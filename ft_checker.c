@@ -1,55 +1,18 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_checker.c                                       :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pavaudon <lalicornede42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/08 12:19:38 by pavaudon          #+#    #+#              #
-#    Updated: 2018/02/08 13:29:22 by pavaudon         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_checker.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/07 17:23:30 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/03/07 17:23:33 by pavaudon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     ft_is_good_int(char *str)
-{
-  int i;
-
-  i = -1;
-  while (str[i++])
-  {
-    if (!ft_isdigit(str[i]) && str[0] != '-')
-      return (-1);
-  }
-  if (!ft_atoi(str))
-    return (-1);
-  return (1);
-}
-
-int     ft_checkarg(int argc, char **argv)
-{
-  int i;
-  int tmp;
-  int j;
-  int value;
-
-  j = 1;
-  while (j++ < argc)
-  {
-    i = 1;
-    while (i++ < argc)
-    {
-      value = ft_atoi(argv[i]);
-      tmp = ft_atoi(argv[j]);
-      if (tmp == value)
-        return (-1);
-    }
-  }
-  return (1);
-}
-
-void      ft_data_stack(int argc, char **argv, t_stack *stack_a)
+void      ft_data_stack(int argc, char **argv, t_both *both)
 {
   int   i;
   int   cpt;
@@ -60,40 +23,44 @@ void      ft_data_stack(int argc, char **argv, t_stack *stack_a)
   cpt = 0;
   min = argv[2];
   max = min;
-  while (i++ < argc)
+  while (++i < argc)
   {
     cpt++;
-    min = (min > argv[i]) ? ft_atoi(argv[i]) : min;
-    max = (max < argv[i]) ? ft_atoi(argv[i]) : max;
+    both->the_min = (both->the_min > argv[i]) ? ft_atoi(argv[i]) : both->the_min;
+    both->the_max = (both->the_max < argv[i]) ? ft_atoi(argv[i]) : both->the_max;
   }
-  stack_a->size = cpt;
+  both->the_size = cpt;
 }
 
-int     ft_fill_a(int argc, char **argv, t_stack *stack_a)
+int     ft_fill_a(int argc, char **argv, t_both *both)
 {
   int   i;
   int   j;
 
-  i = 1;
+  i = 0;
   j = -1;
-  ft_data_stack(argc, argv, stack_a);
-  if (!stack_a->tab = (int*)ft_memalloc(sizeof(int) * stack_a->size))
+  ft_data_stack(argc, argv, both);
+  if (!both->stack_b->tab = (int*)ft_memalloc(sizeof(int) * both->the_size) ||
+  !both->stack_a->tab = (int*)ft_memalloc(sizeof(int) * both->the_size))
     return (-1);
-  while (i++ < argc)
-    stack_a->tab[j++] = ft_atoi(argv[i]);
+  while (++i < argc)
+    both->stack_a->tab[++j] = ft_atoi(argv[i]);
   return (1);
 }
 
 int     ft_checker(int argc, char **argv)
 {
-  t_stack *stack_a;
-  char     *command;
+ t_both		*both;
+ t_stack	*stack_a;
+ char		*command;
 
-  if (!unicorn = (t_stack*)ft_memalloc(sizeof(t_stack)) || !ft_checkarg(argc, argv) || !stack_a->tab = ft_fill_a(argc, argv, stack_a)
+  if (!both = (t_both*)ft_memalloc(sizeof(t_both)) || !both->stack_a = (t_stack*)ft_memalloc(sizeof(t_stack)) ||
+  !both->stack_b = (t_stack*)ft_memalloc(sizeof(t_stack)) ||
+  !ft_checkarg(argc, argv) ||!ft_fill_a(argc, argv, both)
     return (-1);
   while (get_next_line(0, &command))
   {
-    if (!ft_is_command(&command))             //check quelle commande et appelle son fonctionnement
+    if (!ft_is_command(&command, both))
     {
         ft_puterror("Error : bad command\n");
         return (-1);
@@ -112,10 +79,10 @@ int     main(int argc, char **argv)
 {
   int i;
 
-  i = ;
+  i = 0;
   if (argc < 2)
     return(ft_puterror("Error : ./checker int arguments\n"));
-  while (i++ < argc)
+  while (++i < argc)
   {
     if (!ft_is_good_int(argv[i]))
       return (ft_puterror("Error : ./checker int arguments\n"));

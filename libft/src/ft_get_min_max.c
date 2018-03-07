@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_get_min_max.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 17:23:42 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/03/07 17:23:47 by pavaudon         ###   ########.fr       */
+/*   Created: 2018/03/07 19:07:19 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/03/07 19:07:20 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "libft.h"
-
-typedef struct  s_stack		//trouver un moyen de mettre dans un tout pour stack_a et stack_b
+int		ft_get_min_max(int *tab, char *wich)
 {
-  int     *tab;
-  int     size;
-  int     max;
-  int     min;
-}               t_stack;
+	int value;
+	int i;
 
-typedef struct	s_both
-{
-	t_stack *stack_a;
-	t_stack *stack_b;
-	int		the_max;
-	int		the_min;
-	int		the_size;
-}				t_both;
-
-#endif
+	i = -1;
+	value = tab[0];
+	while (tab[++i])
+	{
+		if (ft_strcmp("min", wich))
+			value = (tab[i] < value) ? tab[i] : value;
+		if (ft_strcmp("max", wich))
+			value = (tab[i] > value) ? tab[i] : value;
+	}
+	return (value);
+}

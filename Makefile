@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pavaudon <lalicornede42.fr>                +#+  +:+       +#+         #
+#    By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/08 12:19:38 by pavaudon          #+#    #+#              #
-#    Updated: 2018/02/08 13:29:22 by pavaudon         ###   ########.fr        #
+#    Created: 2018/03/07 17:24:04 by pavaudon          #+#    #+#              #
+#    Updated: 2018/03/07 17:24:07 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
