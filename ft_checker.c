@@ -16,18 +16,16 @@ void      ft_data_stack(int argc, char **argv, t_both *both)
 {
   int   i;
   int   cpt;
-  int   min;
-  int   max;
 
-  i = 1;
+  i = 0;
   cpt = 0;
-  min = argv[2];
-  max = min;
+  both->the_min = ft_atoi(argv[1]);
+  both->the_max = both->the_min;
   while (++i < argc)
   {
     cpt++;
-    both->the_min = (both->the_min > argv[i]) ? ft_atoi(argv[i]) : both->the_min;
-    both->the_max = (both->the_max < argv[i]) ? ft_atoi(argv[i]) : both->the_max;
+    both->the_min = (both->the_min > ft_atoi(argv[i])) ? ft_atoi(argv[i]) : both->the_min;
+    both->the_max = (both->the_max < ft_atoi(argv[i])) ? ft_atoi(argv[i]) : both->the_max;
   }
   both->the_size = cpt;
 }
@@ -40,23 +38,22 @@ int     ft_fill_a(int argc, char **argv, t_both *both)
   i = 0;
   j = -1;
   ft_data_stack(argc, argv, both);
-  if (!TAB_B = (int*)ft_memalloc(sizeof(int) * both->the_size) ||
-  !TAB_A = (int*)ft_memalloc(sizeof(int) * both->the_size))
+  if (!(both->stack_b->tab = (int*)ft_memalloc(sizeof(int) * both->the_size)) ||
+  !(both->stack_a->tab = (int*)ft_memalloc(sizeof(int) * both->the_size)))
     return (-1);
   while (++i < argc)
-    TAB_A[++j] = ft_atoi(argv[i]);
+    both->stack_a->tab[++j] = ft_atoi(argv[i]);
   return (1);
 }
 
 int     ft_checker(int argc, char **argv)
 {
  t_both		*both;
- t_stack	*stack_a;
  char		*command;
 
-  if (!both = (t_both*)ft_memalloc(sizeof(t_both)) || !both->stack_a = (t_stack*)ft_memalloc(sizeof(t_stack)) ||
-  !both->stack_b = (t_stack*)ft_memalloc(sizeof(t_stack)) ||
-  !ft_checkarg(argc, argv) ||!ft_fill_a(argc, argv, both)
+  if (!(both = (t_both*)ft_memalloc(sizeof(t_both))) || !(both->stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))) ||
+  !(both->stack_b = (t_stack*)ft_memalloc(sizeof(t_stack))) ||
+  !ft_checkarg(argc, argv) || !ft_fill_a(argc, argv, both))
     return (-1);
   while (get_next_line(0, &command))
   {

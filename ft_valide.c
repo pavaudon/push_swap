@@ -14,12 +14,12 @@
 
 void	ft_current_data(t_both *both)
 {
-	SIZE_A = ft_inttablen(TAB_A);
-	SIZE_B = ft_inttablen(TAB_B);
-	MIN_A = ft_get_min_max(TAB_A, "min");
-	MIN_B = ft_get_min_max(TAB_B, "min");
-	MAX_A = ft_get_min_max(TAB_A, "max");
-	MAX_B = ft_get_min_max(TAB_B, "max");
+	both->stack_a->size = ft_inttablen(both->stack_a->tab);
+	both->stack_b->size = ft_inttablen(both->stack_b->tab);
+	both->stack_a->min = ft_get_min_max(both->stack_a->tab, "min");
+	both->stack_b->min = ft_get_min_max(both->stack_b->tab, "min");
+	both->stack_a->max = ft_get_min_max(both->stack_a->tab, "max");
+	both->stack_b->max = ft_get_min_max(both->stack_b->tab, "max");
 }
 
 int     ft_is_good_int(char *str)

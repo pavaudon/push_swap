@@ -12,26 +12,26 @@
 
 #include "push_swap.h"
 
-int		ft_is_command(char command, t_both *both)
+int		ft_is_command(char **command, t_both *both)
 {
-	if (command[0] == 's')
+	if (*command[0] == 's')
 	{
 		if (!ft_strcmp("sa", *command) || !ft_strcmp("sb", *command) || !ft_strcmp("ss", *command))
 			return (0);
-		ft_scommand(both, command[1]);
+		ft_scommand(both, *command[1]);
 	}
-	if (command[0] == 'p')
+	if (*command[0] == 'p')
 	{
 		if (!ft_strcmp("pa", *command) || !ft_strcmp("pb", *command))
 			return (0);
-		ft_pcommand(both, command[1]);
+		ft_pcommand(both, *command[1]);
 	}
-	if (command[0] == 'r')
+	if (*command[0] == 'r')
 	{
 		if (ft_strcmp("ra", *command) || ft_strcmp("rb", *command) || ft_strcmp("rr", *command))
-			ft_rcommand(both, command[1]);
+			ft_rcommand(both, *command[1]);
 		else if (ft_strcmp("rra", *command) || ft_strcmp("rrb", *command) || ft_strcmp("rrr", *command))
-			ft_rrcommand(both, command[2]);
+			ft_rrcommand(both, *command[2]);
 		else
 			return (0);
 	}
@@ -44,15 +44,15 @@ void	ft_scommand(t_both *both, char c)
 	int	*tmp;
 	int value;
 
-	tmp = (c == 'a' || c == 'r') ? TAB_A : TAB_B;
+	tmp = (c == 'a' || c == 'r') ? both->stack_a->tab : both->stack_b->tab;
 	value = tmp[0];
 	tmp[0] = tmp[1];
 	tmp[1] = value;
 	if (c == 'b')
-		TAB_B = tmp;
+		both->stack_b->tab = tmp;
 	else
 	{
-		TAB_A = tmp;
+		both->stack_a->tab = tmp;
 		if (c == 'r')
 			ft_scommand(both, 'b');
 	}
@@ -60,22 +60,21 @@ void	ft_scommand(t_both *both, char c)
 
 void	ft_pcommand(t_both *both, char c)
 {
-	int *tmp;
 	int i;
 
 	i = 0;
 	if (c == 'a')
 	{
-		TAB_B = ft_tabjoin(TAB_B, TAB_A[0], 'b', 'b');
-		TAB_A = ft_tabsub(TAB_A, 1, ft_inttablen((TAB_A) - 1));
+		both->stack_b->tab = ft_tabjoin(both->stack_b->tab, &both->stack_a->tab[0], 'b', 'b');
+		both->stack_a->tab = ft_tabsub(both->stack_a->tab, 1, ft_inttablen((both->stack_a->tab) - 1));
 	}
 	else if (c == 'b')
 	{
-			TAB_A = ft_tabjoin(TAB_A, TAB_B[0], 'b', 'b');
-			TAB_B = ft_tabsub(TAB_B, 1, ft_inttablen((TAB_B) - 1));
+			both->stack_a->tab = ft_tabjoin(both->stack_a->tab, &both->stack_b->tab[0], 'b', 'b');
+			both->stack_b->tab = ft_tabsub(both->stack_b->tab, 1, ft_inttablen((both->stack_b->tab) - 1));
 	}
 	else
-		pcommand(both, 'b');
+		ft_pcommand(both, 'b');
 }
 
 void	ft_rcommand(t_both *both, char c)
@@ -83,15 +82,16 @@ void	ft_rcommand(t_both *both, char c)
 	int *tmp;
 	int value;
 
-	tmp = (c =='a' || c == 'r') ? TAB_A : TAB_B;
-	value = (c == 'a' || c == 'r') ? TAB_A[SIZE_A] : TAB_B[SIZE_B];
-	tmp = ft_tabsub(tmp, 1, ft_inttab(tmp));
+	tmp = (c =='a' || c == 'r') ? both->stack_a->tab : both->stack_b->tab;
+	value = (c == 'a' || c == 'r') ? both->stack_a->tab[both->stack_a->size] :
+	both->stack_b->tab[both->stack_b->size];
+	tmp = ft_tabsub(tmp, 1, ft_inttablen(tmp));
 	tmp = ft_tabjoin(tmp, &value, 'e', 'b');
 	if (c == 'b')
-		TAB_B = tmp;
+		both->stack_b->tab = tmp;
 	else
 	{
-		TAB_A = tmp;
+		both->stack_a->tab = tmp;
 		if (c == 'r')
 			ft_rcommand(both, 'b');
 	}
@@ -102,15 +102,15 @@ void	ft_rrcommand(t_both *both, char c)
 	int *tmp;
 	int value;
 
-	tmp = (c =='a' || c == 'r') ? TAB_A : TAB_B;
-	value = (c == 'a' || c == 'r') ? TAB_A[0] : TAB_B[0];
-	tmp = ft_tabsub(tmp, 0, (ft_inttab(tmp) - 1));
+	tmp = (c =='a' || c == 'r') ? both->stack_a->tab : both->stack_b->tab;
+	value = (c == 'a' || c == 'r') ? both->stack_a->tab[0] : both->stack_b->tab[0];
+	tmp = ft_tabsub(tmp, 0, (ft_inttablen(tmp) - 1));
 	tmp = ft_tabjoin(tmp, &value, 'b', 'b');
 	if (c == 'b')
-		TAB_B = tmp;
+		both->stack_b->tab = tmp;
 	else
 	{
-		TAB_A = tmp;
+		both->stack_a->tab = tmp;
 		if (c == 'r')
 			ft_rrcommand(both, 'b');
 	}

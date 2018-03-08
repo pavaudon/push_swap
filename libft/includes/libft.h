@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdint.h>
 
+# define BUFF_SIZE 1
+
 typedef struct		s_list
 {
 	void			*content;
@@ -113,4 +115,5 @@ int					*ft_tabcpy(int *tab, int *to_cpy);
 int					*ft_tabndup(int *tab, int n);
 int					*ft_tabdup(int *tab);
 int					*ft_tabsub(int *tab, int start, int len);
+int					get_next_line(const int fd, char **line);
 #endif

@@ -13,16 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft.h"
-
-# define TAB_A "both->stack_a->tab"
-# define TAB_B "both->stack_b->tab"
-# define SIZE_A "both->stack_a->size"
-# define SIZE_B "both->stack_b->size"
-# define MIN_A "both->stack_a->min"
-# define MIN_B "both->stack_b->min"
-# define MAX_A "both->stack_a->max"
-# define MAX_B "both->stack_b->max"
+# include "libft/includes/libft.h"
 
 typedef struct  s_stack
 {
@@ -52,6 +43,6 @@ void			ft_rrcommand(t_both *both, char c);
 void			ft_rcommand(t_both *both, char c);
 void			ft_pcommand(t_both *both, char c);
 void			ft_scommand(t_both *both, char c);
-int				ft_is_command(char command, t_both *both);
+int				ft_is_command(char **command, t_both *both);
 
 #endif

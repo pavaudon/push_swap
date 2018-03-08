@@ -12,12 +12,12 @@
 
 .PHONY: all clean fclean re norme
 
-NAME1 = 					checker
+NAME_1 = 					checker
 
-#NAME2 = 					push_swap
+#NAME_2 = 					push_swap
 
 CC = 						gcc
-CFLAGS = 					-Wall -Werror -Wextra -I $(INC_DIR)
+CFLAGS = 					-Wall -Werror -Wextra -I$(INC_DIR)
 
 SRC_DIR =					./src/
 SRC_1 = 					ft_checker.c \
@@ -32,11 +32,11 @@ SRCS_1 =					$(addprefix $(SRC_DIR),$(SRC_1))
 
 OBJ_DIR_1 =					./obj_1/
 OBJ_1 = 					$(SRC_1:.c=.o)
-OBJS_1 =					$(addprefix $(OBJ_DIR),$(OBJ))
+OBJS_1 =					$(addprefix $(OBJ_DIR),$(OBJ_1))
 
 #OBJ_DIR_2 =					./obj_2/
 #OBJ_2 = 					$(SRC_2:.c=.o)
-#OBJS_2 =					$(addprefix $(OBJ_DIR),$(OBJ))
+#OBJS_2 =					$(addprefix $(OBJ_DIR),$(OBJ_2))
 
 INC_DIR =					./includes/
 INC =						push_swap.h
@@ -50,33 +50,33 @@ $(NAME_1) :				$(OBJ_DIR_1) $(OBJS_1)
 							echo ""$(NAME_1)" appeared"
 
 #$(NAME_2) :				$(OBJ_DIR_2) $(OBJS_2)
-						#	@ar rc $(NAME_2) $(OBJS_2)
-						#	@ranlib $(NAME_2)
-						#	echo ""$(NAME_2)" appeared"
+#							@ar rc $(NAME_2) $(OBJS_2)
+#							@ranlib $(NAME_2)
+#							echo ""$(NAME_2)" appeared"
 
 $(OBJ_DIR_1)%.o:	$(SRC_DIR_1)%.c $(INCS)
 							@$(CC) $(CFLAGS) -c $< -o $@
 							echo "*MAGIC IN PROCESS*"
 
 #$(OBJ_DIR_2)%.o:	$(SRC_DIR_2)%.c $(INCS)
-					#		@$(CC) $(CFLAGS) -c $< -o $@
-					#		echo "*MAGIC IN PROCESS AGAIN*"
+#							@$(CC) $(CFLAGS) -c $< -o $@
+#							echo "*MAGIC IN PROCESS AGAIN*"
 
 $(OBJ_DIR_1):
 							@mkdir -p $(OBJ_DIR_1)
 
 #$(OBJ_DIR_2):
-			#				@mkdir -p $(OBJ_DIR_2)
+#							@mkdir -p $(OBJ_DIR_2)
 
 clean :
 							@rm -f $(OBJS_1)
-						#	@rm -f $(OBJS_2)
+#							@rm -f $(OBJS_2)
 							@rm -rf $(OBJ_DIR_1)
-						#	@rm -rf $(OBJ_DIR_2)
+#							@rm -rf $(OBJ_DIR_2)
 
 fclean : 					clean
 							@rm -f $(NAME_1)
-						#	@rm -rf $(NAME_2)
+#							@rm -rf $(NAME_2)
 
 re :		 				fclean all
 
