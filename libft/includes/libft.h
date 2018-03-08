@@ -107,6 +107,10 @@ int					ft_flen(double n);
 char				*ft_ftodst(double n, char *str);
 int					ft_inttablen(int *tab);
 int					ft_get_min_max(int *tab, char *which);
-int					*ft_tabjoin(int *tab, int *to_add, char where, char to_free);
+int					*ft_tabjoin(int *tab, int *to_add, char where,
+					char to_free);
 int					*ft_tabcpy(int *tab, int *to_cpy);
+int					*ft_tabndup(int *tab, int n);
+int					*ft_tabdup(int *tab);
+int					*ft_tabsub(int *tab, int start, int len);
 #endif

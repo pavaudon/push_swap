@@ -18,7 +18,8 @@ int		*ft_tabjoin(int *tab, int *to_add, char where, char to_free)
 	int	i;
 
 	i = 0;
-	if (!new = (int*)ft_memalloc(sizeof(int) * (ft_inttablen(tab) + (ft_inttablen(to_add)))))
+	if (!(new = (int*)ft_memalloc(sizeof(int) *
+	(ft_inttablen(tab) + ft_inttablen(to_add)))))
 		return (NULL);
 	if (where == 'b')
 	{
@@ -33,8 +34,8 @@ int		*ft_tabjoin(int *tab, int *to_add, char where, char to_free)
 		ft_tabcpy(to_add, new + i);
 	}
 	if (to_free == 'f' || to_free == 'b')
-		ft_memdel((void)&tab);
+		ft_memdel((void*)tab);
 	if (to_free == 's' || to_free == 'b')
-		ft_memdel((void)&to_add);
+		ft_memdel((void*)to_add);
 	return (new);
 }

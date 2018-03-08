@@ -98,7 +98,10 @@ SRC = 		ft_memset.c \
 			ft_inttablen.c \
 			ft_get_min_max.c \
 			ft_tabcpy.c \
-			ft_tabjoin.c
+			ft_tabjoin.c \
+			ft_tabndup.c \
+			ft_tabdup.c \
+			ft_tabsub.c
 
 SRCS =		$(addprefix $(SRC_DIR),$(SRC))
 

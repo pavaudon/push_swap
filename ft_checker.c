@@ -40,11 +40,11 @@ int     ft_fill_a(int argc, char **argv, t_both *both)
   i = 0;
   j = -1;
   ft_data_stack(argc, argv, both);
-  if (!both->stack_b->tab = (int*)ft_memalloc(sizeof(int) * both->the_size) ||
-  !both->stack_a->tab = (int*)ft_memalloc(sizeof(int) * both->the_size))
+  if (!TAB_B = (int*)ft_memalloc(sizeof(int) * both->the_size) ||
+  !TAB_A = (int*)ft_memalloc(sizeof(int) * both->the_size))
     return (-1);
   while (++i < argc)
-    both->stack_a->tab[++j] = ft_atoi(argv[i]);
+    TAB_A[++j] = ft_atoi(argv[i]);
   return (1);
 }
 
