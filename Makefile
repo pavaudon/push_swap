@@ -47,20 +47,20 @@ all : 						$(NAME_1) #$(NAME_2)
 $(NAME_1) :				$(OBJ_DIR_1) $(OBJS_1)
 							@ar rc $(NAME_1) $(OBJS_1)
 							@ranlib $(NAME_1)
-							echo ""$(NAME_1)" appeared"
+							@echo "*$(NAME_1)* appeared"
 
 #$(NAME_2) :				$(OBJ_DIR_2) $(OBJS_2)
 #							@ar rc $(NAME_2) $(OBJS_2)
 #							@ranlib $(NAME_2)
-#							echo ""$(NAME_2)" appeared"
+#							echo *$(NAME_2)* appeared
 
 $(OBJ_DIR_1)%.o:	$(SRC_DIR_1)%.c $(INCS)
 							@$(CC) $(CFLAGS) -c $< -o $@
-							echo "*MAGIC IN PROCESS*"
+							@echo "*MAGIC IN PROCESS*"
 
 #$(OBJ_DIR_2)%.o:	$(SRC_DIR_2)%.c $(INCS)
 #							@$(CC) $(CFLAGS) -c $< -o $@
-#							echo "*MAGIC IN PROCESS AGAIN*"
+#							@echo "*MAGIC IN PROCESS AGAIN*"
 
 $(OBJ_DIR_1):
 							@mkdir -p $(OBJ_DIR_1)
