@@ -149,7 +149,7 @@ $(NAME) :		$(OBJ_DIR) $(OBJS)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INCS)
 		@$(CC) $(CFLAGS) -c $< -o $@
-		@echo "*MAGIC IN PROCESS*"
+		@echo "*LIBFT IN PROCESS*"
 
 $(OBJ_DIR):
 		@mkdir -p $(OBJ_DIR)

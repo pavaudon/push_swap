@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/includes/libft.h"
+# include "libft.h"
 
 typedef struct  s_stack
 {
@@ -44,5 +44,6 @@ void			ft_rcommand(t_both *both, char c);
 void			ft_pcommand(t_both *both, char c);
 void			ft_scommand(t_both *both, char c);
 int				ft_is_command(char **command, t_both *both);
+int				ft_is_sort(int *tab);
 
 #endif

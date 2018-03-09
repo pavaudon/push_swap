@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void      ft_data_stack(int argc, char **argv, t_both *both)
 {
@@ -57,11 +58,14 @@ int     ft_checker(int argc, char **argv)
     return (-1);
   while (get_next_line(0, &command))
   {
+	printf("command? '%s'\n", command);
     if (!ft_is_command(&command, both))
     {
         ft_puterror("Error : bad command\n");
         return (-1);
     }
+	if (ft_is_sort(both->stack_a->tab))
+		return (1);
   }
   return (0);
 }

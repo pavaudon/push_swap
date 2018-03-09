@@ -12,6 +12,23 @@
 
 #include "push_swap.h"
 
+int		ft_is_sort(int *tab)
+{
+	int i;
+	int j;
+
+	j = 0;
+	if (ft_inttablen(tab) == 1)
+		return (1);
+	while (tab[++j])
+	{
+		i = j - 1;
+		if (tab[i] > tab[j])
+			return (0);
+	}
+	return (1);
+}
+
 void	ft_current_data(t_both *both)
 {
 	both->stack_a->size = ft_inttablen(both->stack_a->tab);
