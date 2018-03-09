@@ -12,12 +12,12 @@
 
 #include "libft.h"
 
-int		*ft_tabcpy(int *tab, int *to_cpy)
+int		*ft_tabcpy(int *tab, int *to_cpy, int len)
 {
 	int i;
 
 	i = -1;
-	while (tab[++i])
+	while (++i <= len)
 		to_cpy[i] = tab[i];
 	return (to_cpy);
 }

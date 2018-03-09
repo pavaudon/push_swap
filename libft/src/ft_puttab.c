@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inttablen.c                                     :+:      :+:    :+:   */
+/*   ft_puttab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 18:58:53 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/03/07 18:58:56 by pavaudon         ###   ########.fr       */
+/*   Created: 2018/03/09 16:44:18 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/03/09 16:44:20 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int		ft_inttablen(int *tab)
+void	ft_puttab(int *tab, int len)
 {
-	int len;
+	int i;
 
-	len = 0;
-	while (tab[len])
-		len++;
-	return (len);
+	i = -1;
+	while (++i < len)
+	{
+		ft_putnbr(tab[i]);
+		ft_putchar('\n');
+	}
 }

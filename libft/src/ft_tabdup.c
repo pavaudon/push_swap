@@ -12,18 +12,15 @@
 
 #include "libft.h"
 
-int		*ft_tabdup(int *tab)
+int		*ft_tabdup(int *tab, int len)
 {
 	int i;
 	int *new;
 
 	i = 0;
-	if (!(new = (int*)ft_memalloc(sizeof(int) * ft_inttablen(tab))))
+	if (!(new = (int*)ft_memalloc(sizeof(int) * len)))
 		return (NULL);
-	while (tab[i])
-	{
+	while (++i <= len)
 		new[i] = tab[i];
-		i++;
-	}
 	return (new);
 }

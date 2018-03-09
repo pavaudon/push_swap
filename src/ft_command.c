@@ -16,15 +16,17 @@ int		ft_is_command(char **command, t_both *both)
 {
 	if (*command[0] == 's')
 	{
-		if (!ft_strcmp("sa", *command) || !ft_strcmp("sb", *command) || !ft_strcmp("ss", *command))
-			return (0);
-		ft_scommand(both, *command[1]);
+		if (ft_strcmp("sa", *command) || ft_strcmp("sb", *command) || ft_strcmp("ss", *command))
+			ft_scommand(both, *command[1]);
+		else
+			return (-1);
 	}
 	if (*command[0] == 'p')
 	{
-		if (!ft_strcmp("pa", *command) || !ft_strcmp("pb", *command))
-			return (0);
-		ft_pcommand(both, *command[1]);
+		if (ft_strcmp("pa", *command) || ft_strcmp("pb", *command))
+			ft_pcommand(both, *command[1]);
+		else
+			return (-1);
 	}
 	if (*command[0] == 'r')
 	{
@@ -35,6 +37,8 @@ int		ft_is_command(char **command, t_both *both)
 		else
 			return (0);
 	}
+	else
+		return (-1);
 	ft_current_data(both);
 	return (1);
 }
@@ -66,7 +70,9 @@ void	ft_pcommand(t_both *both, char c)
 	if (c == 'a')
 	{
 		both->stack_b->tab = ft_tabjoin(both->stack_b->tab, &both->stack_a->tab[0], 'b', 'b');
+		printf("GOOD TABJOIN : TAB_B\n");
 		both->stack_a->tab = ft_tabsub(both->stack_a->tab, 1, ft_inttablen((both->stack_a->tab) - 1));
+		printf("GOOD TABSUB TAB_A\n");
 	}
 	else if (c == 'b')
 	{

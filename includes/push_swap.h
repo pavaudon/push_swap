@@ -15,6 +15,8 @@
 
 # include "libft.h"
 
+# include <stdio.h>
+
 typedef struct  s_stack
 {
   int     *tab;

@@ -41,37 +41,37 @@ void	ft_current_data(t_both *both)
 
 int     ft_is_good_int(char *str)
 {
-  int i;
+	int i;
 
-  i = -1;
-  while (str[i++])
-  {
-    if (!ft_isdigit(str[i]) && str[0] != '-')
-      return (-1);
-  }
-  if (!ft_atoi(str))
-    return (-1);
-  return (1);
+	i = -1;
+	while (str[i++])
+	{
+    	if (!ft_isdigit(str[i]) && str[0] != '-')
+      		return (-1);
+	}
+	if (!ft_atoi(str))
+    	return (-1);
+	return (1);
 }
 
 int     ft_checkarg(int argc, char **argv)
 {
-  int i;
-  int tmp;
-  int j;
-  int value;
+	int i;
+	int tmp;
+	int j;
+	int value;
 
-  j = 0;
-  while (++j < argc)
-  {
-    i = 0;
-    while (++i < argc)
-    {
-      value = ft_atoi(argv[i]);
-      tmp = ft_atoi(argv[j]);
-      if (tmp == value)
-        return (-1);
-    }
-  }
-  return (1);
+	j = 0;
+	while (++j < argc)
+	{
+    	i = 0;
+    	while (++i < argc)
+    	{
+			value = ft_atoi(argv[i]);
+			tmp = ft_atoi(argv[j]);
+			if (tmp == value)
+				return (-1);
+		}
+	}
+	return (1);
 }

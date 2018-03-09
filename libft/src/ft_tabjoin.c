@@ -12,26 +12,25 @@
 
 #include "libft.h"
 
-int		*ft_tabjoin(int *tab, int *to_add, char where, char to_free)
+int		*ft_tabjoin(int *tab, int *to_add, int tablen, int to_addlen, char where, char to_free)
 {
 	int *new;
 	int	i;
 
 	i = 0;
-	if (!(new = (int*)ft_memalloc(sizeof(int) *
-	(ft_inttablen(tab) + ft_inttablen(to_add)))))
+	if (!(new = (int*)ft_memalloc(sizeof(int) * (tablen + to_addlen))))
 		return (NULL);
 	if (where == 'b')
 	{
-		ft_tabcpy(tab, new);
-		i += ft_inttablen(tab);
-		ft_tabcpy(to_add, new + i);
+		ft_tabcpy(tab, new, tablen);
+		i += tablen;
+		ft_tabcpy(to_add, new + i, to_addlen);
 	}
 	else
 	{
-		ft_tabcpy(to_add, new);
-		i += ft_inttablen(to_add);
-		ft_tabcpy(to_add, new + i);
+		ft_tabcpy(to_add, new, to_addlen);
+		i += to_addlen;
+		ft_tabcpy(tab, new + i, tablen);
 	}
 	if (to_free == 'f' || to_free == 'b')
 		ft_memdel((void*)tab);

@@ -35,22 +35,22 @@ CFLAGS		=	-Wextra -Wall -I$(INC) -I$(INCLIB)
 all:			$(NAME_1)
 
 $(NAME_1):		$(OBJ_DIR_1) $(OBJS_1)
-				make -C libft/
-				$(CC) $(CFLAGS) $(OBJS_1) -o $(NAME_1) -L./libft -lft
+				@make -C libft/
+				@$(CC) $(CFLAGS) $(OBJS_1) -o $(NAME_1) -L./libft -lft
 
 $(OBJ_DIR_1)%.o:	$(SRC_DIR_1)%.c $(INCS)
-				$(CC) $(CFLAGS) -c $< -o $@
+				@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR_1):
-				mkdir -p $(OBJ_DIR_1)
+				@mkdir -p $(OBJ_DIR_1)
 
 clean:
-				rm -rf $(OBJS_1)
-				make clean -C libft
+				@rm -rf $(OBJS_1)
+				@make clean -C libft
 
 
 fclean:			clean
-				rm -rf libft/libft.a
-				rm -rf $(NAME_1)
+				@rm -rf libft/libft.a
+				@rm -rf $(NAME_1)
 
 re:				fclean all
