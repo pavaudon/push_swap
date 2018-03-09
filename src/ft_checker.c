@@ -63,7 +63,7 @@ int     ft_checker(int argc, char **argv)
         	ft_puterror("Error : bad command\n");
         		return (-1);
     	}
-		if (ft_is_sort(both->stack_a->tab))
+		if (ft_is_sort(both->stack_a->tab, both))
 			return (1);
 	}
 	return (0);

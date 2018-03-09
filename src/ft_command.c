@@ -69,15 +69,17 @@ void	ft_pcommand(t_both *both, char c)
 	i = 0;
 	if (c == 'a')
 	{
-		both->stack_b->tab = ft_tabjoin(both->stack_b->tab, &both->stack_a->tab[0], 'b', 'b');
+		both->stack_b->tab = ft_tabjoin(both->stack_b->tab, &both->stack_a->tab[0],
+		both->stack_b->size, both->stack_a->size 'b', 'b');
 		printf("GOOD TABJOIN : TAB_B\n");
-		both->stack_a->tab = ft_tabsub(both->stack_a->tab, 1, ft_inttablen((both->stack_a->tab) - 1));
+		both->stack_a->tab = ft_tabsub(both->stack_a->tab, 1, (both->stack_a->size - 1));
 		printf("GOOD TABSUB TAB_A\n");
 	}
 	else if (c == 'b')
 	{
-			both->stack_a->tab = ft_tabjoin(both->stack_a->tab, &both->stack_b->tab[0], 'b', 'b');
-			both->stack_b->tab = ft_tabsub(both->stack_b->tab, 1, ft_inttablen((both->stack_b->tab) - 1));
+		both->stack_a->tab = ft_tabjoin(both->stack_a->tab, &both->stack_b->tab[0],
+		both->stack_a->size, both->stack_b->size 'b', 'b');
+		both->stack_b->tab = ft_tabsub(both->stack_b->tab, 1, both->stack_b->size - 1));
 	}
 	else
 		ft_pcommand(both, 'b');

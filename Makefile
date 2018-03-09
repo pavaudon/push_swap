@@ -46,6 +46,7 @@ $(OBJ_DIR_1):
 
 clean:
 				@rm -rf $(OBJS_1)
+				@rm -rf $(OBJ_DIR_1)
 				@make clean -C libft
 
 
