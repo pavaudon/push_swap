@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-
-
 int		ft_is_sort(int *tab, t_both *both)
 {
 	int i;
@@ -32,8 +30,6 @@ int		ft_is_sort(int *tab, t_both *both)
 }
 void	ft_current_data(t_both *both)
 {
-	both->stack_a->size = ft_current_len(both->stack_a->tab, both);			//idem
-	both->stack_b->size = ft_current_len(both->stack_b->tab, both);			//a changer
 	both->stack_a->min = ft_get_min_max(both->stack_a->tab, "min");
 	both->stack_b->min = ft_get_min_max(both->stack_b->tab, "min");
 	both->stack_a->max = ft_get_min_max(both->stack_a->tab, "max");

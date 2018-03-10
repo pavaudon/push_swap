@@ -64,13 +64,10 @@ void	ft_scommand(t_both *both, char c)
 
 void	ft_pcommand(t_both *both, char c)
 {
-	int i;
-
-	i = 0;
 	if (c == 'a')
 	{
 		both->stack_b->tab = ft_tabjoin(both->stack_b->tab, &both->stack_a->tab[0],
-		both->stack_b->size, both->stack_a->size 'b', 'b');
+		both->stack_b->size, both->stack_a->size, 'b', 'b');
 		printf("GOOD TABJOIN : TAB_B\n");
 		both->stack_a->tab = ft_tabsub(both->stack_a->tab, 1, (both->stack_a->size - 1));
 		printf("GOOD TABSUB TAB_A\n");
@@ -78,8 +75,8 @@ void	ft_pcommand(t_both *both, char c)
 	else if (c == 'b')
 	{
 		both->stack_a->tab = ft_tabjoin(both->stack_a->tab, &both->stack_b->tab[0],
-		both->stack_a->size, both->stack_b->size 'b', 'b');
-		both->stack_b->tab = ft_tabsub(both->stack_b->tab, 1, both->stack_b->size - 1));
+		both->stack_a->size, both->stack_b->size, 'b', 'b');
+		both->stack_b->tab = ft_tabsub(both->stack_b->tab, 1, (both->stack_b->size - 1));
 	}
 	else
 		ft_pcommand(both, 'b');
@@ -88,13 +85,12 @@ void	ft_pcommand(t_both *both, char c)
 void	ft_rcommand(t_both *both, char c)
 {
 	int *tmp;
-	int value;
+	int size;
 
 	tmp = (c =='a' || c == 'r') ? both->stack_a->tab : both->stack_b->tab;
-	value = (c == 'a' || c == 'r') ? both->stack_a->tab[both->stack_a->size] :
-	both->stack_b->tab[both->stack_b->size];
-	tmp = ft_tabsub(tmp, 1, ft_inttablen(tmp));
-	tmp = ft_tabjoin(tmp, &value, 'e', 'b');
+	size = (c == 'a' || c == 'r') ? both->stack_a->size : both->stack_b->size;
+	tmp = ft_tabsub(tmp, 1, size);
+	tmp = ft_tabjoin(tmp + 1, &tmp[0], (size - 1), 1, 'e', 'b');
 	if (c == 'b')
 		both->stack_b->tab = tmp;
 	else
@@ -108,12 +104,12 @@ void	ft_rcommand(t_both *both, char c)
 void	ft_rrcommand(t_both *both, char c)
 {
 	int *tmp;
-	int value;
+	int size;
 
 	tmp = (c =='a' || c == 'r') ? both->stack_a->tab : both->stack_b->tab;
-	value = (c == 'a' || c == 'r') ? both->stack_a->tab[0] : both->stack_b->tab[0];
-	tmp = ft_tabsub(tmp, 0, (ft_inttablen(tmp) - 1));
-	tmp = ft_tabjoin(tmp, &value, 'b', 'b');
+	size = (c == 'a' || c == 'r') ? both->stack_a->size : both->stack_b->size;
+	tmp = ft_tabsub(tmp, 0, (size - 1));
+	tmp = ft_tabjoin(tmp, &tmp[size], (size - 1), 1, 'b', 'b');
 	if (c == 'b')
 		both->stack_b->tab = tmp;
 	else

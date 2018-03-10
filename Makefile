@@ -54,4 +54,4 @@ fclean:			clean
 				@rm -rf libft/libft.a
 				@rm -rf $(NAME_1)
 
-re:				fclean all
+re:			fclean all
