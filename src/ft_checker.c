@@ -28,6 +28,8 @@ void      ft_data_stack(int argc, char **argv, t_both *both)
     	both->the_max = (both->the_max < ft_atoi(argv[i])) ? ft_atoi(argv[i]) : both->the_max;
 	}
 	both->the_size = cpt;
+	SIZE_A = cpt;
+	SIZE_B = 0;
 }
 
 int     ft_fill_a(int argc, char **argv, t_both *both)
@@ -38,11 +40,11 @@ int     ft_fill_a(int argc, char **argv, t_both *both)
 	i = 0;
 	j = -1;
 	ft_data_stack(argc, argv, both);
-	if (!(both->stack_b->tab = (int*)ft_memalloc(sizeof(int) * both->the_size)) ||
-	!(both->stack_a->tab = (int*)ft_memalloc(sizeof(int) * both->the_size)))
+	if (!(TAB_B = (int*)ft_memalloc(sizeof(int) * both->the_size)) ||
+	!(TAB_A = (int*)ft_memalloc(sizeof(int) * both->the_size)))
     	return (-1);
 	while (++i < argc)
-    	both->stack_a->tab[++j] = ft_atoi(argv[i]);
+    	TAB_A[++j] = ft_atoi(argv[i]);
 	return (1);
 }
 
@@ -51,19 +53,22 @@ int     ft_checker(int argc, char **argv)
 	t_both		*both;
 	char		*command;
 
-	if (!(both = (t_both*)ft_memalloc(sizeof(t_both))) || !(both->stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))) ||
+	if (!(both = (t_both*)ft_memalloc(sizeof(t_both))) ||
+	!(both->stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))) ||
 	!(both->stack_b = (t_stack*)ft_memalloc(sizeof(t_stack))) ||
 	!ft_checkarg(argc, argv) || !ft_fill_a(argc, argv, both))
 		return (-1);
+	printf("DEBUT :\n");
+	ft_puttab(TAB_A, SIZE_A);
 	while (get_next_line(0, &command))
 	{
-		printf("command? '%s' '%c' '%c'\n", command, command[0], command[1]);
-    	if (!ft_is_command(&command, both))
+		printf("command : '%s'\n", command);
+    	if (!ft_is_command(command, both))
     	{
         	ft_puterror("Error : bad command\n");
         		return (-1);
     	}
-		if (ft_is_sort(both->stack_a->tab, both))
+		if ((ft_is_sort(TAB_A, SIZE_A) && SIZE_B == 0) || both->the_size == 1)
 			return (1);
 	}
 	return (0);

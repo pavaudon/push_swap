@@ -101,7 +101,8 @@ SRC = 		ft_memset.c \
 			ft_tabndup.c \
 			ft_tabdup.c \
 			ft_tabsub.c \
-			get_next_line.c
+			get_next_line.c \
+			ft_puttab.c
 
 SRCS =		$(addprefix $(SRC_DIR),$(SRC))
 

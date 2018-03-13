@@ -17,10 +17,10 @@ int		*ft_tabdup(int *tab, int len)
 	int i;
 	int *new;
 
-	i = 0;
+	i = -1;
 	if (!(new = (int*)ft_memalloc(sizeof(int) * len)))
 		return (NULL);
-	while (++i <= len)
+	while (++i < len)
 		new[i] = tab[i];
 	return (new);
 }

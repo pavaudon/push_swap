@@ -35,8 +35,9 @@ CFLAGS		=	-Wextra -Wall -I$(INC) -I$(INCLIB)
 all:			$(NAME_1)
 
 $(NAME_1):		$(OBJ_DIR_1) $(OBJS_1)
-				@make -C libft/
+#				@make -C libft/
 				@$(CC) $(CFLAGS) $(OBJS_1) -o $(NAME_1) -L./libft -lft
+				@echo "checker is made"
 
 $(OBJ_DIR_1)%.o:	$(SRC_DIR_1)%.c $(INCS)
 				@$(CC) $(CFLAGS) -c $< -o $@

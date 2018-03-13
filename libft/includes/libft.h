@@ -115,4 +115,5 @@ int					*ft_tabndup(int *tab, int len, int n);
 int					*ft_tabdup(int *tab, int len);
 int					*ft_tabsub(int *tab, int start, int len);
 int					get_next_line(const int fd, char **line);
+void				ft_puttab(int *tab, int len);
 #endif

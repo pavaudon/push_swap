@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	ft_puttab(int *tab, int len)
 {
@@ -20,7 +19,9 @@ void	ft_puttab(int *tab, int len)
 	i = -1;
 	while (++i < len)
 	{
+		ft_putstr(">>	");
 		ft_putnbr(tab[i]);
+		ft_putstr("	<<");
 		ft_putchar('\n');
 	}
 }

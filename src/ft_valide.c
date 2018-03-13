@@ -12,19 +12,22 @@
 
 #include "push_swap.h"
 
-int		ft_is_sort(int *tab, t_both *both)
+int		ft_is_sort(int *tab, int len)
 {
 	int i;
+	int tmp;
 	int j;
 
-	j = 0;
-	if (both->the_size == 1)
-		return (1);
-	while (tab[++j])
+	i = -1;
+	while (++i < len)
 	{
-		i = j - 1;
-		if (tab[i] > tab[j])
-			return (0);
+		j = i;
+		while (tab[++j])
+		{
+			tmp = tab[i];
+			if (tmp > tab[j])
+				return (0);
+		}
 	}
 	return (1);
 }
