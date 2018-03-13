@@ -87,7 +87,7 @@ void	ft_pcommand(t_both *both, char c)
 		TAB_A = (SIZE_A > 0) ? ft_tabjoin(TAB_A, &TAB_B[0], SIZE_A, SIZE_B, 'b', 'b') : ft_tabndup(TAB_B, 1, 1);
 		TAB_B = ft_tabsub(TAB_B, 1, (SIZE_B - 1));
 		SIZE_B -= 1;
-		SIZE_A += 1;
+			SIZE_A += 1;
 		printf("	TAB_A	\n");
 		ft_puttab(TAB_A, SIZE_A);
 		printf("	TAB_B	\n");
