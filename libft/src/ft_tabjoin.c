@@ -21,8 +21,8 @@ int		*ft_tabjoin(int *tab, int *to_add, int tablen, int to_addlen, char to_free)
 	ft_tabcpy(tab, new, tablen);
 	ft_tabcpy(to_add, new + tablen, to_addlen);
 	if (to_free == 'f' || to_free == 'b')
-		ft_memdel((void*)tab);
+		ft_memdel((void**)&tab);
 	if (to_free == 's' || to_free == 'b')
-		ft_memdel((void*)to_add);
+		ft_memdel((void**)&to_add);
 	return (new);
 }

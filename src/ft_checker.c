@@ -63,7 +63,7 @@ int     ft_checker(int argc, char **argv)
 	while (get_next_line(0, &command))
 	{
 		printf("command : '%s'\n", command);
-    	if (!ft_is_command(command, both))
+    	if ((ft_strlen(command) < 2 || ft_strlen(command) > 5) || !ft_is_command(command, both, ft_strlen(command)))
     	{
         	ft_puterror("Error : bad command\n");
         		return (-1);

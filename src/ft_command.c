@@ -12,27 +12,27 @@
 
 #include "push_swap.h"
 
-int		ft_is_command(char *command, t_both *both)
+int		ft_is_command(char *command, t_both *both, int len)
 {
-	if (command[0] == 's')
+	if (command[0] == 's' && len == 2)
 	{
 		if (ft_strcmp("sa", command) || ft_strcmp("sb", command) || ft_strcmp("ss", command))
 			ft_scommand(both, command[1]);
 		else
 			return (0);
 	}
-	else if (command[0] == 'p')
+	else if (command[0] == 'p' && len == 2)
 	{
 		if (ft_strcmp("pa", command) || ft_strcmp("pb", command))
 			ft_pcommand(both, command[1]);
 		else
 			return (0);
 	}
-	else if (command[0] == 'r')
+	else if (command[0] == 'r' && len > 4)
 	{
-		if (ft_strcmp("ra", command) || ft_strcmp("rb", command) || ft_strcmp("rr", command))
+		if (len == 2 && (ft_strcmp("ra", command) || ft_strcmp("rb", command) || ft_strcmp("rr", command)))
 			ft_rcommand(both, command[1]);
-		else if (ft_strcmp("rra", command) || ft_strcmp("rrb", command) || ft_strcmp("rrr", command))
+		else if (len == 3 && (ft_strcmp("rra", command) || ft_strcmp("rrb", command) || ft_strcmp("rrr", command)))
 			ft_rrcommand(both, command[2]);
 		else
 			return (0);
@@ -72,15 +72,16 @@ void	ft_pcommand(t_both *both, char c)
 {
 	if (c == 'a' && SIZE_A > 0)
 	{
+		printf("ENTER\n");
 		TAB_B = (SIZE_B > 0) ? ft_tabjoin(TAB_B, &TAB_A[0], SIZE_B, SIZE_A, 'f') : ft_tabndup(TAB_A, 1, 1);
 		printf("GOOD TABJOIN\n");
 		if (SIZE_A > 1)
 			TAB_A = ft_tabsub(TAB_A, 1, (SIZE_A - 1));
 		SIZE_A -= 1;
 		SIZE_B += 1;
-		printf("	TAB_A	\n");
+		printf("	TAB_A\n");
 		ft_puttab(TAB_A, SIZE_A);
-		printf("	TAB_B	\n");
+		printf("	TAB_B\n");
 		ft_puttab(TAB_B, SIZE_B);
 		printf("SIZE_A : %d		SIZE_B : %d\n", SIZE_A, SIZE_B);
 	}
@@ -92,9 +93,9 @@ void	ft_pcommand(t_both *both, char c)
 		printf("GOOD B TABSUB\n");
 		SIZE_B -= 1;
 		SIZE_A += 1;
-		printf("	TAB_A	\n");
+		printf("	TAB_A\n");
 		ft_puttab(TAB_A, SIZE_A);
-		printf("	TAB_B	\n");
+		printf("	TAB_B\n");
 		ft_puttab(TAB_B, SIZE_B);
 		printf("SIZE_A : %d		SIZE_B : %d\n", SIZE_A, SIZE_B);
 	}
