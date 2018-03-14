@@ -72,8 +72,10 @@ void	ft_pcommand(t_both *both, char c)
 {
 	if (c == 'a' && SIZE_A > 0)
 	{
-		TAB_B = (SIZE_B > 0) ? ft_tabjoin(TAB_B, &TAB_A[0], SIZE_B, SIZE_A, 'b', 'b') : ft_tabndup(TAB_A, 1, 1);
-		TAB_A = ft_tabsub(TAB_A, 1, (SIZE_A - 1));
+		TAB_B = (SIZE_B > 0) ? ft_tabjoin(TAB_B, &TAB_A[0], SIZE_B, SIZE_A, 'f') : ft_tabndup(TAB_A, 1, 1);
+		printf("GOOD TABJOIN\n");
+		if (SIZE_A > 1)
+			TAB_A = ft_tabsub(TAB_A, 1, (SIZE_A - 1));
 		SIZE_A -= 1;
 		SIZE_B += 1;
 		printf("	TAB_A	\n");
@@ -84,10 +86,12 @@ void	ft_pcommand(t_both *both, char c)
 	}
 	else if (c == 'b' && SIZE_B > 0)
 	{
-		TAB_A = (SIZE_A > 0) ? ft_tabjoin(TAB_A, &TAB_B[0], SIZE_A, SIZE_B, 'b', 'b') : ft_tabndup(TAB_B, 1, 1);
+		TAB_A = (SIZE_A > 0) ? ft_tabjoin(TAB_A, &TAB_B[0], SIZE_A, SIZE_B, 'f') : ft_tabndup(TAB_B, 1, 1);
+		printf("GOOD A TABSUB\n");
 		TAB_B = ft_tabsub(TAB_B, 1, (SIZE_B - 1));
+		printf("GOOD B TABSUB\n");
 		SIZE_B -= 1;
-			SIZE_A += 1;
+		SIZE_A += 1;
 		printf("	TAB_A	\n");
 		ft_puttab(TAB_A, SIZE_A);
 		printf("	TAB_B	\n");
@@ -106,7 +110,7 @@ void	ft_rcommand(t_both *both, char c)
 	tmp = (c =='a' || c == 'r') ? TAB_A : TAB_B;
 	size = (c == 'a' || c == 'r') ? SIZE_A : SIZE_B;
 	tmp = ft_tabsub(tmp, 1, size);
-	tmp = ft_tabjoin(tmp + 1, &tmp[0], (size - 1), 1, 'e', 'b');
+	tmp = ft_tabjoin(&tmp[0], tmp + 1, 1, (size - 1), 'b');
 	if (c == 'b')
 	{
 		TAB_B = tmp;
@@ -131,7 +135,7 @@ void	ft_rrcommand(t_both *both, char c)
 	tmp = (c =='a' || c == 'r') ? TAB_A : TAB_B;
 	size = (c == 'a' || c == 'r') ? SIZE_A : SIZE_B;
 	tmp = ft_tabsub(tmp, 0, (size - 1));
-	tmp = ft_tabjoin(tmp, &tmp[size], (size - 1), 1, 'b', 'b');
+	tmp = ft_tabjoin(tmp, &tmp[size], (size - 1), 1, 'b');
 	if (c == 'b')
 	{
 		TAB_B = tmp;
