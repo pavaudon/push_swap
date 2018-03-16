@@ -16,7 +16,8 @@ int		ft_is_command(char *command, t_both *both, int len)
 {
 	if (command[0] == 's' && len == 2)
 	{
-		if (ft_strcmp("sa", command) || ft_strcmp("sb", command) || ft_strcmp("ss", command))
+		if (ft_strcmp("sa", command) || ft_strcmp("sb", command) ||
+		ft_strcmp("ss", command))
 			ft_scommand(both, command[1]);
 		else
 			return (0);
@@ -30,9 +31,11 @@ int		ft_is_command(char *command, t_both *both, int len)
 	}
 	else if (command[0] == 'r' && len < 4)
 	{
-		if (len == 2 && (ft_strcmp("ra", command) || ft_strcmp("rb", command) || ft_strcmp("rr", command)))
+		if (len == 2 && (ft_strcmp("ra", command) || ft_strcmp("rb", command) ||
+		ft_strcmp("rr", command)))
 			ft_rcommand(both, command[1]);
-		else if (len == 3 && (ft_strcmp("rra", command) || ft_strcmp("rrb", command) || ft_strcmp("rrr", command)))
+		else if (len == 3 && (ft_strcmp("rra", command)
+		|| ft_strcmp("rrb", command) || ft_strcmp("rrr", command)))
 			ft_rrcommand(both, command[2]);
 		else
 			return (0);
@@ -45,10 +48,11 @@ int		ft_is_command(char *command, t_both *both, int len)
 
 void	ft_scommand(t_both *both, char c)
 {
-	int	*tmp;
-	int value;
+	int		*tmp;
+	int		value;
 
-	tmp = (c == 'a' || c == 's') ? ft_tabdup(TAB_A, SIZE_A) : ft_tabdup(TAB_B, SIZE_B);
+	tmp = (c == 'a' || c == 's') ? ft_tabdup(TAB_A, SIZE_A) :
+	ft_tabdup(TAB_B, SIZE_B);
 	value = tmp[0];
 	tmp[0] = tmp[1];
 	tmp[1] = value;
@@ -72,7 +76,8 @@ void	ft_pcommand(t_both *both, char c)
 {
 	if (c == 'a' && SIZE_A > 0)
 	{
-		TAB_B = (SIZE_B > 0) ? ft_tabjoin(TAB_B, &TAB_A[0], SIZE_B, SIZE_A, 'f') : ft_tabndup(TAB_A, 1, 1);
+		TAB_B = (SIZE_B > 0) ? ft_tabjoin(TAB_B, &TAB_A[0], SIZE_B, SIZE_A, 'f')
+		: ft_tabndup(TAB_A, 1, 1);
 		if (SIZE_A > 1)
 			TAB_A = ft_tabsub(TAB_A, 1, (SIZE_A - 1));
 		SIZE_A -= 1;
@@ -87,7 +92,8 @@ void	ft_pcommand(t_both *both, char c)
 	}
 	else if (c == 'b' && SIZE_B > 0)
 	{
-		TAB_A = (SIZE_A > 0) ? ft_tabjoin(TAB_A, &TAB_B[0], SIZE_A, SIZE_B, 'f') : ft_tabndup(TAB_B, 1, 1);
+		TAB_A = (SIZE_A > 0) ? ft_tabjoin(TAB_A, &TAB_B[0], SIZE_A, SIZE_B, 'f')
+		: ft_tabndup(TAB_B, 1, 1);
 		TAB_B = ft_tabsub(TAB_B, 1, (SIZE_B - 1));
 		SIZE_B -= 1;
 		SIZE_A += 1;
@@ -113,6 +119,8 @@ void	ft_rcommand(t_both *both, char c)
 		value = TAB_B[0];
 		tmp = ft_tabsub(TAB_B, 1, (SIZE_B - 1));
 		TAB_B = ft_tabjoin(tmp, &value, (SIZE_B - 1), 1, 'f');
+		printf("	TAB_B	\n");
+		ft_puttab(TAB_B, SIZE_B);
 	}
 	if (c == 'a' || c == 'r')
 	{

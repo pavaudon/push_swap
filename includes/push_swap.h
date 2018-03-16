@@ -22,13 +22,13 @@
 # define SIZE_A both->stack_a->size
 # define SIZE_B both->stack_b->size
 
-typedef struct  s_stack
+typedef struct	s_stack
 {
-  int     *tab;
-  int     size;
-  int     max;
-  int     min;
-}               t_stack;
+	int	*tab;
+	int	size;
+	int	max;
+	int	min;
+}				t_stack;
 
 typedef struct	s_both
 {
@@ -40,11 +40,11 @@ typedef struct	s_both
 }				t_both;
 
 int				ft_puterror(char *error);
-int     		ft_checker(char **argv);
-int     		ft_fill_a(char **argv, t_both *both);
+int				ft_checker(char **argv);
+int				ft_fill_a(char **argv, t_both *both);
 void			ft_data_stack(char **argv, t_both *both);
-int     		ft_checkarg(char **argv);
-int     		ft_is_good_int(char **tab);
+int				ft_checkarg(char **argv);
+int				ft_is_good_int(char **tab);
 void			ft_current_data(t_both *both);
 void			ft_rrcommand(t_both *both, char c);
 void			ft_rcommand(t_both *both, char c);

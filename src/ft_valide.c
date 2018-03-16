@@ -44,7 +44,7 @@ void	ft_current_data(t_both *both)
 	both->stack_b->max = ft_get_min_max(both->stack_b->tab, "max");
 }
 
-int     ft_is_good_int(char **arg)
+int		ft_is_good_int(char **arg)
 {
 	int i;
 	int j;
@@ -56,8 +56,8 @@ int     ft_is_good_int(char **arg)
 		printf("j : %d\n", j);
 		while (arg[j][++i])
 		{
-    		if (!ft_isdigit(arg[j][i]) && arg[j][0] != '-')
-      			return (-1);
+			if (!ft_isdigit(arg[j][i]) && arg[j][0] != '-')
+				return (-1);
 		}
 		if (!ft_atoi(arg[j]))
 			return (-1);
@@ -65,7 +65,7 @@ int     ft_is_good_int(char **arg)
 	return (1);
 }
 
-int     ft_checkarg(char **argv)
+int		ft_checkarg(char **argv)
 {
 	int i;
 	int tmp;
@@ -75,10 +75,10 @@ int     ft_checkarg(char **argv)
 	j = -1;
 	while (argv[++j])
 	{
-    	i = 0;
+		i = 0;
 		tmp = ft_atoi(argv[j]);
-    	while (++i < j)
-    	{
+		while (++i < j)
+		{
 			value = ft_atoi(argv[i]);
 			if (tmp == value)
 				return (0);
