@@ -12,16 +12,16 @@
 
 #include "push_swap.h"
 
-void      ft_data_stack(int argc, char **argv, t_both *both)
+void      ft_data_stack(char **argv, t_both *both)
 {
 	int   i;
 	int   cpt;
 
-	i = 0;
+	i = -1;
 	cpt = 0;
-	both->the_min = ft_atoi(argv[1]);
+	both->the_min = ft_atoi(argv[0]);
 	both->the_max = both->the_min;
-	while (++i < argc)
+	while (argv[++i])
 	{
     	cpt++;
     	both->the_min = (both->the_min > ft_atoi(argv[i])) ? ft_atoi(argv[i]) : both->the_min;
@@ -32,23 +32,26 @@ void      ft_data_stack(int argc, char **argv, t_both *both)
 	SIZE_B = 0;
 }
 
-int     ft_fill_a(int argc, char **argv, t_both *both)
+int     ft_fill_a(char **argv, t_both *both)
 {
 	int   i;
 	int   j;
 
-	i = 0;
+	i = -1;
 	j = -1;
-	ft_data_stack(argc, argv, both);
+	ft_data_stack(argv, both);
 	if (!(TAB_B = (int*)ft_memalloc(sizeof(int) * both->the_size)) ||
 	!(TAB_A = (int*)ft_memalloc(sizeof(int) * both->the_size)))
     	return (-1);
-	while (++i < argc)
+	while (argv[++i])
+	{
     	TAB_A[++j] = ft_atoi(argv[i]);
+		printf("argv[%d] : '%s' TAB_A[%d] : '%d'\n", i, argv[i], j, TAB_A[j]);
+	}
 	return (1);
 }
 
-int     ft_checker(int argc, char **argv)
+int     ft_checker(char **argv)
 {
 	t_both		*both;
 	char		*command;
@@ -56,7 +59,7 @@ int     ft_checker(int argc, char **argv)
 	if (!(both = (t_both*)ft_memalloc(sizeof(t_both))) ||
 	!(both->stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))) ||
 	!(both->stack_b = (t_stack*)ft_memalloc(sizeof(t_stack))) ||
-	!ft_checkarg(argc, argv) || !ft_fill_a(argc, argv, both))
+	!ft_fill_a(argv, both))
 		return (-1);
 	printf("DEBUT :\n");
 	ft_puttab(TAB_A, SIZE_A);
@@ -82,19 +85,24 @@ int     ft_puterror(char *error)
 
 int     main(int argc, char **argv)
 {
- 	int i;
+ 	int	i;
+	int tmp;
 
  	i = 0;
- 	if (argc < 2)
-		return(ft_puterror("Error : ./checker int arguments\n"));
-	while (++i < argc)
+	tmp = 0;
+ 	if (argc < 2 || (!ft_checkarg(argv) && argc > 2))
+		return (ft_puterror("Error : ./checker int arguments\n"));
+	if (argc == 2 && (ft_strlen(argv[1]) > 1))
 	{
-    	if (!ft_is_good_int(argv[i]))
+		if ((ft_nb_arg(argv[1]) < 2) && !ft_checkarg(ft_strsplit(argv[1], ' ')))
 			return (ft_puterror("Error : ./checker int arguments\n"));
+		tmp = 1;
 	}
-	if (ft_checker(argc, argv))
-		ft_putstr("OK\n");
-	else
+    if ((tmp == 1) ? !ft_is_good_int(ft_strsplit(argv[1], ' ')) : !ft_is_good_int(argv + 1))
+		return (ft_puterror("Error : ./checker int arguments\n"));
+	if ((tmp == 1) ? !ft_checker(ft_strsplit(argv[1], ' ')) : !ft_checker(argv + 1))
 		ft_putstr("KO\n");
+	else
+		ft_putstr("OK\n");
 	return (0);
 }

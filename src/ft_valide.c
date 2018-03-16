@@ -12,25 +12,30 @@
 
 #include "push_swap.h"
 
-int		ft_is_sort(int *tab, int len)
+int		ft_nb_arg(char *str)
 {
 	int i;
-	int tmp;
-	int j;
+	int	arg;
 
-	i = -1;
-	while (++i < len)
+	arg = 0;
+	i = 0;
+	while (str[i])
 	{
-		j = i;
-		while (tab[++j])
+		if (ft_isdigit(str[i]) || str[i] == '-')
 		{
-			tmp = tab[i];
-			if (tmp > tab[j])
-				return (0);
+			arg++;
+			while (str[i] && (ft_isdigit(str[i]) || str[i] == '-'))
+				i++;
 		}
+		else if (str[i] == ' ')
+			i++;
+		else
+			return (-1);
 	}
-	return (1);
+	printf("size : '%d'\n", arg);
+	return (arg);
 }
+
 void	ft_current_data(t_both *both)
 {
 	both->stack_a->min = ft_get_min_max(both->stack_a->tab, "min");
@@ -39,38 +44,44 @@ void	ft_current_data(t_both *both)
 	both->stack_b->max = ft_get_min_max(both->stack_b->tab, "max");
 }
 
-int     ft_is_good_int(char *str)
+int     ft_is_good_int(char **arg)
 {
 	int i;
+	int j;
 
-	i = -1;
-	while (str[i++])
+	j = -1;
+	while (arg[++j])
 	{
-    	if (!ft_isdigit(str[i]) && str[0] != '-')
-      		return (-1);
+		i = -1;
+		printf("j : %d\n", j);
+		while (arg[j][++i])
+		{
+    		if (!ft_isdigit(arg[j][i]) && arg[j][0] != '-')
+      			return (-1);
+		}
+		if (!ft_atoi(arg[j]))
+			return (-1);
 	}
-	if (!ft_atoi(str))
-    	return (-1);
 	return (1);
 }
 
-int     ft_checkarg(int argc, char **argv)
+int     ft_checkarg(char **argv)
 {
 	int i;
 	int tmp;
 	int j;
 	int value;
 
-	j = 0;
-	while (++j < argc)
+	j = -1;
+	while (argv[++j])
 	{
     	i = 0;
-    	while (++i < argc)
+		tmp = ft_atoi(argv[j]);
+    	while (++i < j)
     	{
 			value = ft_atoi(argv[i]);
-			tmp = ft_atoi(argv[j]);
 			if (tmp == value)
-				return (-1);
+				return (0);
 		}
 	}
 	return (1);

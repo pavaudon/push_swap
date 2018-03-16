@@ -40,11 +40,11 @@ typedef struct	s_both
 }				t_both;
 
 int				ft_puterror(char *error);
-int     		ft_checker(int argc, char **argv);
-int     		ft_fill_a(int argc, char **argv, t_both *both);
-void			ft_data_stack(int argc, char **argv, t_both *both);
-int     		ft_checkarg(int argc, char **argv);
-int     		ft_is_good_int(char *str);
+int     		ft_checker(char **argv);
+int     		ft_fill_a(char **argv, t_both *both);
+void			ft_data_stack(char **argv, t_both *both);
+int     		ft_checkarg(char **argv);
+int     		ft_is_good_int(char **tab);
 void			ft_current_data(t_both *both);
 void			ft_rrcommand(t_both *both, char c);
 void			ft_rcommand(t_both *both, char c);
@@ -52,5 +52,6 @@ void			ft_pcommand(t_both *both, char c);
 void			ft_scommand(t_both *both, char c);
 int				ft_is_command(char *command, t_both *both, int len);
 int				ft_is_sort(int *tab, int len);
+int				ft_nb_arg(char *str);
 
 #endif
