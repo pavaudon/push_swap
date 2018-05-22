@@ -75,8 +75,10 @@ int		ft_checker(char **argv)
 			return (-1);
 		}
 		if ((ft_is_sort(TAB_A, SIZE_A) && SIZE_B == 0) || both->the_size == 1)
+		{
+			printf("HEY\n");
 			return (1);
-		//free(command);
+		}
 	}
 	return (0);
 }
@@ -107,9 +109,8 @@ int		main(int argc, char **argv)
 		return (ft_puterror("Error : ./checker int arguments\n"));
 	if ((tmp == 1) ? !ft_checker(ft_strsplit(argv[1], ' '))
 	: !ft_checker(argv + 1))
-		ft_putstr("KO\n");
-	else
 		ft_putstr("OK\n");
-	while (1);
+	else
+		ft_putstr("KO\n");
 	return (0);
 }
