@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_data.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/01 11:15:53 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/08/01 11:16:01 by pavaudon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -79,8 +89,8 @@ int     ft_is_again(char **argv, int argc, int value)
     int i;
     char **tab;
 
-    i = 1;
-    while (i++ < argc - 1)
+    i = 0;
+    while (++i < argc - 1)
     {
         if (!tab)
             tab = (ft_strchr(argv[i], ' ')) ? ft_strsplit(argv[i], ' ') : NULL;

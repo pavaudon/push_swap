@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 17:23:42 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/03/07 17:23:47 by pavaudon         ###   ########.fr       */
+/*   Created: 2018/08/01 11:17:19 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/08/01 11:17:20 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -19,16 +21,17 @@
 
 typedef struct  s_stack
 {
-    int ab;
-    int value;
+    int		value;
+	t_stack	*next;
 }               t_stack;
 
 typedef struct  s_data
 {
-    t_stack *stack;
-    int     max;
-    int     min[3];
-    int     size[3];
+    t_stack 	*stack_a;
+	t_stack		*stack_b;
+    int     	max[3];
+    int			min[3];
+    int     	size[3];
 //  int*    all_begin_value;  ????
 }               t_data;
 
