@@ -53,9 +53,49 @@ int     ft_is_int(char *str)
     return (0);
 }
 
-int     ft_is_again(char *str)      //gérer autrement pour tout prendre
+int     ft_strtablen(char **tab)
 {
-    int tmp;
+    int i;
 
-    tmp = ft
+    i = 0;
+    while (tab)
+        i++;
+    return (i);
+}
+
+int     ft_is_in_tab(char **tab, int value)
+{
+    while (tab)
+    {
+        if (value == ft_atoi(*tab))
+            return (0);
+        tab++;
+    }
+    return (1);
+}
+
+int     ft_is_again(char **argv, int argc, int value)
+{
+    int i;
+    char **tab;
+
+    i = 1;
+    while (i++ < argc - 1)
+    {
+        if (!tab)
+            tab = (ft_strchr(argv[i], ' ')) ? ft_strsplit(argv[i], ' ') : NULL;
+        value = !tab ? ft_atoi(argv[i]) : ft_atoi(*tab);
+        if (tab && !ft_is_in_tab(tmp, value))
+                return (0);
+            if (tab + 1)
+                tab++;
+        }
+        else if (ft_strchr(argv[i + 1], ' ') &&
+        !ft_is_in_tab(ft_strsplit(argv[i + 1]), value))
+                return (0);
+        else
+            if (value == ft_atoi(argv[i + 1]))
+                return (0);
+    }
+    return (1);
 }
