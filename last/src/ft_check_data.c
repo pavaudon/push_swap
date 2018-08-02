@@ -12,35 +12,35 @@
 
 #include "push_swap.h"
 
-int     ft_is_nb(char *str)
+int		ft_is_nb(char *str)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (str[i])
-    {
-        if (ft_isdigit(str[i]) || (str[i] == '-' && i == 0))
-        {
-            i++;
-            while (str[i] && (ft_isdigit(str[i])))
-                i++;
-        }
-        else
-            return (0);
-    }
-    return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) || (str[i] == '-' && i == 0))
+		{
+			i++;
+			while (str[i] && (ft_isdigit(str[i])))
+				i++;
+		}
+		else
+			return (0);
+	}
+	return (1);
 }
 
-int     ft_is_int(char *str)
+int		ft_is_int(char *str)
 {
-    if (ft_atoi(str) && ft_atoi(str) <= 2147483647)
-        return (1);
-    return (0);
+	if (ft_atoi(str) && ft_atoi(str) <= 2147483647)
+		return (1);
+	return (0);
 }
 
-int     ft_check_data(char **argv, int j, int size)
+int		ft_check_data(char **argv, int j, int size)
 {
-    char	**tmp;
+	char	**tmp;
 	int		i;
 
 	while (++j < size)
@@ -48,30 +48,32 @@ int     ft_check_data(char **argv, int j, int size)
 		if (ft_strchr(argv[j], ' '))
 		{
 			i = -1;
-    		tmp = ft_strsplit(argv[j], ' ');
-    		while (tmp[++i])
-    		{
-        		if (!ft_is_nb(tmp[i]) || !ft_is_int(tmp[i]))
-        			return (0);
-    		}
+			tmp = ft_strsplit(argv[j], ' ');
+			while (tmp[++i])
+			{
+				if (!ft_is_nb(tmp[i]) || !ft_is_int(tmp[i]))
+					return (0);
+			}
 			free(tmp);
 		}
 		else
-    		if (!ft_is_nb(argv[j]) || !ft_is_int(argv[j]))
-        		return (0);
+		{
+			if (!ft_is_nb(argv[j]) || !ft_is_int(argv[j]))
+				return (0);
+		}
 	}
-    return (1);
+	return (1);
 }
 
-int     ft_is_in_tab(char **tab, int value)
+int		ft_is_in_tab(char **tab, int value)
 {
-    while (tab)
-    {
-        if (value == ft_atoi(*tab))
-            return (0);
-        tab++;
-    }
-    return (1);
+	while (tab)
+	{
+		if (value == ft_atoi(*tab))
+			return (0);
+		tab++;
+	}
+	return (1);
 }
 
 int		ft_strtablen(char **tab)
@@ -93,7 +95,10 @@ int		ft_again_in_tab(char **tab, int *j, int value, int len)
 		*j += 1;
 	}
 	else
+	{
 		*j = 0;
+		free(tab);
+	}
 	return (1);
 }
 
@@ -122,14 +127,14 @@ int		ft_is_again(char **argv, int argc, int value)
 		value = !tab ? ft_atoi(argv[i]) : ft_atoi(tab[j]);
 		if (tab && j < len && !ft_again_in_tab(tab, &j, value, len))
 			return (0);
-        else if (ft_strchr(argv[i + 1], ' ') &&
+		else if (ft_strchr(argv[i + 1], ' ') &&
 		!ft_is_in_tab(ft_strsplit(argv[i + 1], ' '), value))
-            return (0);
-        else
-            if (value == ft_atoi(argv[i + 1]))
-                return (0);
-		if (tab && j == 0)
-			free(tab);
-    }
-    return (1);
+			return (0);
+		else
+		{
+			if (value == ft_atoi(argv[i + 1]))
+				return (0);
+		}
+	}
+	return (1);
 }

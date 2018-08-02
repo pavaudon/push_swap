@@ -42,27 +42,27 @@ int		ft_puterror(char *error)
 	return (-1);
 }
 
-int     main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_data *data;
 
 	data = NULL;
-    if (argc > 2)
-    {
+	if (argc >= 2)
+	{
 		printf("AAAAA\n");
-        if (((argc == 2) ? !ft_check_data(argv, 0, 0) :
+		if (((argc == 2) ? !ft_check_data(argv, 0, 0) :
 		!ft_check_data(argv, 0, argc))
 		&& !ft_is_again(argv, argc, 0))
-            return (ft_puterror("Error : ./checker int arguments"));
+			return (ft_puterror("Error : ./checker int arguments"));
 		printf("BBBB\n");
-        ft_data_fill(argv, argc, data);
+		ft_data_fill(argv, argc, data);
 		printf("CCCCCC\n");
 		if (ft_checker(data))
-            ft_putendl("OK");
-        else
-            ft_putendl("KO");
-    }
-    else
-        ft_putendl("Error : ./checker int arguments");
-    return (0);
+			ft_putendl("OK");
+		else
+			ft_putendl("KO");
+	}
+	else
+		ft_putendl("Error : ./checker int arguments");
+	return (0);
 }
