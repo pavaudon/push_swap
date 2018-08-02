@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 void		ft_init_list(t_stack *stack)
 {
 	stack->prev = NULL;
@@ -17,101 +19,100 @@ void		ft_init_list(t_stack *stack)
 	stack->value = 0;
 }
 
-t_data		*ft_data_fill(char **argv, int argc t_data *data)
+t_data		*ft_data_fill(char **argv, int argc, t_data *data)
 {
 	int		i;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
 	i = 0;
-	if (!data = (t_data)ft_memalloc(t_data*))
+	printf("hey\n");
+	if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
 		return (NULL);
-	if (!stack_a = (t_stack)ft_memalloc(t_stack*))
+	if (!(stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
 		return (NULL);
 	ft_init_list(stack_a);
-	if (!stack_a = ft_stack_fill(argv, argc, stack_a))
+	if (!(stack_a = ft_stack_fill(argv, argc, stack_a)))
 		return (NULL);
 	ft_min_max(data, 1);
+	printf("tagrossemere\n");
 	ft_size(data, 1);
 	data->size[0] = data->size[1];
 	data->min[0] = data->min[1];
 	data->max[0] = data->max[1];
-	if (!stack_b = (t_stack)ft_memalloc(t_stack*))
+	if (!(stack_b = (t_stack*)ft_memalloc(sizeof(t_stack))))
 		return (NULL);
 	stack_b = NULL;
 	ft_init_list(stack_b);
-	ft_data_stack(data);
 	return (data);
 }
 
-void		ft_addbackstack(t_stack *stack, int value)
-{
-	t_stack *tmp;
-	t_stack	*new;
-
-	if (!new = (t_stack)ft_memalloc(t_stack*))
-		return ;
-	new->value = value;
-	new->next = NULL;
-	tmp = stack;
-	while (tmp->next)
-		tmp = tmp->next;
-	new->prev = tmp;
-	tmp->next = new;
-}
-
-t_stack		*ft_stack_fill(char **argv, int argc, t_stack *stack_a)
+t_stack		*ft_stack_fill(char **argv, int argc, t_stack *stack)
 {
 	int		i;
+	int		j;
 	char	**tmp;
 
 	i = 0;
 	while (++i < argc)
 	{
-		if (ft_strchr(argv[i]), ' ')
+		if (ft_strchr(argv[i], ' '))
 		{
-			if (!tmp = ft_strsplit(argv[i], ' '))
+			j = -1;
+			if (!(tmp = ft_strsplit(argv[i], ' ')))
 				return (NULL);
-			while (*tmp)
+			while (tmp[++j])
 			{
-				if (!ft_addbackstack(stack_a, ft_atoi(*tmp)))
+				if (!(ft_addbackstack(stack, ft_atoi(tmp[j]))))
 					return (NULL);
-				*tmp++;
 			}
 		}
 		else
-			if (!ft_addbackstack(stack_a, ft_atoi(argv[i])))
+			if (!ft_addbackstack(stack, ft_atoi(argv[i])))
 				return (NULL);
 	}
 	return (stack);
 }
 
-void		ft_size(t_data *data, int truc)
+void		ft_size(t_data *data, int which)		//0 == all		1 == a		2 == b
 {
-	t_data *tmp;
+	t_stack *tmp;
 
-	tmp = data;
-	ft_bzero(t_data->size, 3);
+	tmp = (which == 2) ? data->stack_b : data->stack_a;
+	ft_bzero(data->size, 3);
 	while (tmp->next)
 	{
-		data->size[truc] += 1;
-		tmp = tmp->next
+		data->size[which] += 1;
+		tmp = tmp->next;
 	}
+	if (!which)
+		data->size[1] = data->size[0];
 }
 
-void		ft_min_max(t_data *data, int truc)
+void		ft_min_max(t_data *data, int which)
 {
-	t_data *tmp;
+	t_stack *tmp;
 
-	tmp = (truc == 1) ? data->stack_a : data->stack_b;
-	data->min[truc] = tmp->value;
-	data->max[truc] = tmp->value;
+	printf("a\n");
+	printf("stack->VALUE == >>%d<<\n", data->stack_a->value);
+	tmp = (which == 2) ? data->stack_b : data->stack_a;
+	data->min[which] = tmp->value;
+	printf("weiofniwe\n");
+	data->max[which] = tmp->value;
+	printf("weiofniwe\n");
 	while (tmp->next)
 	{
-		data->min[truc] = (data->min[truc] < tmp->value) ? tmp->value :
-		data->min[truc];
-		data->max[truc] = (data->max[truc] > tmp->value) ? tmp->value :
-		data->max[truc];
+	printf("weiofniwe\n");
+		data->min[which] = (data->min[which] > tmp->value) ? tmp->value :
+		data->min[which];
+		data->max[which] = (data->max[which] < tmp->value) ? tmp->value :
+		data->max[which];
 		tmp = tmp->next;
+	}
+	printf("b\n");
+	if (!which)
+	{
+		data->min[1] = data->min[0];
+		data->max[1] = data->max[0];
 	}
 }

@@ -25,42 +25,48 @@ void	ft_s_command(t_data *data, char which)
 		ft_s_command(data, 'b');
 }
 
-void	ft_p_command(t_data *data, int wich)
+void	ft_p_command(t_data *data, int which)
 {
 	t_stack *tmp;
 
-	tmp = (wich == 'b') ? data->stack_b : data->stack_a;
+	tmp = (which == 'b') ? data->stack_b : data->stack_a;
 	if (which == 'b')
-		ft_addbackstack(stack_b, data->stack_a->value);
+		ft_addbeginstack(data->stack_b, data->stack_a->value);
 	else
-		ft_addbackstack(stack_a, data->stack_b->value);
-	tmp->next->prev = NULL;
+		ft_addbeginstack(data->stack_a, data->stack_b->value);
 	free(tmp);
 }
 
 void	ft_r_command(t_data *data, int which)
 {
 	t_stack *tmp;
+	t_stack	*begin;
 
-	tmp = (wich == 'b') ? data->stack_b : data->stack_a;
-	if (which == 'b')
-	{
-		
-	}
-	else
-
+	tmp = (which == 'b') ? data->stack_b : data->stack_a;
+	begin = (which == 'b') ? data->stack_b : data->stack_a;
+	while (tmp->next)
+		tmp = tmp->next;
+	begin->next->prev = NULL;
+	begin->prev = tmp;
+	begin->next = NULL;
+	tmp->next = begin;
 	if (which == 'r')
-		ft_r_command(data, 'r');
+		ft_r_command(data, 'b');
 }
 
 void	ft_rr_command(t_data *data, int which)
 {
-	if (which == 'b')
-	{
+	t_stack *tmp;
+	t_stack	*begin;
 
-	}
-	else
-
+	tmp = (which == 'b') ? data->stack_b : data->stack_a;
+	begin = (which == 'b') ? data->stack_b : data->stack_a;
+	while (tmp->next)
+		tmp = tmp->next;
+	begin->prev = tmp;
+	tmp->prev->next = NULL;
+	tmp->prev = NULL;
+	tmp->next = begin;
 	if (which == 'r')
-		ft_rr_command(data, 'r');
+		ft_rr_command(data, 'b');
 }

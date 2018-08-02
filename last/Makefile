@@ -16,7 +16,12 @@ NAME_1		=	checker
 
 SRC_DIR_1	=	./src/
 SRCS_1		=	$(addprefix $(SRC_DIR_1),$(SRC_1))
-SRC_1		=
+SRC_1		=	ft_checker.c \
+				ft_check_data.c \
+				ft_data_fill.c \
+				ft_application.c \
+				ft_command.c \
+				ft_print_stack.c
 
 #SRC_DIR_2
 
@@ -32,7 +37,7 @@ INCS		=	$(INC) $(INCLIB)
 
 CC			=	gcc
 
-CFLAGS		=	-Wextra -Wall -I$(INCS)
+CFLAGS		=	-Wextra -Wall -I$(INC) -I$(INCLIB)
 
 all:			$(NAME_1)
 
