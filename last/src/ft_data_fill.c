@@ -21,11 +21,9 @@ void		ft_init_list(t_stack *stack)
 
 t_data		*ft_data_fill(char **argv, int argc, t_data *data)
 {
-	int		i;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	i = 0;
 	if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
 		return (NULL);
 	if (!(stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
