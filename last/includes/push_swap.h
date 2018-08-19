@@ -40,7 +40,7 @@ void		ft_p_command(t_data *data, int wich);
 void		ft_r_command(t_data *data, int which);
 void		ft_rr_command(t_data *data, int which);
 int			ft_stack_sort(t_stack *stack);
-int			ft_addbackstack(t_stack *stack, int value);
+int			ft_addbackstack(t_stack *stack, int value, int i);
 int			ft_addbeginstack(t_stack *stack, int value);
 int			ft_is_command(char *command, t_data *data, int len);
 t_data		*ft_data_fill(char **argv, int argc, t_data *data);

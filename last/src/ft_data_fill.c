@@ -21,32 +21,29 @@ void		ft_init_list(t_stack *stack)
 
 t_data		*ft_data_fill(char **argv, int argc, t_data *data)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-
 	if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
 		return (NULL);
-	if (!(stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
+	if (!(data->stack_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
 		return (NULL);
-	ft_init_list(stack_a);
-	if (!(stack_a = ft_stack_fill(argv, argc, stack_a)))
+	ft_init_list(data->stack_a);
+	if (!(data->stack_a = ft_stack_fill(argv, argc, data->stack_a)))
 		return (NULL);
 	ft_min_max(data, 0);
 	ft_size(data, 0);
-	if (!(stack_b = (t_stack*)ft_memalloc(sizeof(t_stack))))
+	if (!(data->stack_b = (t_stack*)ft_memalloc(sizeof(t_stack))))
 		return (NULL);
-	ft_init_list(stack_b);
+	ft_init_list(data->stack_b);
 	return (data);
 }
 
-t_stack		*ft_stack_fill(char **argv, int argc, t_stack *stack)
+t_stack		*ft_stack_fill(char **argv, int argc, t_stack *stack_a)
 {
 	int		i;
 	int		j;
 	char	**tmp;
 
 	i = 0;
-	while (++i < argc)
+	while (++i < argc - 1)
 	{
 		if (ft_strchr(argv[i], ' '))
 		{
@@ -55,17 +52,17 @@ t_stack		*ft_stack_fill(char **argv, int argc, t_stack *stack)
 				return (NULL);
 			while (tmp[++j])
 			{
-				if (!(ft_addbackstack(stack, ft_atoi(tmp[j]))))
+				if (!(ft_addbackstack(stack_a, ft_atoi(tmp[j]), i + j)))
 					return (NULL);
 			}
 		}
 		else
 		{
-			if (!ft_addbackstack(stack, ft_atoi(argv[i])))
+			if (!ft_addbackstack(stack_a, ft_atoi(argv[i]), i))
 				return (NULL);
 		}
 	}
-	return (stack);
+	return (stack_a);
 }
 
 void		ft_size(t_data *data, int which) //0 == all		1 == a		2 == b
@@ -87,7 +84,7 @@ void		ft_min_max(t_data *data, int which)
 {
 	t_stack *tmp;
 
-	tmp = (which == 2) ? data->stack_b : data->stack_a;
+	tmp = data->stack_a;
 	data->min[which] = tmp->value;
 	data->max[which] = tmp->value;
 	while (tmp->next)

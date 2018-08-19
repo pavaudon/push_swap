@@ -49,14 +49,11 @@ int		main(int argc, char **argv)
 	data = NULL;
 	if (argc >= 2)
 	{
-		printf("AAAAA\n");
 		if (((argc == 2) ? !ft_check_data(argv, 0, 0) :
 		!ft_check_data(argv, 0, argc))
 		&& !ft_is_again(argv, argc, 0))
 			return (ft_puterror("Error : ./checker int arguments"));
-		printf("BBBB\n");
 		ft_data_fill(argv, argc, data);
-		printf("CCCCCC\n");
 		if (ft_checker(data))
 			ft_putendl("OK");
 		else
