@@ -15,25 +15,27 @@
 NAME_1		=	checker
 
 SRC_DIR_1	=	./src/
-SRC_1			=	ft_checker.c \
-						ft_check_data.c \
-						ft_is_again.c \
-
+SRC_1		=	ft_checker.c \
+				ft_check_data.c \
+				ft_data_fill.c \
+				ft_application.c \
+				ft_command.c \
+				ft_print_stack.c
 SRCS_1		=	$(addprefix $(SRC_DIR_1),$(SRC_1))
 
 #SRC_DIR_2
 
 OBJ_DIR_1	=	./obj_checker/
 OBJS_1		=	$(addprefix $(OBJ_DIR_1),$(OBJ_1))
-OBJ_1			=	$(SRC_1:.c=.o)
+OBJ_1		=	$(SRC_1:.c=.o)
 
 #OBJ_DIR_2
 
-INC				=	./includes/
+INC			=	./includes/
 INCLIB		=	./libft/includes/
-INCS			=	$(INC) $(INCLIB)
+INCS		=	$(INC) $(INCLIB)
 
-CC				=	gcc
+CC			=	gcc
 
 CFLAGS		=	-Wextra -Werror -Wall -I$(INC) -I$(INCLIB)
 
