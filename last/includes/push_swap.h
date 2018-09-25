@@ -35,4 +35,24 @@ typedef struct  	s_data
     int     		size[3];
 }               	t_data;
 
+int		  ft_is_command(char *command, t_data *data, int len);
+int	  	ft_stack_sort(t_stack *stack);
+int     ft_check_data(char **argv, int argc, int i);
+int     ft_is_again(char **argv, int argc, t_data *data);
+t_data  *ft_data_fill(t_data *data);
+int     ft_fill_checker_tab(char **argv, int argc, t_data *data);
+int 		ft_addbeginstack(t_stack *stack, int value);
+int	  	ft_addbackstack(t_stack *stack, int value, int i);
+void	  ft_s_command(t_data *data, char which);
+void	  ft_p_command(t_data *data, int which);
+void	  ft_r_command(t_data *data, int which);
+void	  ft_rr_command(t_data *data, int which);
+int		  ft_is_rcommand(char *command, t_data *data, int len);
+void		ft_size(t_data *data, int which);
+void		ft_min_max(t_data *data, int which);
+t_stack	*ft_stack_fill(t_stack *stack_a, t_data *data);
+void	  ft_print_stack(t_data *data, char which, int both);
+void    ft_error(char *error);
+
+
 #endif

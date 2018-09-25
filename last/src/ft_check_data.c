@@ -46,21 +46,21 @@
    while (++i < argc)
    {
      j = -1;
-     tmp = (ft_strchr(argv[i]. ' ')) ? ft_strsplit(argv[i], ' ') : NULL;
-     if (!tmp && (!ft_is_nb(tmp[j]) || !ft_is_int(tmp[j])))
+     tmp = (ft_strchr(argv[i], ' ')) ? ft_strsplit(argv[i], ' ') : NULL;
+     if (tmp == NULL && (!ft_is_nb(argv[i]) || !ft_is_int(argv[i])))
        return (0);
-      else if (tmp)
-      {
-        while (tmp[++j])
-        {
-          if (!ft_is_nb(tmp[j]) || !ft_is_int(tmp[j]))
-          {
-            free(tmp);
-            return (0);
-          }
-          free(tmp);
-        }
-      }
-    }
+     else if (tmp)
+     {
+       while (tmp[++j])
+       {
+         if (!ft_is_nb(tmp[j]) || !ft_is_int(tmp[j]))
+         {
+           free(tmp);
+           return (0);
+         }
+         free(tmp);
+       }
+     }
+   }
    return (1);
  }

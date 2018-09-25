@@ -38,12 +38,12 @@ int     nb_value(char **argv, char argc)
     if (ft_strchr(argv[i], ' '))
       size += nb_c_in_string(argv[i], ' ') + 1;
     else
-      size += 1;
+      size++;
   }
   return (size);
 }
 
-void tmp_in_tab(char **tab, t_data data, int *cpt)
+void tmp_in_tab(char **tab, t_data *data, int *cpt)
 {
   int i;
 
@@ -52,11 +52,11 @@ void tmp_in_tab(char **tab, t_data data, int *cpt)
   {
     if (!(data->check[*cpt] = ft_atoi(tab[i])))
       return ;
-    *cpt++;
+    (*cpt)++;
   }
 }
 
-int     ft_is_again(char **argv, int argc, t_data data)
+int     ft_is_again(char **argv, int argc, t_data *data)
 {
   int i;
   int j;
@@ -66,23 +66,23 @@ int     ft_is_again(char **argv, int argc, t_data data)
   if (!(data->nb_value = nb_value(argv, argc)) ||
   !(ft_fill_checker_tab(argv, argc, data)))
     return (0);
-  while (++j < data->nb_value)
+  while (++j < data->nb_value - 1)
   {
-    value = data->checker[j];
+    value = data->check[j];
     i = j + 1;
-    while (++i <= data->nb_value)
+    while (++i < data->nb_value)
     {
-      if (value == data->checker[i])
+      if (value == data->check[i])
       {
-        free(data->checker);
+        free(data->check);
         return (0);
+      }
     }
   }
-  free(data->checker);
-  return (1);     // + que 1 value
+  return (1);
 }
 
-int     ft_fill_checker_tab(char **argv, int argc, t_data data)    //fill checktab
+int     ft_fill_checker_tab(char **argv, int argc, t_data *data)
 {
   int   i;
   int   cpt;
@@ -90,7 +90,7 @@ int     ft_fill_checker_tab(char **argv, int argc, t_data data)    //fill checkt
 
   i = 0;
   cpt = 0;
-  if (!data->check = (int*)ft_memalloc(sizeof(int) * data->nb_value))
+  if (!(data->check = (int*)ft_memalloc(sizeof(int) * data->nb_value)))
     return (0);
   while (++i < argc)
   {

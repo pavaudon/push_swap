@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int   ft_checker(t_data data)
+int   ft_checker(t_data *data)
 {
   char  *command;
   int   len;
@@ -22,10 +22,7 @@ int   ft_checker(t_data data)
     len = (!command) ? 0 : ft_strlen(command);
     if ((data->size[0] > 1 && !command) || (len < 2 || len > 5) ||
     !ft_is_command(command, data, len))
-    {
-      ft_putendl("Error : bad command");
-      return (-1);
-    }
+      ft_error("Error : bad command");
     if ((ft_stack_sort(data->stack_a) && data->size[2] == 0)
     || data->size[0] == 1)
       return (1);
@@ -46,11 +43,14 @@ int   main(int argc, char **argv)
   data = NULL;
   if (argc >= 2)
   {
+    if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
+  		return (0);
     if (((argc == 2) ? !ft_check_data(argv, 2, 0) :
     !ft_check_data(argv, argc, 0))
-    && !ft_is_again(argv, argc, data))
+    || !ft_is_again(argv, argc, data))
       ft_error("./checker [int arguments]");
-    ft_data_fill(argv, argc, data);     //init + fill stack_a
+    if (!(ft_data_fill(data)))
+      ft_error("data_fill failed");
     if (ft_checker(data))
       ft_simple_printf("OK\n");
     else
