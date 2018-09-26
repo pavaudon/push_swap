@@ -26,6 +26,7 @@ int   ft_checker(t_data *data)
     if ((ft_stack_sort(data->stack_a) && data->size[2] == 0)
     || data->size[0] == 1)
       return (1);
+    ft_simple_printf("size_A : '%d'\tsize_B : '%d'\tsize_all : '%d'\n", data->size[1], data->size[2], data->size[0]);
   }
   return (0);
 }

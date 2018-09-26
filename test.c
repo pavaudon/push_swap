@@ -14,6 +14,20 @@ int		ft_stack_sort(t_stack *stack)
 	return (1);
 }
 
+int		ft_addbackstack(t_stack *stack, int value)
+{
+	t_stack *new;
+
+	if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
+		return (0);
+	new = stack;
+	while (new->next)
+		new = new->next;
+	new->value = value;
+	new->next = stack;
+	return (1);
+}
+
 void 	ft_print(t_stack *stack)
 {
 	ft_simple_printf("STACK :\n");
@@ -40,7 +54,10 @@ int 	main(int argc, char **argv)
 		{
 			ft_simple_printf("coucou1\n");
 			ft_simple_printf("argv[%d] : '%s' : '%d'\n", i, argv[i], ft_atoi(argv[i]));
-			stack->value = ft_atoi(argv[i]);
+			if (i == 1)
+				stack->value = ft_atoi(argv[i]);
+			else
+				ft_addbackstack(stack, ft_atoi(argv[i]));
 			ft_simple_printf("value : '%d'\n", stack->value);
 			stack->next = NULL;
 			if (i == 1)

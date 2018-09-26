@@ -31,7 +31,7 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	t_stack *tmp;
 	t_stack	*new;
 
-	if (i != 1)
+	if (i)
 	{
 		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
 			return (0);
@@ -45,26 +45,32 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	}
 	else
 	{
-		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
-			return (0);
-		new->value = value;
-		new->next = NULL;
-		new->prev = NULL;
-		stack = new;
+		stack->value = value;
+		stack->next = NULL;
+		stack->prev = NULL;
 	}
 	return (1);
 }
 
-int		ft_addbeginstack(t_stack *stack, int value)
+int		ft_addbeginstack(t_stack *stack, int value, int i)
 {
 	t_stack *new;
 
-	if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
-		return (0);
-	new->value = value;
-	new->prev = NULL;
-	new->next = stack;
-	stack->prev = new;
+	if (i)
+	{
+		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
+			return (0);
+			new->value = value;
+			new->prev = NULL;
+			new->next = stack;
+			stack->prev = new;
+	}
+	else
+	{
+		stack->value = value;
+		stack->next = NULL;
+		stack->prev = NULL;
+	}
 	return (1);
 }
 

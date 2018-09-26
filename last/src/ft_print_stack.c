@@ -27,5 +27,5 @@ void	ft_print_stack(t_data *data, char which, int both)
 	}
 	ft_simple_printf("\n");
 	if (both)
-		ft_print_stack(data, 'B', 0);
+		ft_print_stack(data, 'b', 0);
 }

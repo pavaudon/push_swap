@@ -31,7 +31,8 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	t_stack *tmp;
 	t_stack	*new;
 
-	if (i != 1)
+	ft_simple_printf("value : '%d'\n", value);
+	if (!i)
 	{
 		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
 			return (0);
