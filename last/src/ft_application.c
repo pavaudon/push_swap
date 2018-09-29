@@ -52,7 +52,7 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	return (1);
 }
 
-int		ft_addbeginstack(t_stack *stack, int value, int i)
+int		ft_addbeginstack(t_stack **stack, int value, int i)
 {
 	t_stack *new;
 
@@ -60,16 +60,18 @@ int		ft_addbeginstack(t_stack *stack, int value, int i)
 	{
 		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
 			return (0);
-			new->value = value;
-			new->prev = NULL;
-			new->next = stack;
-			stack->prev = new;
+		new->value = value;
+		new->prev = NULL;
+		new->next = *stack;
+		(*stack)->prev = new;
 	}
 	else
 	{
-		stack->value = value;
-		stack->next = NULL;
-		stack->prev = NULL;
+		if (!*stack && !(*stack = (t_stack*)ft_memalloc(sizeof(t_stack))))
+			return (0);
+		(*stack)->value = value;
+		(*stack)->next = NULL;
+		(*stack)->prev = NULL;
 	}
 	return (1);
 }
@@ -86,8 +88,9 @@ int		ft_is_command(char *command, t_data *data, int len)
 	}
 	else if (command[0] == 'p' && len == 2)
 	{
-		if (!ft_strcmp("pa", command) || !ft_strcmp("pb", command))
+		if (!ft_strcmp("pa", command) || !ft_strcmp("pb", command)) {
 			ft_p_command(data, command[1]);
+		}
 		else
 			return (0);
 	}

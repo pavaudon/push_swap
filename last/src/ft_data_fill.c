@@ -39,7 +39,7 @@ t_stack		*ft_stack_fill(t_stack *stack_a, t_data *data)
 	int i;
 
 	i = -1;
-	while (++i <= data->nb_value)
+	while (++i < data->nb_value)
 	{
 		if (!ft_addbackstack(stack_a, data->check[i], i))
 			return (NULL);
@@ -53,7 +53,7 @@ void		ft_size(t_data *data, int which) //0 == all		1 == a		2 == b
 
 	tmp = (which == 2) ? data->stack_b : data->stack_a;
 	ft_bzero(data->size, 3);
-	while (tmp->next)
+	while (tmp)
 	{
 		data->size[which] += 1;
 		tmp = tmp->next;

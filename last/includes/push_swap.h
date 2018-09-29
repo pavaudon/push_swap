@@ -41,7 +41,7 @@ int     ft_check_data(char **argv, int argc, int i);
 int     ft_is_again(char **argv, int argc, t_data *data);
 t_data  *ft_data_fill(t_data *data);
 int     ft_fill_checker_tab(char **argv, int argc, t_data *data);
-int 		ft_addbeginstack(t_stack *stack, int value, int i);
+int     ft_addbeginstack(t_stack **stack, int value, int i);
 int	  	ft_addbackstack(t_stack *stack, int value, int i);
 void	  ft_s_command(t_data *data, char which);
 void	  ft_p_command(t_data *data, char which);

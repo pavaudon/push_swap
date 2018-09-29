@@ -39,7 +39,7 @@ INCS			=	$(INC) $(INCLIB)
 
 CC				=	gcc
 
-CFLAGS		=	-Wextra -Werror -Wall -I$(INC) -I$(INCLIB)
+CFLAGS		=	-Wextra -Werror -Wall -I$(INC) -I$(INCLIB) -g
 
 all:			$(NAME_1)
 
