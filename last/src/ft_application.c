@@ -64,6 +64,7 @@ int		ft_addbeginstack(t_stack **stack, int value, int i)
 		new->prev = NULL;
 		new->next = *stack;
 		(*stack)->prev = new;
+		*stack = (*stack)->prev;
 	}
 	else
 	{

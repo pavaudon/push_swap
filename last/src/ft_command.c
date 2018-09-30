@@ -40,7 +40,6 @@ void 	ft_pa_command(t_data *data)
 		data->stack_a = NULL;
 	data->size[1] -= 1;
 	data->size[2] += 1;
-	data->stack_b = (data->size[2] > 1) ? data->stack_b->prev : data->stack_b;
 }
 
 void 	ft_pb_command(t_data *data)
@@ -55,7 +54,6 @@ void 	ft_pb_command(t_data *data)
 		data->stack_b = NULL;
 	data->size[1] += 1;
 	data->size[2] -= 1;
-	data->stack_a = (data->size[1] > 1) ? data->stack_a->prev : data->stack_a;
 }
 
 void	ft_p_command(t_data *data, char which)
@@ -67,34 +65,83 @@ void	ft_p_command(t_data *data, char which)
 	ft_print_stack(data, 'a', 1);
 }
 
-void	ft_r_command(t_data *data, char which)
+// [first] become [end]
+void 	ft_r_command(t_data *data, char which)
 {
 	t_stack *tmp;
-	t_stack	*begin;
-	t_stack *link;
 
 	tmp = (which == 'b') ? data->stack_b : data->stack_a;
-	begin = (which == 'b') ? data->stack_b : data->stack_a;
-	link = (which == 'b') ? data->stack_b : data->stack_a;
-	while (tmp)
-		tmp = tmp->next;
-	ft_simple_printf("tmp to the end\n");
-	begin = begin->next;
-	ft_simple_printf("begin == 2nd\n");
-	begin->prev = NULL;
-	ft_simple_printf("begin->prev == NULL\n");
-	link->prev = tmp;
-	ft_simple_printf("link after tmp\n");
-	link->next = NULL;
-	ft_simple_printf("link == the end\n");
-	tmp->next = link;
-	ft_simple_printf("tmp is before link\n");
-	ft_simple_printf("stack start in begin\n");
+	if (!tmp->next)
+		return ;
+	ft_addbackstack(tmp, tmp->value,
+		(which == 'b') ? data->size[2] : data->size[1]);
+	if (which == 'b')
+	{
+		data->stack_b = tmp;
+		data->stack_b->next->prev = NULL;
+		data->stack_b = data->stack_b->next;
+	}
+	else
+	{
+		data->stack_a = tmp;
+		data->stack_a->next->prev = NULL;
+		data->stack_a = data->stack_a->next;
+	}
 	ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
 	if (which == 'r')
 		ft_r_command(data, 'b');
 }
 
+static t_stack *get_prelast(t_stack *stack)
+{
+	if ((!stack) || (!stack->next))
+		return (NULL);
+	while (stack->next->next)
+		stack = stack->next;
+	return (stack);
+}
+
+void 	ft_del_end_stack(t_stack *stack)
+{
+	t_stack		*pre_last;
+
+	ft_simple_printf("PUTE\n");
+	pre_last = get_prelast(stack);
+	if (!pre_last)
+	{
+		ft_putstr("caca\n");
+		return ;
+	}
+	ft_simple_printf("caca: %d\n", pre_last->value);
+	if (pre_last->next)
+		free(pre_last->next);
+	pre_last->next = NULL;
+}
+
+// [end] become [first]
+void 	ft_rr_command(t_data *data, char which)
+{
+	t_stack *tmp;
+	t_stack *begin;
+
+	begin = (which == 'b') ? data->stack_b : data->stack_a;
+	tmp = begin;
+	if (!begin->next)
+		return ;
+	while (tmp->next)
+		tmp = tmp->next;
+	ft_addbeginstack((which == 'b') ? &(data->stack_b) : &(data->stack_a),
+		tmp->value, (which == 'b') ? data->size[2] : data->size[1]);
+	if (which == 'b')
+		ft_del_end_stack(data->stack_b);
+	else
+		ft_del_end_stack(data->stack_a);
+	ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
+	if (which == 'r')
+		ft_rr_command(data, 'b');
+}
+
+/*
 void	ft_rr_command(t_data *data, char which)
 {
 	t_stack *tmp;
@@ -112,3 +159,4 @@ void	ft_rr_command(t_data *data, char which)
 	if (which == 'r')
 		ft_rr_command(data, 'b');
 }
+*/
