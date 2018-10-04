@@ -17,10 +17,10 @@
 
 # include "libft.h"
 
-typedef struct		s_stack
+typedef struct		s_data
 {
-    int			      	value;
-    struct s_stack	*next;
-}               	t_stack;
+    int   *check;
+    int   nb_value;
+}               	t_data;
 
 #endif

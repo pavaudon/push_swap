@@ -17,12 +17,21 @@ int     nb_c_in_string(char *str, char c)
   int i;
   int nb;
 
-  i = -1;
+  i = 0;
   nb = 0;
   if (!str)
     return (0);
-  while (str[++i])
-    nb += (str[i] == c) ? 1 : 0;
+  while (str[i])
+	{
+		if (str[i] != c)
+		{
+			nb += 1;
+			while (str[i] && str[i] != c)
+				i++;
+		}
+		else
+			i++;
+	}
   return (nb);
 }
 
@@ -36,7 +45,7 @@ int     nb_value(char **argv, char argc)
   while (++i < argc)
   {
     if (ft_strchr(argv[i], ' '))
-      size += nb_c_in_string(argv[i], ' ') + 1;
+      size += nb_c_in_string(argv[i], ' ');
     else
       size++;
   }

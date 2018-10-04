@@ -1,37 +1,53 @@
 #include "test.h"
 
-int		*ft_test(int *tab, int *to_add, int tablen, int to_addlen)
+int		*ft_testtabcpy(int *tab, int *to_cpy, int len)
+{
+	int i;
+
+	i = -1;
+	while (++i < len)
+		to_cpy[i] = tab[i];
+	return (to_cpy);
+}
+
+int		*ft_testtabfsjoin(int *tab, int to_add, int tablen)
 {
 	int *new;
+	int i;
 
-	ft_simple_printf("tabfsjoin\n");
-	if (!(new = (int*)ft_memalloc(sizeof(int) * (tablen + to_addlen))))
+	if (!(new = (int*)ft_memalloc(sizeof(int) * (tablen + 1))))
 		return (NULL);
-	ft_simple_printf("after new malloc\n");
-	ft_tabcpy(tab, new, tablen);
-	ft_simple_printf("after cpy tab in new\n");
-	ft_tabcpy(to_add, new + tablen, to_addlen);
-	ft_simple_printf("after cpy to_add in new\n");
-	//free(to_add);
-	ft_simple_printf("free to_add\n");
+	ft_testtabcpy(tab, new, tablen);
+	i = -1;
+	new[tablen] = to_add;
+	free(tab);
 	return (new);
 }
+
 
 int main()
 {
 	int *tab;
-	int value;
 	int tablen;
+	int value;
 	int i;
 
-	tablen = 4;
+	value = 4;
+	tablen = 5;
 	if (!(tab = (int*)ft_memalloc(sizeof(int) * tablen)))
 		return (0);
 	i = -1;
 	while (++i < tablen)
 		tab[i] = 10;
-	value = 5;
-	ft_test(tab, &value, tablen, 1);
-	ft_simple_printf("after tabjsjoin\n");
+	i = -1;
+	ft_simple_printf("TAB BEFORE JOIN\n");
+	while (++i < tablen)
+		ft_simple_printf("%d\t", tab[i]);
+	ft_simple_printf("\n");
+	tab = ft_testtabfsjoin(tab, value, tablen);
+	i = -1;
+	ft_simple_printf("\nTAB AFTER JOIN\n");
+	while (++i <= tablen)
+		ft_simple_printf("%d\t", tab[i]);
 	return (1);
 }

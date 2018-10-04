@@ -46,7 +46,8 @@
    while (++i < argc)
    {
      j = -1;
-     tmp = (ft_strchr(argv[i], ' ')) ? ft_strsplit(argv[i], ' ') : NULL;
+     tmp = (ft_strchr(argv[i], ' ') && ft_strlen(argv[i]) > 1) ?
+     ft_strsplit(argv[i], ' ') : NULL;
      if (tmp == NULL && (!ft_is_nb(argv[i]) || !ft_is_int(argv[i])))
        return (0);
      else if (tmp)
@@ -58,9 +59,9 @@
            free(tmp);
            return (0);
          }
-         free(tmp);
        }
      }
-   }
-   return (1);
+  }
+  free(tmp);
+  return (1);
  }
