@@ -16,14 +16,14 @@ int		ft_stack_sort(t_data *data)
 {
 	int i;
 
-	write(1, "sort\n", 5);
+	//write(1, "sort\n", 5);
   i = -1;
 	while (++i < data->size[STACK_A] - 1)
 	{
-		write(1, "sort boucle\n", 12);
+		//write(1, "sort boucle\n", 12);
 		if (data->tab[STACK_A][i] > data->tab[STACK_A][i + 1])
 			return (0);
-		write(1, "sort if ok\n", 11);
+		//write(1, "sort if ok\n", 11);
 	}
 	return (1);
 }

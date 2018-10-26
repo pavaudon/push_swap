@@ -21,6 +21,8 @@ void    ft_s_command(t_data *data, char which)    //swap les adresses au lieu de
   swap = data->tab[stack][0];
   data->tab[stack][0] = data->tab[stack][1];
   data->tab[stack][1] = swap;
+  if (which == 'r')
+    ft_s_command(data, 'b');
   ft_print_stack(data, stack, (which == 's') ? 1 : 0);
 }
 

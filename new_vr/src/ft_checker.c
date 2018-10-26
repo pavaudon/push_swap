@@ -19,18 +19,14 @@ int   ft_checker(t_data *data)
 
   while (get_next_line(0, &command))
   {
-    write(1, "after gnl\n", 10);
     len = (!command) ? 0 : ft_strlen(command);
     if ((data->size[ALL] > 1 && !command) || (len < 2 || len > 5) ||
     !ft_is_command(command, data, len))
       ft_error("Error : bad command");
-    if (data->size[ALL] == 1 || ((data->size[STACK_A] == data->size[ALL])
-    && (ft_stack_sort(data)
-    && data->size[STACK_B] == 0)))
-      return (1);
-    write(1, "not sort\n", 9);
   }
-  return (0);
+  return (data->size[ALL] == 1 || ((data->size[STACK_A] == data->size[ALL])
+  && (ft_stack_sort(data)
+  && data->size[STACK_B] == 0)));
 }
 
 void ft_error(char *error)
