@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/20 13:31:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/09/20 13:31:32 by pavaudon         ###   ########.fr       */
+/*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/12/13 16:54:26 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "push_swap.h"
 
@@ -16,8 +17,9 @@ int   ft_checker(t_data *data)
 {
   char  *command;
   int   len;
+  int   ret;
 
-  while (get_next_line(0, &command))
+  while ((ret = read(command, buffer, 4)) <= 0)
   {
     len = (!command) ? 0 : ft_strlen(command);
     if ((data->size[ALL] > 1 && !command) || (len < 2 || len > 5) ||
@@ -44,14 +46,9 @@ int   main(int argc, char **argv)
   {
     if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
   		return (0);
-    if (((argc == 2) ? !ft_check_data(argv, 2, 0) :
-    !ft_check_data(argv, argc, 0))
-    || !ft_is_again(argv, argc, data))
-      ft_error("./checker [int arguments]");
-    if (!(ft_data_fill(data)))
-      ft_error("data_fill failed");
-    ft_print_stack(data, 0, 0);
-    ft_simple_printf("CHECKER START\n\n");
+    if (!check_data(argc, argv))
+      return (0);
+    // > if (!(ft_stack_fill(data, argc, argv)) > if (!is_again) > maj_data
     if (ft_checker(data))
       ft_simple_printf("OK\n");
     else

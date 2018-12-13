@@ -15,12 +15,7 @@
 NAME_1		=	checker
 
 SRC_DIR_1	=	./src/
-SRC_1			=	ft_checker.c \
-						ft_check_data.c \
-						ft_is_again.c \
-						ft_application.c \
-						ft_data_fill.c \
-						ft_command.c
+SRC_1			=	
 
 SRCS_1		=	$(addprefix $(SRC_DIR_1),$(SRC_1))
 

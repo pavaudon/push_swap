@@ -5,63 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/20 13:48:55 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/09/20 13:48:56 by pavaudon         ###   ########.fr       */
+/*   Created: 2018/12/13 16:54:15 by pavaudon          #+#    #+#             */
+/*   Updated: 2018/12/13 16:54:16 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "push_swap.h"
 
- int		ft_is_nb(char *str)
- {
- 	int i;
+#include "push_swap.h"
 
- 	i = 0;
- 	while (str[i])
- 	{
- 		if (ft_isdigit(str[i]) || (str[i] == '-' && i == 0))
- 		{
- 			i++;
- 			while (str[i] && (ft_isdigit(str[i])))
- 				i++;
- 		}
- 		else
- 			return (0);
- 	}
- 	return (1);
- }
+int		ft_is_nb(char *str)
+{
+  int i;
+  int arg;
 
- int		ft_is_int(char *str)
- {
- 	if (ft_atoi(str) && ft_atoi(str) <= 2147483647)
- 		return (1);
- 	return (0);
- }
-
- int    ft_check_data(char **argv, int argc, int i)
- {
-   char   **tmp;
-   int    j;
-
-   while (++i < argc)
-   {
-     j = -1;
-     tmp = (ft_strchr(argv[i], ' ') && ft_strlen(argv[i]) > 1) ?
-     ft_strsplit(argv[i], ' ') : NULL;
-     if (tmp == NULL && (!ft_is_nb(argv[i]) || !ft_is_int(argv[i])))
-       return (0);
-     else if (tmp)
-     {
-       while (tmp[++j])
-       {
-         if (!ft_is_nb(tmp[j]) || !ft_is_int(tmp[j]))
-         {
-           free(tmp);
-           return (0);
-         }
-       }
-     }
+  i = 0;
+  while (str[i])
+  {
+    if (i > 0 && str[i] && (str[i] == ' ' || str[i] == ' '))
+      i++;
+    arg = 0;
+    if (ft_isdigit(str[i]) || (str[i] == '-' && arg == 0))
+    {
+      i++;
+      while (str[i] && (ft_isdigit(str[i])))
+      {
+        i++;
+        arg++;
+      }
+    }
+    else
+      return (0);
   }
-  free(tmp);
   return (1);
- }
+}
+
+long  ft_atol(char *str)
+{
+  long n;
+	int neg;
+	int i;
+
+	n = 0;
+	neg = 1;
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\r' || str[i] == '\t' ||
+			str[i] == '\v' || str[i] == '\n' || str[i] == '\f')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			neg = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = n * 10;
+		n = n + (str[i] - 48);
+		i++;
+	}
+	return (n * neg);
+}
+
+int 	ft_int_max_min(char *str)
+{
+	if (str[0] == '-' && ft_atol(str) < -2147483648)
+		return (0);
+	if (str[0] != '-' && ft_atol(str) > 2147483647)
+		return (0);
+	return (1);
+}
+
+int		ft_is_int(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_int_max_min(&str[i]))
+			return (0);
+		if (str[i] == '-')
+			i++;
+		while (str[i] && (ft_isdigit(str[i])))
+			i++;
+		while (str[i] && (str[i] == ' ' || str[i] == '	'))
+			i++;
+	}
+  return (1);
+}
+
+int   ft_check_data(int argc, char **argv)
+{
+  int i;
+
+  i = 0;
+  while (++i < argc)
+  {
+    if (!ft_is_nb(argv[i]) || !ft_is_int(argv[i]))
+      return (0);
+  }
+  return (1);
+}
