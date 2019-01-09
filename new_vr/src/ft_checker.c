@@ -10,31 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
 int   ft_checker(t_data *data)
 {
   char  *command;
   int   len;
-  int   ret;
 
-  while ((ret = read(command, buffer, 4)) <= 0)
+  while (read(0, &command, 4))
   {
-    len = (!command) ? 0 : ft_strlen(command);
-    if ((data->size[ALL] > 1 && !command) || (len < 2 || len > 5) ||
+    printf("READ\n");
+    len = (!command) ? 0 : ft_strlen(command);      /// enlever len || checker command en command[0] == p|s|r [1] == a|b|r [2] == a|b (test [3] == /0?)
+    printf("LEN\n");
+    if ((data->size[2] > 1 && !command) || (len < 2 || len > 5) ||
     !ft_is_command(command, data, len))
       ft_error("Error : bad command");
   }
-  return (data->size[ALL] == 1 || ((data->size[STACK_A] == data->size[ALL])
-  && (ft_stack_sort(data)
-  && data->size[STACK_B] == 0)));
+  return (data->size[2] == 1 || ((data->size[0] == data->size[2])
+  && (ft_stack_sort(data->head_a)
+  && data->size[1] == 0)));
 }
 
 void ft_error(char *error)
 {
   ft_simple_printf("%s\n", error);
   exit (1);
+}
+
+int   ft_before_checker(t_data *data, int argc, char **argv)
+{
+  if (!ft_check_data(argc, argv) ||
+  !ft_stack_fill(data, argc, argv) ||
+  !ft_is_again(data))
+    return (0);
+  return (1);
 }
 
 int   main(int argc, char **argv)
@@ -44,11 +53,9 @@ int   main(int argc, char **argv)
   data = NULL;
   if (argc > 1)
   {
-    if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
+    if (!(data = (t_data*)ft_memalloc(sizeof(t_data))) ||
+    !ft_before_checker(data, argc, argv))
   		return (0);
-    if (!check_data(argc, argv))
-      return (0);
-    // > if (!(ft_stack_fill(data, argc, argv)) > if (!is_again) > maj_data
     if (ft_checker(data))
       ft_simple_printf("OK\n");
     else

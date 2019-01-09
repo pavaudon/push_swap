@@ -12,17 +12,74 @@
 
 #include "push_swap.h"
 
-
-void  ft_fill_head(s_stack *head_a)
+void		ft_size(t_data *data, int which)
 {
-  prev = NULL;
-  next = NULL;
+	t_stack *tmp;
+
+	tmp = (which == 1) ? data->head_b : data->head_a;
+	while (tmp)
+	{
+		data->size[which] += 1;
+		tmp = tmp->next;
+	}
+	if (which == 2)
+		data->size[0] = data->size[2];
 }
 
-void  ft_stack_fill(t_data data, int argc, char **argv)
+void  ft_init_stack(t_stack *stack)
 {
-  if (!(data->head_a =(t_stack*)ft_memalloc(t_stack)))
-    return ;
-  ft_fill_head(data->head_a);
-  //trouver comment remplir sans plus de malloc
+  stack->prev = NULL;
+  stack->next = NULL;
+}
+
+int  ft_spe_fill(t_stack *head_a, char *str, int j)
+{
+  int i;
+
+  i = -1;
+  while (str[++i])
+  {
+    if (!(ft_addbackstack(head_a, ft_atoi(&str[i]), i + j)))
+      return (0);
+    if (str[i] == '-')
+  		i++;
+  	while (str[i] && (ft_isdigit(str[i])))
+  		i++;
+  }
+  return (1);
+}
+
+int  ft_fill(t_stack *head_a, int argc, char **argv)
+{
+	int i;
+
+	i = 0;
+  while (++i < argc)
+  {
+    if (ft_strchr(argv[i], ' ')) // /t enleve
+    {
+      if (!(ft_spe_fill(head_a, argv[i], i - 1)))
+        return (0);
+    }
+    else
+    {
+      if (!(ft_addbackstack(head_a, ft_atoi(argv[i]), i - 1)))
+        return (0);
+    }
+  }
+  return (1);
+}
+
+int  ft_stack_fill(t_data *data, int argc, char **argv)
+{
+  if (!(data->head_a =(t_stack*)ft_memalloc(sizeof(t_stack))))
+    return (0);
+  ft_init_stack(data->head_a);
+  if (!(ft_fill(data->head_a, argc, argv)))
+    return (0);
+  if (!(data->head_b =(t_stack*)ft_memalloc(sizeof(t_stack))))
+    return (0);
+  ft_init_stack(data->head_b);
+  ft_size(data, 2);
+  return (1);
 }
