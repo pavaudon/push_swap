@@ -77,40 +77,25 @@ int		ft_addbeginstack(t_stack **stack, int value, int i)
 	return (1);
 }
 
-int		ft_is_command(char *command, t_data *data, int len)
+int 	ft_is_command(char *command, t_data *data, int len)		// ca marche mais c'est moche donc a ameliorer?
 {
-	printf("ISCOMMAND\n");
-	if (command[0] == 's' && len == 2)
+	if (len == 3)
 	{
-		if (!ft_strcmp("sa", command) || !ft_strcmp("sb", command) ||
-		ft_strcmp("ss", command))
+	 	if (command[0] == 'r' && command[1] == 'r' && (command[2] == 'a' || command[2] == 'b' || command[2] == 'r'))
+			ft_rr_command(data, command[2]);
+		else
+			return (0);
+	}
+	if (len == 2)
+	{
+		if (command[0] == 's' && (command[1] == 'a' || command[1] == 'b' || command[1] == 's'))
 			ft_s_command(data, command[1]);
-		else
-			return (0);
-	}
-	else if (command[0] == 'p' && len == 2)
-	{
-		if (!ft_strcmp("pa", command) || !ft_strcmp("pb", command))
+		else if (command[0] == 'p' && (command[1] == 'a' || command[1] == 'b'))
 			ft_p_command(data, command[1]);
+		else if (command[0] == 'r' && (command[1] == 'a' || command[1] == 'b' ||command[1] == 'r'))
+			ft_r_command(data, command[1]);
 		else
 			return (0);
 	}
-	else if (command[0] == 'r' && len < 4)
-		return (ft_is_rcommand(command, data, len));
-	else
-		return (0);
-	return (1);
-}
-
-int		ft_is_rcommand(char *command, t_data *data, int len)
-{
-	if (len == 2 && (!ft_strcmp("ra", command) || !ft_strcmp("rb", command) ||
-	!ft_strcmp("rr", command)))
-		ft_r_command(data, command[1]);
-	else if (len == 3 && (!ft_strcmp("rra", command)
-	|| !ft_strcmp("rrb", command) || !ft_strcmp("rrr", command)))
-		ft_rr_command(data, command[2]);
-	else
-		return (0);
 	return (1);
 }

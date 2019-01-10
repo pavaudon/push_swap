@@ -1,5 +1,14 @@
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_r_rr_command.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/10 14:20:49 by pavaudon          #+#    #+#             */
+/*   Updated: 2019/01/10 14:20:51 by pavaudon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -9,11 +18,12 @@ void 	ft_r_command(t_data *data, char which)
 	t_stack *tmp;
 
 	printf("R COMMAND\n");
-	tmp = (which == 'b') ? data->head_b : data->head_a;
-	if (!tmp->next)
+	if ((which == 'b' && data->size[1] < 2) ||
+	((which == 'a' || which == 'r') && data->size[0] < 2))
 		return ;
+	tmp = (which == 'b') ? data->head_b : data->head_a;
 	ft_addbackstack(tmp, tmp->value,
-		(which == 'b') ? data->size[2] : data->size[1]);
+		(which == 'b') ? data->size[1] : data->size[0]);
 	if (which == 'b')
 	{
 		data->head_b = tmp;
@@ -26,7 +36,7 @@ void 	ft_r_command(t_data *data, char which)
 		data->head_a->next->prev = NULL;
 		data->head_a = data->head_a->next;
 	}
-	//ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
+	ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
 	if (which == 'r')
 		ft_r_command(data, 'b');
 }
@@ -59,19 +69,20 @@ void 	ft_rr_command(t_data *data, char which)
 	t_stack *begin;
 
 	printf("RR COMMAND\n");
+	if ((which == 'b' && data->size[1] < 2) ||
+	((which == 'a' || which == 'r') && data->size[0] < 2))
+		return ;
 	begin = (which == 'b') ? data->head_b : data->head_a;
 	tmp = begin;
-	if (!begin->next)
-		return ;
 	while (tmp->next)
 		tmp = tmp->next;
 	ft_addbeginstack((which == 'b') ? &(data->head_b) : &(data->head_a),
-		tmp->value, (which == 'b') ? data->size[2] : data->size[1]);
+		tmp->value, (which == 'b') ? data->size[1] : data->size[0]);
 	if (which == 'b')
 		ft_del_end_stack(data->head_b);
 	else
 		ft_del_end_stack(data->head_a);
-	//ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
+	ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
 	if (which == 'r')
 		ft_rr_command(data, 'b');
 }

@@ -21,7 +21,8 @@ SRC_1			=	ft_checker.c \
 						ft_is_again.c \
 						ft_application.c \
 						ft_s_p_command.c \
-						ft_r_rr_command.c
+						ft_r_rr_command.c \
+						ft_print_stack.c
 
 SRCS_1		=	$(addprefix $(SRC_DIR_1),$(SRC_1))
 

@@ -14,17 +14,21 @@
 
 int   ft_checker(t_data *data)
 {
-  char  *command;
+  char  command[5];
   int   len;
 
+  ft_bzero(command, 5);
+  ft_print_stack(data, 'a', 0);
   while (read(0, &command, 4))
   {
-    printf("READ\n");
-    len = (!command) ? 0 : ft_strlen(command);      /// enlever len || checker command en command[0] == p|s|r [1] == a|b|r [2] == a|b (test [3] == /0?)
-    printf("LEN\n");
-    if ((data->size[2] > 1 && !command) || (len < 2 || len > 5) ||
+    len = 0;
+    len = (command[2] == '\n') ? 2 : len;
+    len = (command[3] == '\n') ? 3 : len;
+    printf("LEN : '%d'\tCOMMAND : '%s'\n", len, command);
+    if ((data->size[2] > 1 && len == 0) || (len < 2 || len > 3) ||
     !ft_is_command(command, data, len))
       ft_error("Error : bad command");
+    ft_bzero(command, 5);
   }
   return (data->size[2] == 1 || ((data->size[0] == data->size[2])
   && (ft_stack_sort(data->head_a)

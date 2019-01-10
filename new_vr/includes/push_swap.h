@@ -40,16 +40,22 @@ typedef struct  s_data
 int     ft_check_data(int argc, char **argv);
 int     ft_stack_fill(t_data *data, int argc, char **argv);
 int     ft_is_again(t_data *data);
+
 int     ft_stack_sort(t_stack *stack);
+
 int     ft_addbackstack(t_stack *stack, int value, int i);
 int     ft_addbeginstack(t_stack **stack, int value, int i);
-int     ft_is_command(char *command, t_data *data, int len);
-int     ft_is_rcommand(char *command, t_data *data, int len);
+
 void    ft_error(char *error);
+
+int     ft_is_command(char *command, t_data *data, int len);
+
 void    ft_s_command(t_data *data, char which);
 void    ft_p_command(t_data *data, char which);
 void    ft_r_command(t_data *data, char which);
 void    ft_rr_command(t_data *data, char which);
+
+void	  ft_print_stack(t_data *data, char which, int both);
 
 
 #endif
