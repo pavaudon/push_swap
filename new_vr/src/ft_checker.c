@@ -12,6 +12,30 @@
 
 #include "push_swap.h"
 
+
+void  ft_stackdel(t_stack **stack)
+{
+  t_stack	*tmp;
+  t_stack	*previous;
+
+  tmp = *stack;
+  while (tmp)
+  {
+    previous = tmp;
+    tmp = tmp->next;
+    free(previous);
+  }
+  *stack = NULL;
+}
+
+void  ft_cleanup(t_data *data)
+{
+  if (data->head_a)
+    ft_stackdel(&(data->head_a));
+  if (data->head_b)
+    ft_stackdel(&(data->head_b));
+}
+
 int   ft_checker(t_data *data)
 {
   char  command[5];
@@ -33,12 +57,6 @@ int   ft_checker(t_data *data)
   return (data->size[2] == 1 || ((data->size[0] == data->size[2])
   && (ft_stack_sort(data->head_a)
   && data->size[1] == 0)));
-}
-
-void ft_error(char *error)
-{
-  ft_simple_printf("%s\n", error);
-  exit (1);
 }
 
 int   ft_before_checker(t_data *data, int argc, char **argv)
@@ -64,6 +82,8 @@ int   main(int argc, char **argv)
       ft_simple_printf("OK\n");
     else
       ft_simple_printf("KO\n");
+    ft_cleanup(data);
+    free(data);
   }
   else
     ft_error("./checker [int arguments]");

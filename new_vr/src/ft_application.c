@@ -12,6 +12,12 @@
 
 #include "push_swap.h"
 
+void ft_error(char *error)
+{
+  ft_simple_printf("%s\n", error);
+  exit (1);
+}
+
 int		ft_stack_sort(t_stack *stack)
 {
 	t_stack *tmp;
@@ -52,10 +58,11 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	return (1);
 }
 
-int		ft_addbeginstack(t_stack **stack, int value, int i)
+int		ft_addbeginstack(t_stack **stack, int value, int i)		//recommencer et revoir si obligations de malloc
 {
 	t_stack *new;
 
+	new = NULL;
 	if (i)
 	{
 		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
@@ -64,11 +71,11 @@ int		ft_addbeginstack(t_stack **stack, int value, int i)
 		new->prev = NULL;
 		new->next = *stack;
 		(*stack)->prev = new;
-		*stack = (*stack)->prev;
+		*stack = new;
 	}
 	else
 	{
-		if (!*stack && !(*stack = (t_stack*)ft_memalloc(sizeof(t_stack))))
+		if (!*stack && !((*stack) = (t_stack*)ft_memalloc(sizeof(t_stack))))
 			return (0);
 		(*stack)->value = value;
 		(*stack)->next = NULL;

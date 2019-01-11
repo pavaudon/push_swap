@@ -54,15 +54,17 @@ int  ft_fill(t_stack *head_a, int argc, char **argv)
 	int i;
 
 	i = 0;
+	printf("STACK FILL\n");
   while (++i < argc)
   {
-    if (ft_strchr(argv[i], ' ')) // /t enleve
+    if (ft_strchr(argv[i], ' ')) // '/t' enleve
     {
       if (!(ft_spe_fill(head_a, argv[i], i - 1)))
         return (0);
     }
     else
     {
+			printf("i : '%d'\n", i);
       if (!(ft_addbackstack(head_a, ft_atoi(argv[i]), i - 1)))
         return (0);
     }
@@ -72,12 +74,12 @@ int  ft_fill(t_stack *head_a, int argc, char **argv)
 
 int  ft_stack_fill(t_data *data, int argc, char **argv)
 {
-  if (!(data->head_a =(t_stack*)ft_memalloc(sizeof(t_stack))))
+  if (!(data->head_a =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever ce malloc?
     return (0);
   ft_init_stack(data->head_a);
-  if (!(ft_fill(data->head_a, argc, argv)))
+	if (!(ft_fill(data->head_a, argc, argv)))
     return (0);
-  if (!(data->head_b =(t_stack*)ft_memalloc(sizeof(t_stack))))
+  if (!(data->head_b =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever celui la aussi?
     return (0);
   ft_init_stack(data->head_b);
   ft_size(data, 2);

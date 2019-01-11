@@ -84,5 +84,8 @@ void 	ft_rr_command(t_data *data, char which)
 		ft_del_end_stack(data->head_a);
 	ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
 	if (which == 'r')
+	{
 		ft_rr_command(data, 'b');
+		//print both
+	}
 }
