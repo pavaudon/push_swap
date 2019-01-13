@@ -25,9 +25,12 @@ void	ft_s_command(t_data *data, char which)	//segfault si empty
 		tmp->value = tmp->next->value;
 		tmp->next->value = swap;
 	}
-	ft_print_stack(data, which, (which == 'b' ? 1 : 0));
+	ft_print_stack(data, (which == 's' ? 'a' : which), 0);
 	if (which == 's')
+	{
 		ft_s_command(data, 'b');
+		ft_print_stack(data, 'b', 0);
+	}
 }
 
 void 	ft_pa_command(t_data *data)
@@ -52,10 +55,10 @@ void 	ft_pb_command(t_data *data)
 	if (data->size[1] > 1)
 	{
 		data->head_b = data->head_b->next;
-		data->head_b->prev = NULL;
+		data->head_b->prev = NULL;		//free?
 	}
 	else
-		data->head_b = NULL;
+		data->head_b = NULL;		//free?
 	data->size[0] += 1;
 	data->size[1] -= 1;
 }

@@ -31,6 +31,38 @@ int		ft_stack_sort(t_stack *stack)
 	}
 	return (1);
 }
+/*
+int   ft_addbackstack(t_stack *stack, int value, int i)
+{
+  t_stack *tmp;
+  t_stack *new;
+
+  printf("ADDBACK\n");
+
+  if (i)
+  {
+    if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
+			return (0);
+		new->value = value;
+		new->next = NULL;
+		tmp = stack;
+		while (tmp->next)
+			tmp = tmp->next;
+		new->prev = tmp;
+		tmp->next = new;
+  }
+  else
+  {
+    if (!(stack = (t_stack*)ft_memalloc(sizeof(t_stack))))
+      return (0);
+    stack->value = value;
+    printf("stack->value : '%d'\n", stack->value);
+    stack->next = NULL;
+    stack->prev = NULL;
+  }
+  return (1);
+}
+*/
 
 int		ft_addbackstack(t_stack *stack, int value, int i)
 {
@@ -58,7 +90,7 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	return (1);
 }
 
-int		ft_addbeginstack(t_stack **stack, int value, int i)		//recommencer et revoir si obligations de malloc
+int		ft_addbeginstack(t_stack **stack, int value, int i)
 {
 	t_stack *new;
 
@@ -99,8 +131,10 @@ int 	ft_is_command(char *command, t_data *data, int len)		// ca marche mais c'es
 			ft_s_command(data, command[1]);
 		else if (command[0] == 'p' && (command[1] == 'a' || command[1] == 'b'))
 			ft_p_command(data, command[1]);
-		else if (command[0] == 'r' && (command[1] == 'a' || command[1] == 'b' ||command[1] == 'r'))
-			ft_r_command(data, command[1]);
+		else if (command[0] == 'r' && (command[1] == 'a' ||command[1] == 'r'))
+      ft_ra_command(data, command[1]);
+    else if (command[0] == 'r' && command[1] == 'b')
+			ft_rb_command(data, command[1]);
 		else
 			return (0);
 	}

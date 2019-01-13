@@ -52,7 +52,8 @@ int     ft_is_command(char *command, t_data *data, int len);
 
 void    ft_s_command(t_data *data, char which);
 void    ft_p_command(t_data *data, char which);
-void    ft_r_command(t_data *data, char which);
+void    ft_rb_command(t_data *data, char which);
+void    ft_ra_command(t_data *data, char which);
 void    ft_rr_command(t_data *data, char which);
 
 void	  ft_print_stack(t_data *data, char which, int both);

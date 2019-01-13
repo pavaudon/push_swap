@@ -49,6 +49,7 @@ int  ft_spe_fill(t_stack *head_a, char *str, int j)
   return (1);
 }
 
+
 int  ft_fill(t_stack *head_a, int argc, char **argv)
 {
 	int i;
@@ -63,25 +64,41 @@ int  ft_fill(t_stack *head_a, int argc, char **argv)
         return (0);
     }
     else
-    {
-			printf("i : '%d'\n", i);
+		{
       if (!(ft_addbackstack(head_a, ft_atoi(argv[i]), i - 1)))
         return (0);
+			printf("i : '%d'\n", i);
+			printf("head_a->value : '%d'\n", head_a->value);
     }
   }
   return (1);
 }
 
+/*
+int  ft_stack_fill(t_data *data, int argc, char **argv)
+{
+	printf("FUCK1\n");
+	data->head_a = NULL;
+	printf("FUCK2\n");
+	if (!(ft_fill(data->head_a, argc, argv)))
+    return (0);
+	printf("FUCK3\n");
+	data->head_b = NULL;
+	ft_size(data, 2);
+	printf("FUCK4\n");
+	return (1);
+}
+*/
 int  ft_stack_fill(t_data *data, int argc, char **argv)
 {
   if (!(data->head_a =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever ce malloc?
     return (0);
-  ft_init_stack(data->head_a);
+  //ft_init_stack(data->head_a);
 	if (!(ft_fill(data->head_a, argc, argv)))
     return (0);
   if (!(data->head_b =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever celui la aussi?
     return (0);
-  ft_init_stack(data->head_b);
+  //ft_init_stack(data->head_b);
   ft_size(data, 2);
   return (1);
 }

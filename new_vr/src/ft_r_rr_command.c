@@ -12,10 +12,35 @@
 
 #include "push_swap.h"
 
+
+
+void ft_ra_command(t_data *data, char which)
+{
+	if (data->size[0] < 2)
+		return ;
+	ft_addbackstack(data->head_a, data->head_a->value, data->size[0]);
+	data->head_a->next->prev = NULL;	//free?
+	data->head_a = data->head_a->next;
+	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
+	if (which == 'r')
+		ft_rb_command(data, 'b');
+}
+
+void 	ft_rb_command(t_data *data, char which)
+{
+	if (data->size[1] < 2)
+		return ;
+	ft_addbackstack(data->head_b, data->head_b->value, data->size[1]);
+	data->head_b->next->prev = NULL;	//free?
+	data->head_b = data->head_b->next;
+	ft_print_stack(data, which, 0);
+}
+
+/*
 // [first] become [end]
 void 	ft_r_command(t_data *data, char which)
 {
-	t_stack *tmp;
+	t_stack *tmp;			//enlever une ligne
 
 	printf("R COMMAND\n");
 	if ((which == 'b' && data->size[1] < 2) ||
@@ -23,7 +48,7 @@ void 	ft_r_command(t_data *data, char which)
 		return ;
 	tmp = (which == 'b') ? data->head_b : data->head_a;
 	ft_addbackstack(tmp, tmp->value,
-		(which == 'b') ? data->size[1] : data->size[0]);
+		(which == 'b') ? data->size[1] : data->size[0]);		//pourquoi tmp et pas directement head_a/b?
 	if (which == 'b')
 	{
 		data->head_b = tmp;
@@ -36,10 +61,14 @@ void 	ft_r_command(t_data *data, char which)
 		data->head_a->next->prev = NULL;
 		data->head_a = data->head_a->next;
 	}
-	ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
+	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
 	if (which == 'r')
+	{
 		ft_r_command(data, 'b');
+		ft_print_stack(data, which, 0);
+	}
 }
+*/
 
 static t_stack *get_prelast(t_stack *stack)
 {
@@ -66,14 +95,12 @@ void 	ft_del_end_stack(t_stack *stack)
 void 	ft_rr_command(t_data *data, char which)
 {
 	t_stack *tmp;
-	t_stack *begin;
 
 	printf("RR COMMAND\n");
 	if ((which == 'b' && data->size[1] < 2) ||
 	((which == 'a' || which == 'r') && data->size[0] < 2))
 		return ;
-	begin = (which == 'b') ? data->head_b : data->head_a;
-	tmp = begin;
+	tmp = (which == 'b') ? data->head_b : data->head_a;
 	while (tmp->next)
 		tmp = tmp->next;
 	ft_addbeginstack((which == 'b') ? &(data->head_b) : &(data->head_a),
@@ -82,10 +109,10 @@ void 	ft_rr_command(t_data *data, char which)
 		ft_del_end_stack(data->head_b);
 	else
 		ft_del_end_stack(data->head_a);
-	ft_print_stack(data, (which == 'r' ? 'a' : which), (which == 'r' ? 1 : 0));
+	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
 	if (which == 'r')
 	{
 		ft_rr_command(data, 'b');
-		//print both
+		ft_print_stack(data, which, 0);
 	}
 }
