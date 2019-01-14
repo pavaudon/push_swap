@@ -40,7 +40,7 @@ int  ft_is_again(t_data *data)
   t_stack *compare;
 
   tmp = data->head_a;
-  if (!tmp->next)	//a regler
+  if (data->size[0] == 1)
     return (1);
   while (tmp->next)
   {
@@ -56,33 +56,3 @@ int  ft_is_again(t_data *data)
   ft_min_max(data, 2);
   return (1);
 }
-
-/*
-int 	ft_is_again(t_data *data)
-{
-	t_stack *tmp;
-	int 		compare;
-	int 		i;
-	int 		next;
-
-	i = 0;
-	if (data->size[2] == 1)		//verifier
-		return (1);
-	while (i++ < data->size[2])	// < ou <= ?
-	{
-		next = 0;
-		tmp = data->head_a;
-		while (i > 0 && next < i)
-			tmp = tmp->next;
-		compare = (i > 0) ? tmp->value : tmp->prev->value;
-		while (tmp)
-		{
-			if (compare == tmp->value)
-				return (0);
-			tmp = tmp->next;
-		}
-	}
-	ft_min_max(data, 2);
-	return (1);
-}
-*/

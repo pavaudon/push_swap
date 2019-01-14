@@ -84,7 +84,11 @@ int		ft_is_int(char *str)
 		if (!ft_int_max_min(&str[i]))
 			return (0);
 		if (str[i] == '-')
+    {
 			i++;
+      if (!str[i] || !ft_isdigit(str[i]))
+        return (0);
+    }
 		while (str[i] && (ft_isdigit(str[i])))
 			i++;
 		while (str[i] && (str[i] == ' ' || str[i] == '	'))

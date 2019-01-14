@@ -59,13 +59,16 @@ int   ft_checker(t_data *data)
   && data->size[1] == 0)));
 }
 
-int   ft_before_checker(t_data *data, int argc, char **argv)
+void   ft_before_checker(t_data *data, int argc, char **argv)
 {
   if (!ft_check_data(argc, argv) ||
   !ft_stack_fill(data, argc, argv) ||
   !ft_is_again(data))
-    return (0);
-  return (1);
+  {
+    ft_cleanup(data);
+    free(data);
+    ft_error("BAD ARGUMENTS");
+  }
 }
 
 int   main(int argc, char **argv)
@@ -75,9 +78,9 @@ int   main(int argc, char **argv)
   data = NULL;
   if (argc > 1)
   {
-    if (!(data = (t_data*)ft_memalloc(sizeof(t_data))) ||
-    !ft_before_checker(data, argc, argv))
-  		return (0);
+    if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
+      return (0);
+    ft_before_checker(data, argc, argv);
     if (ft_checker(data))
       ft_simple_printf("OK\n");
     else

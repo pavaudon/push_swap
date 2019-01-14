@@ -35,27 +35,27 @@ void  ft_init_stack(t_stack *stack)
 int  ft_spe_fill(t_stack *head_a, char *str, int j)
 {
   int i;
+	int len;
 
   i = -1;
-  while (str[++i])
+	len = ft_strlen(str);
+  while (++i < len)
   {
     if (!(ft_addbackstack(head_a, ft_atoi(&str[i]), i + j)))
       return (0);
     if (str[i] == '-')
   		i++;
-  	while (str[i] && (ft_isdigit(str[i])))
+  	while (i < len && (ft_isdigit(str[i])))
   		i++;
   }
   return (1);
 }
-
 
 int  ft_fill(t_stack *head_a, int argc, char **argv)
 {
 	int i;
 
 	i = 0;
-	printf("STACK FILL\n");
   while (++i < argc)
   {
     if (ft_strchr(argv[i], ' ')) // '/t' enleve
@@ -67,8 +67,6 @@ int  ft_fill(t_stack *head_a, int argc, char **argv)
 		{
       if (!(ft_addbackstack(head_a, ft_atoi(argv[i]), i - 1)))
         return (0);
-			printf("i : '%d'\n", i);
-			printf("head_a->value : '%d'\n", head_a->value);
     }
   }
   return (1);
@@ -85,5 +83,6 @@ int  ft_stack_fill(t_data *data, int argc, char **argv)
     return (0);
   ft_init_stack(data->head_b);
   ft_size(data, 2);
+	ft_print_stack(data, 'a', 0);
   return (1);
 }
