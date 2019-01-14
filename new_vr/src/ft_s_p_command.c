@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_s_command(t_data *data, char which)	//segfault si empty
+void	ft_s_command(t_data *data, char which)
 {
 	printf("S COMMAND\n");
 	int			swap;
@@ -40,7 +40,10 @@ void 	ft_pa_command(t_data *data)
 		free(data->head_a->prev);
 	}
 	else
+	{
+		free(data->head_a);
 		data->head_a = NULL;
+	}
 	data->size[0] -= 1;
 	data->size[1] += 1;
 }
@@ -55,7 +58,10 @@ void 	ft_pb_command(t_data *data)
 		free(data->head_b->prev);
 	}
 	else
+	{
+		free(data->head_b);
 		data->head_b = NULL;
+	}
 	data->size[0] += 1;
 	data->size[1] -= 1;
 }

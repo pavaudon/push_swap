@@ -74,29 +74,14 @@ int  ft_fill(t_stack *head_a, int argc, char **argv)
   return (1);
 }
 
-/*
 int  ft_stack_fill(t_data *data, int argc, char **argv)
 {
-	printf("FUCK1\n");
-	data->head_a = NULL;
-	printf("FUCK2\n");
-	if (!(ft_fill(data->head_a, argc, argv)))
-    return (0);
-	printf("FUCK3\n");
-	data->head_b = NULL;
-	ft_size(data, 2);
-	printf("FUCK4\n");
-	return (1);
-}
-*/
-int  ft_stack_fill(t_data *data, int argc, char **argv)
-{
-  if (!(data->head_a =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever ce malloc?
+  if (!(data->head_a =(t_stack*)ft_memalloc(sizeof(t_stack))))
     return (0);
   ft_init_stack(data->head_a);
 	if (!(ft_fill(data->head_a, argc, argv)))
     return (0);
-  if (!(data->head_b =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever celui la aussi?
+  if (!(data->head_b =(t_stack*)ft_memalloc(sizeof(t_stack))))
     return (0);
   ft_init_stack(data->head_b);
   ft_size(data, 2);

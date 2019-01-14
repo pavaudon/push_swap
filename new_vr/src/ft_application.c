@@ -31,38 +31,6 @@ int		ft_stack_sort(t_stack *stack)
 	}
 	return (1);
 }
-/*
-int   ft_addbackstack(t_stack *stack, int value, int i)
-{
-  t_stack *tmp;
-  t_stack *new;
-
-  printf("ADDBACK\n");
-
-  if (i)
-  {
-    if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
-			return (0);
-		new->value = value;
-		new->next = NULL;
-		tmp = stack;
-		while (tmp->next)
-			tmp = tmp->next;
-		new->prev = tmp;
-		tmp->next = new;
-  }
-  else
-  {
-    if (!(stack = (t_stack*)ft_memalloc(sizeof(t_stack))))
-      return (0);
-    stack->value = value;
-    printf("stack->value : '%d'\n", stack->value);
-    stack->next = NULL;
-    stack->prev = NULL;
-  }
-  return (1);
-}
-*/
 
 int		ft_addbackstack(t_stack *stack, int value, int i)
 {

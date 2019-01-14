@@ -36,40 +36,6 @@ void 	ft_rb_command(t_data *data, char which)
 	ft_print_stack(data, which, 0);
 }
 
-/*
-// [first] become [end]
-void 	ft_r_command(t_data *data, char which)
-{
-	t_stack *tmp;			//enlever une ligne
-
-	printf("R COMMAND\n");
-	if ((which == 'b' && data->size[1] < 2) ||
-	((which == 'a' || which == 'r') && data->size[0] < 2))
-		return ;
-	tmp = (which == 'b') ? data->head_b : data->head_a;
-	ft_addbackstack(tmp, tmp->value,
-		(which == 'b') ? data->size[1] : data->size[0]);		//pourquoi tmp et pas directement head_a/b?
-	if (which == 'b')
-	{
-		data->head_b = tmp;
-		data->head_b->next->prev = NULL;
-		data->head_b = data->head_b->next;
-	}
-	else
-	{
-		data->head_a = tmp;
-		data->head_a->next->prev = NULL;
-		data->head_a = data->head_a->next;
-	}
-	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
-	if (which == 'r')
-	{
-		ft_r_command(data, 'b');
-		ft_print_stack(data, which, 0);
-	}
-}
-*/
-
 static t_stack *get_prelast(t_stack *stack)
 {
 	if ((!stack) || (!stack->next))
