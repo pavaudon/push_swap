@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/12/13 16:54:16 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:46:43 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,35 @@
 
 int		ft_is_nb(char *str)
 {
-  int i;
-  int arg;
+	int	i;
+	int	arg;
 
-  i = 0;
-  while (str[i])
-  {
-    if (i > 0 && str[i] && (str[i] == ' ' || str[i] == ' '))
-      i++;
-    arg = 0;
-    if (ft_isdigit(str[i]) || (str[i] == '-' && arg == 0))
-    {
-      i++;
-      while (str[i] && (ft_isdigit(str[i])))
-      {
-        i++;
-        arg++;
-      }
-    }
-    else
-      return (0);
-  }
-  return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (i > 0 && str[i] && (str[i] == ' ' || str[i] == ' '))
+			i++;
+		arg = 0;
+		if (ft_isdigit(str[i]) || (str[i] == '-' && arg == 0))
+		{
+			i++;
+			while (str[i] && (ft_isdigit(str[i])))
+			{
+				i++;
+				arg++;
+			}
+		}
+		else
+			return (0);
+	}
+	return (1);
 }
 
-long  ft_atol(char *str)
+long	ft_atol(char *str)
 {
-  long n;
-	int neg;
-	int i;
+	long	n;
+	int		neg;
+	int		i;
 
 	n = 0;
 	neg = 1;
@@ -65,7 +65,7 @@ long  ft_atol(char *str)
 	return (n * neg);
 }
 
-int 	ft_int_max_min(char *str)
+int		ft_int_max_min(char *str)
 {
 	if (str[0] == '-' && ft_atol(str) < -2147483648)
 		return (0);
@@ -84,28 +84,28 @@ int		ft_is_int(char *str)
 		if (!ft_int_max_min(&str[i]))
 			return (0);
 		if (str[i] == '-')
-    {
+		{
 			i++;
-      if (!str[i] || !ft_isdigit(str[i]))
-        return (0);
-    }
+			if (!str[i] || !ft_isdigit(str[i]))
+				return (0);
+		}
 		while (str[i] && (ft_isdigit(str[i])))
 			i++;
 		while (str[i] && (str[i] == ' ' || str[i] == '	'))
 			i++;
 	}
-  return (1);
+	return (1);
 }
 
-int   ft_check_data(int argc, char **argv)
+int		ft_check_data(int argc, char **argv)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (++i < argc)
-  {
-    if (!ft_is_nb(argv[i]) || !ft_is_int(argv[i]))
-      return (0);
-  }
-  return (1);
+	i = 0;
+	while (++i < argc)
+	{
+		if (!ft_is_nb(argv[i]) || !ft_is_int(argv[i]))
+			return (0);
+	}
+	return (1);
 }

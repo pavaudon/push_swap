@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_r_rr_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:20:49 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/10 14:20:51 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/14 19:28:19 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-
-void ft_ra_command(t_data *data, char which)
+void			ft_ra_command(t_data *data, char which)
 {
 	if (data->size[0] < 2)
 		return ;
@@ -26,7 +24,7 @@ void ft_ra_command(t_data *data, char which)
 		ft_rb_command(data, 'b');
 }
 
-void 	ft_rb_command(t_data *data, char which)
+void			ft_rb_command(t_data *data, char which)
 {
 	if (data->size[1] < 2)
 		return ;
@@ -36,7 +34,7 @@ void 	ft_rb_command(t_data *data, char which)
 	ft_print_stack(data, which, 0);
 }
 
-static t_stack *get_prelast(t_stack *stack)
+static t_stack	*get_prelast(t_stack *stack)
 {
 	if ((!stack) || (!stack->next))
 		return (NULL);
@@ -45,7 +43,7 @@ static t_stack *get_prelast(t_stack *stack)
 	return (stack);
 }
 
-void 	ft_del_end_stack(t_stack *stack)
+void			ft_del_end_stack(t_stack *stack)
 {
 	t_stack		*pre_last;
 
@@ -58,7 +56,7 @@ void 	ft_del_end_stack(t_stack *stack)
 }
 
 // [end] become [first]
-void 	ft_rr_command(t_data *data, char which)
+void			ft_rr_command(t_data *data, char which)
 {
 	t_stack *tmp;
 

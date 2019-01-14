@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/10 14:21:32 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/14 19:26:40 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ void	ft_print_stack(t_data *data, char which, int both)
 	tmp = (which == 'a') ? data->head_a : data->head_b;
 	if (!tmp)
 	{
-		ft_simple_printf(">>>>		STACK_%c		<<<<\nEMPTY\n\n", which - 32);
-    ft_simple_printf("SIZE_%c : '%d'\n", which - 32, data->size[which - 97]);
+		ft_simple_printf(">>>>		STACK_%c		<<<<\nEMPTY\n\n", 
+		which - 32);
+		ft_simple_printf("SIZE_%c : '%d'\n", which - 32, 
+		data->size[which - 97]);
 		if (both && which == 'a')
 			ft_print_stack(data, 'b', 0);
 		return ;
 	}
 	ft_simple_printf(">>>>		STACK_%c		<<<<\n", which - 32);
-  ft_simple_printf("SIZE_%c : '%d'\n", which - 32, (which == 'b') ?
-  data->size[1] : data->size[0]);
+	ft_simple_printf("SIZE_%c : '%d'\n", which - 32, (which == 'b') ?
+	data->size[1] : data->size[0]);
 	while (tmp)
 	{
 		ft_simple_printf("%d\n", tmp->value);

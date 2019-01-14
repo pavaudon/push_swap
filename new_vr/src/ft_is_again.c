@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_again.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2018/12/13 16:53:01 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/14 19:23:15 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,25 @@ void		ft_min_max(t_data *data, int which)
 	}
 }
 
-int  ft_is_again(t_data *data)
+int			ft_is_again(t_data *data)
 {
-  t_stack *tmp;
-  t_stack *compare;
+	t_stack *tmp;
+	t_stack *compare;
 
-  tmp = data->head_a;
-  if (data->size[0] == 1)
-    return (1);
-  while (tmp->next)
-  {
+	tmp = data->head_a;
+	if (data->size[0] == 1)
+		return (1);
+	while (tmp->next)
+	{
 		compare = tmp->next;
-    while (compare)
-    {
-      if (tmp->value == compare->value)
-        return (0);
-      compare = compare->next;
-    }
-    tmp = tmp->next;
-  }
-  ft_min_max(data, 2);
-  return (1);
+		while (compare)
+		{
+			if (tmp->value == compare->value)
+				return (0);
+			compare = compare->next;
+		}
+		tmp = tmp->next;
+	}
+	ft_min_max(data, 2);
+	return (1);
 }
