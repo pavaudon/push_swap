@@ -19,8 +19,8 @@ void ft_ra_command(t_data *data, char which)
 	if (data->size[0] < 2)
 		return ;
 	ft_addbackstack(data->head_a, data->head_a->value, data->size[0]);
-	data->head_a->next->prev = NULL;	//free?
 	data->head_a = data->head_a->next;
+	free(data->head_a->prev);
 	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
 	if (which == 'r')
 		ft_rb_command(data, 'b');
@@ -31,8 +31,8 @@ void 	ft_rb_command(t_data *data, char which)
 	if (data->size[1] < 2)
 		return ;
 	ft_addbackstack(data->head_b, data->head_b->value, data->size[1]);
-	data->head_b->next->prev = NULL;	//free?
 	data->head_b = data->head_b->next;
+	free(data->head_b->prev);
 	ft_print_stack(data, which, 0);
 }
 
@@ -111,8 +111,5 @@ void 	ft_rr_command(t_data *data, char which)
 		ft_del_end_stack(data->head_a);
 	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
 	if (which == 'r')
-	{
 		ft_rr_command(data, 'b');
-		ft_print_stack(data, which, 0);
-	}
 }

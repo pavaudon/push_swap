@@ -93,12 +93,12 @@ int  ft_stack_fill(t_data *data, int argc, char **argv)
 {
   if (!(data->head_a =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever ce malloc?
     return (0);
-  //ft_init_stack(data->head_a);
+  ft_init_stack(data->head_a);
 	if (!(ft_fill(data->head_a, argc, argv)))
     return (0);
   if (!(data->head_b =(t_stack*)ft_memalloc(sizeof(t_stack))))	//enlever celui la aussi?
     return (0);
-  //ft_init_stack(data->head_b);
+  ft_init_stack(data->head_b);
   ft_size(data, 2);
   return (1);
 }
