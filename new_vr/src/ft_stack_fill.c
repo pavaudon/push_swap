@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/14 19:32:48 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:08:25 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ int			ft_stack_fill(t_data *data, int argc, char **argv)
 		return (0);
 	ft_init_stack(data->head_b);
 	ft_size(data, 2);
-	ft_print_stack(data, 'a', 0);
 	return (1);
 }

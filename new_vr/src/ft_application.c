@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/14 19:21:31 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/15 15:19:57 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_error(char *error)
 {
-	ft_simple_printf("%s\n", error);
+	ft_simple_printf("%s\n", error);		//error\n first like subject?
 	exit (1);		//pas a la norme?
 }
 

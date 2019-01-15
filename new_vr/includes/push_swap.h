@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/14 18:57:47 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/15 18:51:54 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,24 @@
 
 # include "libft.h"
 
+# define SA 'A'
+# define SB 'B'
+# define SS 'C'
+# define PA 'D'
+# define PB 'E'
+# define RA 'F'
+# define RB 'G'
+# define RR 'H'
+# define RRA 'I'
+# define RRB 'J'
+# define RRR 'K'
+
 typedef struct		s_stack
 {
 	int				value;
 	int				final_pos;
 	int				actual_pos;
+	int				move_pos;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -34,6 +47,8 @@ typedef struct		s_data
 	int				max[3];		//0 == a	1 == b	2 == all
 	int				min[3];
 	int				size[3];
+	//char*/char**/t_command*	command;	
+	//define des commandes + nombres de commandes en une fonctions pour savoir combien enlever si ca foire?
 }					t_data;
 
 int					ft_check_data(int argc, char **argv);
