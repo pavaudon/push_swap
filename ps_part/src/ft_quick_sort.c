@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 15:51:02 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/16 16:32:54 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:36:22 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@ int		ft_med(t_data *data, int which)
 	((data->size[which] + 1) / 2);
 	while (--size)
 		tmp = tmp->next;
-	if (tmp->value == data->min[which] || tmp->value == data->max[which])
-		return (tmp->next->value)
+	while (tmp->value == data->min[which] || tmp->value == data->max[which])
+		tmp = tmp->next;
+	if (!tmp)
+		tmp = (which) ? data->head_b : data->head_a;
 	return (tmp->value);
 }
 
-char	*ft_to_moit_moit(t_data *data, int which, int med, int end)
+char	*ft_to_moit_moit(t_data *data, int which, int med, char *to_do)
 {
 	t_stack *tmp;
-	char	to_do[data->size[0 + which]];
 	int		i;
 
 	i = 0;
-	ft_bzero(to_do, data->size[0 + which]);
 	tmp = (which) ? data->head_b : data->head_a;
 	while (tmp)
 	{
-		if (end && tmp->value == med)
-			return (to_do);
+		//if (end && tmp->value == med)
+		//	return (to_do);
 		if (tmp->value <= med)
 			to_do[i] = PA + which;
 		else
@@ -53,13 +53,16 @@ char	*ft_to_moit_moit(t_data *data, int which, int med, int end)
 int		ft_moit_moit(t_data *data, int which, int med)		//which
 {
 	t_stack	*tmp;
-	char	to_do[data->size[0 + which]];
+	char	*to_do;
 	int		i;
 
 	i = 0;
-	if (!(to_do = ft_to_moit_moit(data, which, med)))
+	if (!(to_do = (char*)malloc(sizeof(char) * data->size[0 + which])) ||
+	!(to_do = ft_to_moit_moit(data, which, med, to_do)))
 		return (0);
 	tmp = (which) ? data->head_b : data->head_a;
+	if (!to_do)
+		return (0);
 	while (to_do[i])
 	{
 		if (to_do[i] == PA || to_do[i] == PB)
@@ -72,21 +75,10 @@ int		ft_moit_moit(t_data *data, int which, int med)		//which
 			return (0);
 		i++;
 	}
-	ft_strcat(data->command, to_do);
-	return (1);
-}
-
-int		ft_stackb_sort(t_data *data)
-{
-	t_stack *tmp;
-
-	tmp = data->head_b;
-	while (tmp->next)
-	{
-		if (tmp->value < tmp->next->value)
-			return (0);
-		tmp = tmp->next;
-	}
+	i = -1;
+	while (to_do[++i])
+		ft_new_command(data, to_do[i]);
+	free(to_do);
 	return (1);
 }
 
@@ -101,45 +93,37 @@ void	ft_before_qs(t_data *data, int which, int both)
 			ft_before_qs(data, 1, 0);
 		return ;
 	}
-	if (which && tmp->value == data->max[which])
-	{
-		ft_rb_command(data, which);
-		ft_strcat(data->command, RB);
-	}
-	else if (!which && tmp->value == data->max[which])
-	{
-		ft_ra_command(data, which);
-		ft_strcat(data->command, RA);
-	}
-	while (tmp->next)
-		tmp = tmp->next;
-	if (tmp->value == data->min[2])
-	{
-		ft_rr_command(data, which);
-		ft_strcat(data->command, (which) ? RRB : RRA);
-	}
+	ft_max_first(data, which);
+	ft_min_end(data, which);
 	if (both && !which)
 		ft_before_qs(data, 1, 0);
 }
 
 int		ft_quick_sort(t_data *data)
 {
-	int med;
-
 	ft_before_qs(data, 0, 2);
-	while (!ft_stack_sort(data->head_a) || data->size[0] > 3)
+	while (!ft_stack_sort(data->head_a))
 	{
-		med = ft_med(data, 0);
-		ft_moit_moit(data, 0, med);
+		printf("TAMERE\n");
+		ft_before_qs(data, 0, 2);
+		while (!ft_stack_sort(data->head_a) || data->size[0] > 3)
+		{
+			printf("TONPERE\n");
+			ft_moit_moit(data, 0, ft_med(data, 0));
+		}
+		ft_two_three(data, 0);
+		while (!ft_stackb_sort(data) || data->size[1] > 3)
+		{
+			printf("TASOEUR\n");
+			ft_moit_moit(data, 1, ft_med(data, 1));
+		}
 	}
-	if (!ft_stack_sort(data->head_a))
-		ft_sort_three(data, 0);
-	while (!ft_stackb_sort(data) || data->size[1] > 3)
+	while (data->head_b)
 	{
-		med = ft_med(data, 1);
-		ft_moit_moit(data, 1, med);
+		ft_p_command(data, 'b');
+		ft_new_command(data, PB);
 	}
-	ft_before_qs(data, 0, 2);
-
-	//if B sort B dans A highter to smaller
+	if (data->size[0] == data->size[2] && ft_stack_sort(data->head_a))
+		return (1);
+	return (0);
 }

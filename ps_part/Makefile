@@ -6,7 +6,7 @@
 #    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2019/01/16 15:17:12 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/01/17 15:02:27 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,10 @@ SRC_2		=	ft_push_swap.c \
 				ft_print_stack.c \
 				ft_quick_sort.c \
 				ft_pos.c \
-				ft_three.c
+				ft_three.c \
+				ft_simple_move.c
+
+SRCS_2		=	$(addprefix $(SRC_DIR_2),$(SRC_2))
 
 #OBJ_DIR_1	=	./obj_checker/
 #OBJS_1		=	$(addprefix $(OBJ_DIR_1),$(OBJ_1))
@@ -74,7 +77,7 @@ $(NAME_2):		$(OBJ_DIR_2) $(OBJS_2)
 #$(OBJ_DIR_1)%.o:	$(SRC_DIR_1)%.c $(INCS)
 #				@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR_2)%.o:	$(SRC_DIR_1)%.c $(INCS)
+$(OBJ_DIR_2)%.o:	$(SRC_DIR_2)%.c $(INCS)
 				@$(CC) $(CFLAGS) -c $< -o $@
 
 #$(OBJ_DIR_1):

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/15 15:50:05 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:03:28 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_bad_pos(t_data *data, char which)
 	tmp = (which == 'b') ? data->head_a : data->head_a;
 	while (tmp)
 	{
-		if (data->actual_pos != data->final_pos)
+		if (tmp->actual_pos != tmp->final_pos)
 			count++;
 		tmp = tmp->next;
 	}
@@ -71,6 +71,8 @@ void	ft_actual_pos(t_data *data, int which, int both)
 		tmp->actual_pos = ++i;
 		tmp = tmp->next;
 	}
+	if (both && !which)
+		ft_actual_pos(data, 1, 0);
 }
 
 void	ft_find_pos(t_data *data)
@@ -82,7 +84,7 @@ void	ft_find_pos(t_data *data)
 	i = 0;
 	while (++i <= data->size[0])
 	{
-		tmp->final_pos = ft_find_pos(data, tmp->value);
+		tmp->final_pos = ft_final_pos(data, tmp->value);
 		tmp->actual_pos = i;
 		tmp = tmp->next;
 	}

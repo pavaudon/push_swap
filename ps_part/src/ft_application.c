@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/15 15:19:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:32:24 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@ int		ft_stack_sort(t_stack *stack)
 	t_stack *tmp;
 
 	tmp = stack;
+	if (!stack)
+		return (0);
 	while (tmp->next)
 	{
 		if (tmp->value > tmp->next->value)
 			return (0);
+		printf("dgweffw\n");
 		tmp = tmp->next;
 	}
+		printf("dgweffdqwfudyqwfdfqwduqw\n");
 	return (1);
 }
 
@@ -84,29 +88,8 @@ int		ft_addbeginstack(t_stack **stack, int value, int i)
 	return (1);
 }
 
-int		ft_is_command(char *command, t_data *data, int len)		// ca marche mais c'est moche donc a ameliorer?
+void	ft_new_command(t_data *data, char add)
 {
-	if (len == 3)
-	{
-		if (command[0] == 'r' && command[1] == 'r' && (command[2] == 'a'
-		|| command[2] == 'b' || command[2] == 'r'))
-			ft_rr_command(data, command[2]);
-		else
-			return (0);
-	}
-	if (len == 2)
-	{
-		if (command[0] == 's' && (command[1] == 'a' || command[1] == 'b'
-		|| command[1] == 's'))
-			ft_s_command(data, command[1]);
-		else if (command[0] == 'p' && (command[1] == 'a' || command[1] == 'b'))
-			ft_p_command(data, command[1]);
-		else if (command[0] == 'r' && (command[1] == 'a' || command[1] == 'r'))
-			ft_ra_command(data, command[1]);
-		else if (command[0] == 'r' && command[1] == 'b')
-			ft_rb_command(data, command[1]);
-		else
-			return (0);
-	}
-	return (1);
+	data->command[data->count++] = add;
+	data->command[data->count] = '\0';
 }

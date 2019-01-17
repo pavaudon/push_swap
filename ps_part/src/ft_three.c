@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:48:01 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/16 13:31:21 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:04:25 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void	ft_apply_three(t_data *data, int which, char command)
 	else if (command == RA && which)
 		ft_rb_command(data, 'b');
 	else if (command == RA && !which)
-		ft_ra_command(data, 'a')
+		ft_ra_command(data, 'a');
 	else if (command == RRA)
 		ft_rr_command(data, 'a' + which);
 	else
 		return ;
-	data->command[count] = command;
-	count++;
+	ft_new_command(data, command);
 }
 
 int		ft_sort_three(t_data *data, int which)
@@ -46,7 +45,7 @@ int		ft_sort_three(t_data *data, int which)
 	t_stack *tmp;
 	int		again;
 
-	tamere = 0;
+	again = 0;
 	tmp = (which) ? data->head_b : data->head_a;
 	while (!again)
 	{
@@ -57,7 +56,7 @@ int		ft_sort_three(t_data *data, int which)
 		if (tmp->next->next->final_pos == 1 && tmp->final_pos == 2)
 			ft_apply_three(data, which, RRA);
 		if (ft_stack_sort(tmp))
-			tamere++;
+			again++;
 	}
 	return (1);
 }

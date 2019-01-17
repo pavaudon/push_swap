@@ -21,7 +21,7 @@ void			ft_ra_command(t_data *data, char which)
 	ft_addbackstack(data->head_a, data->head_a->value, data->size[0]);
 	data->head_a = data->head_a->next;
 	free(data->head_a->prev);
-	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
+	//ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
 	if (which == 'r')
 		ft_rb_command(data, 'b');
 }
@@ -33,7 +33,8 @@ void			ft_rb_command(t_data *data, char which)
 	ft_addbackstack(data->head_b, data->head_b->value, data->size[1]);
 	data->head_b = data->head_b->next;
 	free(data->head_b->prev);
-	ft_print_stack(data, which, 0);
+	which = 0; //a enlever
+	//ft_print_stack(data, which, 0);
 }
 
 static t_stack	*get_prelast(t_stack *stack)
@@ -62,7 +63,7 @@ void			ft_rr_command(t_data *data, char which)
 {
 	t_stack *tmp;
 
-	printf("RR COMMAND\n");
+	//printf("RR COMMAND\n");
 	if ((which == 'b' && data->size[1] < 2) ||
 	((which == 'a' || which == 'r') && data->size[0] < 2))
 		return ;
@@ -75,7 +76,7 @@ void			ft_rr_command(t_data *data, char which)
 		ft_del_end_stack(data->head_b);
 	else
 		ft_del_end_stack(data->head_a);
-	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
+	//ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
 	if (which == 'r')
 		ft_rr_command(data, 'b');
 }
