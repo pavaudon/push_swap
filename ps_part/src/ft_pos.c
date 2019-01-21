@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/17 16:03:28 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:15:55 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_bad_pos(t_data *data, char which)
 	return (count);
 }
 
-int		ft_final_pos(t_data *data, int value)
+int		ft_final_pos(t_data *data, int value, int which)
 {
 	t_stack *tmp;
 	int		pos;
@@ -50,7 +50,7 @@ int		ft_final_pos(t_data *data, int value)
 		return (1);
 	if (value == data->max[0])
 		return (pos);
-	tmp = data->head_a;
+	tmp = (which) ? data->head_b : data->head_a;
 	while (tmp)
 	{
 		pos -= (value < tmp->value) ? 1 : 0;
@@ -65,6 +65,12 @@ void	ft_actual_pos(t_data *data, int which, int both)
 	int		i;
 
 	tmp = (which == 'a') ? data->head_a : data->head_b;
+	if (!tmp)
+	{
+		if (both && !which)
+			ft_actual_pos(data, 1, 0);
+		return ;
+	}
 	i = 0;
 	while (tmp)
 	{
@@ -75,17 +81,25 @@ void	ft_actual_pos(t_data *data, int which, int both)
 		ft_actual_pos(data, 1, 0);
 }
 
-void	ft_find_pos(t_data *data)
+void	ft_find_pos(t_data *data, int which, int both)
 {
 	t_stack	*tmp;
 	int		i;
 
-	tmp = data->head_a;
+	tmp = (which == 'a') ? data->head_a : data->head_b;
+	if (!tmp)
+	{
+		if (both && !which)
+			ft_find_pos(data, 1, 0);
+		return ;
+	}
 	i = 0;
 	while (++i <= data->size[0])
 	{
-		tmp->final_pos = ft_final_pos(data, tmp->value);
+		tmp->final_pos = ft_final_pos(data, tmp->value, which);
 		tmp->actual_pos = i;
 		tmp = tmp->next;
 	}
+	if (both && !which)
+		ft_find_pos(data, 1, 0);
 }

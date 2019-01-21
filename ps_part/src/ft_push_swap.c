@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/17 16:16:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/21 19:01:26 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,17 @@ void	ft_print_command(t_data *data)
 		if (data->command[i] == RRR)
 			ft_simple_printf("RRR\t");
 	}
-	ft_simple_printf("\n\n[%d] commandes utilisees\n");
+	ft_simple_printf("\n{%d} commandes utilisees\n", data->count);
 }
 
 int		ft_push_swap(t_data *data)
 {
-	data->count = 0;
 	if (data->size[0] == 1 || ft_stack_sort(data->head_a))
 		ft_error("Nothing to sort");		//ft_cleanup first?
-	ft_find_pos(data);
+	ft_find_pos(data, 'a', 1);
+	ft_simple_printf("STACK BEFORE START\n");
+	//ft_print_stack(data, 'a', 1);
+	ft_simple_printf("\n\n");
 	if (data->size[0] == 2)
 	{
 		ft_s_command(data, 0);
@@ -99,7 +101,7 @@ int		ft_push_swap(t_data *data)
 		printf("A FAIRE ft_sort_five(data, 0)\n");
 	if (data->size[0] > 5)
 		ft_quick_sort(data);
-	ft_print_stack(data, 'a', 1);
+	//ft_print_stack(data, 'a', 1);
 	ft_print_command(data);
 	//a voir si/a partir de combien changer le quicksort
 	return (1);

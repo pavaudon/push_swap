@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/17 16:32:24 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:03:20 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ int		ft_stack_sort(t_stack *stack)
 	{
 		if (tmp->value > tmp->next->value)
 			return (0);
-		printf("dgweffw\n");
 		tmp = tmp->next;
 	}
-		printf("dgweffdqwfudyqwfdfqwduqw\n");
 	return (1);
 }
 

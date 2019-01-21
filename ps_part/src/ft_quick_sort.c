@@ -5,125 +5,164 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/15 15:51:02 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/17 16:36:22 by pavaudon         ###   ########.fr       */
+/*   Created: 2019/01/21 15:31:40 by pavaudon          #+#    #+#             */
+/*   Updated: 2019/01/21 19:46:44 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_med(t_data *data, int which)
+int		ft_pivot_b(t_data *data, int high)
+{
+	t_stack	*i;
+	t_stack	*j;
+
+	i = data->head_a;
+	j = data->head_a->next;
+	while (j->value <= high)
+	{
+		if (j->value <= high)
+		{
+			i = i->next;
+			ft_simple_printf("PB\n");
+			ft_pb_command(data);
+			ft_new_command(data, PB);
+		}
+		else
+		{
+			ft_simple_printf("RB\n");
+			ft_rb_command(data, 'b');
+			ft_new_command(data, RB);
+		}
+		j = j->next;
+	}
+	return (i->next->value);
+}
+
+int		ft_pivot_a(t_data *data, int high)
+{
+	t_stack	*i;
+	t_stack	*j;
+
+	i = data->head_a;
+	j = data->head_a->next;
+	ft_simple_printf("PIVOT A TAMERE\t\tj->value : '%d'\thigh : '%d'\n\n\n", j->value, high);
+	if (j->value > high)
+	{
+		ft_simple_printf("RA\n");
+		ft_ra_command(data, 'a');
+		ft_new_command(data, RA);
+		return (i->value);
+	}
+	while (j->value <= high)
+	{
+		ft_simple_printf("BOUCLETAMER\n");
+		if (j->value <= high)
+		{
+			ft_simple_printf("PA\n");
+			i = i->next;
+			ft_pa_command(data);
+			ft_new_command(data, PA);
+		}
+		j = j->next;
+	}
+	return ((i->next) ? i->next->value : i->value);
+}
+
+int		ft_pivot_next(t_stack *stack, int pivot)
 {
 	t_stack *tmp;
-	int		size;
 
-	tmp = (which) ? data->head_b : data->head_a;
-	size = (data->size[which] % 2) ? (data->size[which]) / 2 :
-	((data->size[which] + 1) / 2);
-	while (--size)
+	tmp = stack;
+	while (tmp->next)
+	{
+		if (tmp->next->value == pivot)
+			return (tmp->next->value);
 		tmp = tmp->next;
-	while (tmp->value == data->min[which] || tmp->value == data->max[which])
-		tmp = tmp->next;
-	if (!tmp)
-		tmp = (which) ? data->head_b : data->head_a;
+	}
 	return (tmp->value);
 }
 
-char	*ft_to_moit_moit(t_data *data, int which, int med, char *to_do)
+long		ft_high(t_data *data)
 {
 	t_stack *tmp;
-	int		i;
 
-	i = 0;
-	tmp = (which) ? data->head_b : data->head_a;
-	while (tmp)
-	{
-		//if (end && tmp->value == med)
-		//	return (to_do);
-		if (tmp->value <= med)
-			to_do[i] = PA + which;
-		else
-			to_do[i] = RA + which;
-		i++;
+	if (data->head_a && data->size[0] > 3)
+		tmp = data->head_a;
+	else if (data->head_b && data->size[1] > 3)
+		tmp = data->head_b;
+	else
+		return (2147483649);
+	while (tmp->next)
 		tmp = tmp->next;
-	}
-	return (to_do);
+	return (tmp->value);
 }
 
-int		ft_moit_moit(t_data *data, int which, int med)		//which
-{
-	t_stack	*tmp;
-	char	*to_do;
-	int		i;
-
-	i = 0;
-	if (!(to_do = (char*)malloc(sizeof(char) * data->size[0 + which])) ||
-	!(to_do = ft_to_moit_moit(data, which, med, to_do)))
-		return (0);
-	tmp = (which) ? data->head_b : data->head_a;
-	if (!to_do)
-		return (0);
-	while (to_do[i])
-	{
-		if (to_do[i] == PA || to_do[i] == PB)
-			ft_p_command(data, 'a' + which);
-		else if (to_do[i] == RA)
-			ft_ra_command(data, 'a');
-		else if (to_do[i] == RB)
-			ft_rb_command(data, 'b');
-		else
-			return (0);
-		i++;
-	}
-	i = -1;
-	while (to_do[++i])
-		ft_new_command(data, to_do[i]);
-	free(to_do);
-	return (1);
-}
-
-void	ft_before_qs(t_data *data, int which, int both)
+int		ft_low(t_data *data)
 {
 	t_stack *tmp;
 
-	tmp = (which) ? data->head_b : data->head_a;
-	if (!tmp || data->size[which] < 4)
+	if (data->head_a && data->size[0] > 3)
 	{
-		if (both && !which)
-			ft_before_qs(data, 1, 0);
+		tmp = data->head_a;
+		while (tmp->next)
+			tmp = tmp->next;
+		if (data->head_a->value > tmp->value)
+			return (data->head_a->next->value);
+		return (data->head_a->value);
+	}
+	else if (data->head_b && data->size[1] > 3)
+	{
+		tmp = data->head_b;
+		while (tmp->next)
+			tmp = tmp->next;
+		if (data->head_b->value > tmp->value)
+			return (data->head_b->next->value);
+		return (data->head_b->value);
+	}
+	return (0);
+}
+
+void	ft_algoqs(t_data *data, int low, long high)
+{
+	int pivot;
+
+	high = ft_high(data);
+	if (high == 2147483649)
+	{
+		ft_print_stack(data, 'a', 1);
+		ft_simple_printf("THREEEEEEE\n");
 		return ;
 	}
-	ft_max_first(data, which);
-	ft_min_end(data, which);
-	if (both && !which)
-		ft_before_qs(data, 1, 0);
+	low = ft_low(data);
+	ft_simple_printf("LOW : '%d'\tHIGH : '%d'\n", low, (int)high);
+	ft_find_pos(data, 'a', 1);
+	//ft_print_stack(data, 'a', 1);
+	if (data->size[0] == data->size[2] || ft_stack_sort(data->head_a))
+		return ;
+	if (data->size[0] > 3 && (low < (int)high))
+	{
+		ft_simple_printf("AAA LOW < HIGH\n");
+		pivot = ft_pivot_a(data, high);
+		ft_simple_printf("pivot : '%d'\n", pivot);
+		ft_algoqs(data, low, pivot);
+		ft_algoqs(data, ft_pivot_next(data->head_a, pivot), high);
+	}
+	else if (data->size[1] > 3 && (low < high))
+	{
+		pivot = ft_pivot_b(data, high);
+		ft_algoqs(data, low, pivot);
+		ft_algoqs(data, ft_pivot_next(data->head_b, pivot), high);
+	}
 }
 
 int		ft_quick_sort(t_data *data)
 {
-	ft_before_qs(data, 0, 2);
-	while (!ft_stack_sort(data->head_a))
-	{
-		printf("TAMERE\n");
-		ft_before_qs(data, 0, 2);
-		while (!ft_stack_sort(data->head_a) || data->size[0] > 3)
-		{
-			printf("TONPERE\n");
-			ft_moit_moit(data, 0, ft_med(data, 0));
-		}
-		ft_two_three(data, 0);
-		while (!ft_stackb_sort(data) || data->size[1] > 3)
-		{
-			printf("TASOEUR\n");
-			ft_moit_moit(data, 1, ft_med(data, 1));
-		}
-	}
-	while (data->head_b)
-	{
-		ft_p_command(data, 'b');
-		ft_new_command(data, PB);
-	}
-	if (data->size[0] == data->size[2] && ft_stack_sort(data->head_a))
-		return (1);
-	return (0);
+	ft_simple_printf("QUICKSORT\n");
+	ft_algoqs(data, 0, 0);
+	if (data->size[1] || !ft_stack_sort(data->head_a))
+		ft_print_stack(data, 'a', 1);
+	else
+		printf("TAMERELAGROSSECHIENNE\n");
+	return (1);
 }
