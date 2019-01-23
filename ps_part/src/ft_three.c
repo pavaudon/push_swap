@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:48:01 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/17 16:04:25 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/23 14:22:34 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@
 
 */
 
+/*
+
+3 2 1
+
+3 1 2 SB RB
+2 1 3 RRB
+2 3 1 SB
+1 2 3 SA RRB
+1 3 2 RB
+
+*/
+
+
 void	ft_apply_three(t_data *data, int which, char command)
 {
 	if (command == PA)
@@ -40,13 +53,40 @@ void	ft_apply_three(t_data *data, int which, char command)
 	ft_new_command(data, command);
 }
 
-int		ft_sort_three(t_data *data, int which)
+int		ft_sort_threeb(t_data *data, int which)
 {
 	t_stack *tmp;
 	int		again;
 
 	again = 0;
-	tmp = (which) ? data->head_b : data->head_a;
+	tmp = data->head_b;
+	if (data->size[1] != 3)
+		return (0);
+	while (!again)
+	{
+		if (tmp->final_pos == 3 && tmp->next->final_pos == 1)
+			ft_apply_three(data, which, RB);
+		if (tmp->next->final_pos == 1 && tmp->final_pos == 2)
+			ft_apply_three(data, which, SB);
+		if (tmp->next->next->final_pos == 1 && tmp->final_pos == 2)
+			ft_apply_three(data, which, RRB);
+		if (ft_stack_sort(tmp))
+			again++;
+	}
+	return (1);
+}
+
+int		ft_sort_three(t_data *data, int which, int both)
+{
+	t_stack *tmp;
+	int		again;
+
+	again = 0;
+	if (data->size[which] != 3)
+		return (0);
+	if (which && !both)
+		return (ft_sort_threeb(data, which));
+	tmp = data->head_a;
 	while (!again)
 	{
 		if (tmp->final_pos == 3 && tmp->next->final_pos == 1)
@@ -58,5 +98,7 @@ int		ft_sort_three(t_data *data, int which)
 		if (ft_stack_sort(tmp))
 			again++;
 	}
+	if (!which && both && data->size[which] == 3)
+		return (ft_sort_threeb(data, which));
 	return (1);
 }

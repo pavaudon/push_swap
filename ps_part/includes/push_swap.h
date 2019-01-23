@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/21 18:04:54 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/23 14:39:08 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ void				ft_find_pos(t_data *data, int which, int both);
 void				ft_new_command(t_data *data, char add);
 void				ft_max_first(t_data *data, int which);
 void				ft_min_end(t_data *data, int which);
-void				ft_two_three(t_data *data, int which);
+void				ft_two_three(t_data *data, int which, int both);
 int					ft_stackb_sort(t_data *data);
 
 int					ft_quick_sort(t_data *data);
-int					ft_sort_three(t_data *data, int which);
+int					ft_sort_three(t_data *data, int which, int both);
 
 #endif
