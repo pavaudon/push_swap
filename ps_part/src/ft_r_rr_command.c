@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 
-// [first] become [end]
+// A[first] become A[end]
 void			ft_ra_command(t_data *data, char which)
 {
 	if (data->size[0] < 2)
@@ -25,7 +25,7 @@ void			ft_ra_command(t_data *data, char which)
 	if (which == 'r')
 		ft_rb_command(data, 'b');
 }
-
+//B[first] become B[end]
 void			ft_rb_command(t_data *data, char which)
 {
 	if (data->size[1] < 2)
@@ -36,7 +36,7 @@ void			ft_rb_command(t_data *data, char which)
 	which = 0; //a enlever
 	//ft_print_stack(data, which, 0);
 }
-
+// prev->end devient le nouveau [end]
 static t_stack	*get_prelast(t_stack *stack)
 {
 	if ((!stack) || (!stack->next))
@@ -45,7 +45,7 @@ static t_stack	*get_prelast(t_stack *stack)
 		stack = stack->next;
 	return (stack);
 }
-
+//free de [end] devenu [first]
 void			ft_del_end_stack(t_stack *stack)
 {
 	t_stack		*pre_last;

@@ -6,12 +6,12 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/14 18:46:43 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/23 20:06:19 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+//check is nb
 int		ft_is_nb(char *str)
 {
 	int	i;
@@ -37,7 +37,7 @@ int		ft_is_nb(char *str)
 	}
 	return (1);
 }
-
+//a to long
 long	ft_atol(char *str)
 {
 	long	n;
@@ -64,7 +64,7 @@ long	ft_atol(char *str)
 	}
 	return (n * neg);
 }
-
+//verification pas plus grand/petit qu'un int
 int		ft_int_max_min(char *str)
 {
 	if (str[0] == '-' && ft_atol(str) < -2147483648)
@@ -73,7 +73,7 @@ int		ft_int_max_min(char *str)
 		return (0);
 	return (1);
 }
-
+//appel de int_max_min 
 int		ft_is_int(char *str)
 {
 	int i;
@@ -96,7 +96,7 @@ int		ft_is_int(char *str)
 	}
 	return (1);
 }
-
+//appel de is_nb et is_int
 int		ft_check_data(int argc, char **argv)
 {
 	int i;

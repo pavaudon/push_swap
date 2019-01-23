@@ -6,12 +6,12 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/15 15:08:25 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/23 20:09:59 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+//size de depart == size[A] et possibilite de connaitre size[B]
 void		ft_size(t_data *data, int which)
 {
 	t_stack *tmp;
@@ -31,7 +31,7 @@ void		ft_init_stack(t_stack *stack)
 	stack->prev = NULL;
 	stack->next = NULL;
 }
-
+//si arg = "0 1 2" et non = 0 1 2
 int			ft_spe_fill(t_stack *head_a, char *str, int j)
 {
 	int i;
@@ -50,7 +50,7 @@ int			ft_spe_fill(t_stack *head_a, char *str, int j)
 	}
 	return (1);
 }
-
+//ajout d'un maillon a la fin avec la nouvelle valeur
 int			ft_fill(t_stack *head_a, int argc, char **argv)
 {
 	int i;
@@ -71,7 +71,7 @@ int			ft_fill(t_stack *head_a, int argc, char **argv)
 	}
 	return (1);
 }
-
+//malloc, init stack, appel fill et size
 int			ft_stack_fill(t_data *data, int argc, char **argv)
 {
 	if (!(data->head_a = (t_stack*)ft_memalloc(sizeof(t_stack))))

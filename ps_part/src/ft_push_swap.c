@@ -6,12 +6,12 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 14:39:26 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/23 20:04:21 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+//free d'une liste
 void		ft_stackdel(t_stack **stack)
 {
 	t_stack	*tmp;
@@ -26,7 +26,7 @@ void		ft_stackdel(t_stack **stack)
 	}
 	*stack = NULL;
 }
-
+//voir si besoin de free la liste
 void		ft_cleanup(t_data *data)
 {
 	if (data->head_a)
@@ -35,7 +35,7 @@ void		ft_cleanup(t_data *data)
 		ft_stackdel(&(data->head_b));
 }
 
-//pour la taille du malloc changer suivant le max de commandes
+//appel parser + remplissage de la liste + check again et malloc de command a changer suivant le max de commandes
 void		ft_before_ps(t_data *data, int argc, char **argv)
 {
 	if (!ft_check_data(argc, argv) ||
@@ -81,14 +81,17 @@ void	ft_print_command(t_data *data)
 	}
 	ft_simple_printf("\n{%d} commandes utilisees\n", data->count);
 }
-
+//appel du bon algo
 int		ft_push_swap(t_data *data)
 {
 	if (data->size[0] == 1 || ft_stack_sort(data->head_a))
-		ft_error("Nothing to sort");		//ft_cleanup first?
+	{
+		ft_error("Nothing to sort");
+		return (1);
+	}
 	ft_find_pos(data, 'a', 1);
 	ft_simple_printf("STACK BEFORE START\n");
-	//ft_print_stack(data, 'a', 1);
+	ft_print_stack(data, 'a', 1);
 	ft_simple_printf("\n\n");
 	if (data->size[0] == 2)
 	{
@@ -100,10 +103,10 @@ int		ft_push_swap(t_data *data)
 	else if (data->size[0] <= 5)
 		printf("A FAIRE ft_sort_five(data, 0)\n");
 	if (data->size[0] > 5)
-		ft_quick_sort(data);
-	//ft_print_stack(data, 'a', 1);
+		ft_quick_sort(data, 0, 0);
+	ft_simple_printf("STACK AFTER\n");
+	ft_print_stack(data, 'a', 1);
 	ft_print_command(data);
-	//a voir si/a partir de combien changer le quicksort
 	return (1);
 }
 

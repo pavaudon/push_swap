@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/21 17:03:20 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/23 19:59:18 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_error(char *error)
 	ft_simple_printf("%s\n", error);		//error\n first like subject?
 	exit (1);		//pas a la norme?
 }
-
+//verification de stack A
 int		ft_stack_sort(t_stack *stack)
 {
 	t_stack *tmp;
@@ -33,7 +33,7 @@ int		ft_stack_sort(t_stack *stack)
 	}
 	return (1);
 }
-
+//ajout d'un maillon a la fin de la stack
 int		ft_addbackstack(t_stack *stack, int value, int i)
 {
 	t_stack *tmp;
@@ -59,7 +59,7 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	}
 	return (1);
 }
-
+//ajout d'un maillon au debut de la stack
 int		ft_addbeginstack(t_stack **stack, int value, int i)
 {
 	t_stack *new;
@@ -85,7 +85,7 @@ int		ft_addbeginstack(t_stack **stack, int value, int i)
 	}
 	return (1);
 }
-
+//ajout d'une commande dans char*command a print a la fin et incrementation du nombre de commandes
 void	ft_new_command(t_data *data, char add)
 {
 	data->command[data->count++] = add;
