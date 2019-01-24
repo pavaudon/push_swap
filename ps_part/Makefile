@@ -6,7 +6,7 @@
 #    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2019/01/17 15:02:27 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/01/24 16:49:24 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,36 +59,34 @@ INCS		=	$(INC) $(INCLIB)
 CC			=	gcc
 
 CFLAGS		=	-Wextra -Werror -Wall -I$(INC) -I$(INCLIB) -g
+LDFLAGS		=	-L./libft -lft
 
 #all:			$(NAME_1)
-
-all:			$(NAME_2)
 
 #$(NAME_1):		$(OBJ_DIR_1) $(OBJS_1)
 #				@make -C libft/
 #				@$(CC) $(CFLAGS) $(OBJS_1) -o $(NAME_1) -L./libft -lft
 #				@echo "checker is made"
 
-$(NAME_2):		$(OBJ_DIR_2) $(OBJS_2)
+$(NAME_2):		$(OBJS_2)
 				@make -C libft/
-				@$(CC) $(CFLAGS) $(OBJS_2) -o $(NAME_2) -L./libft -lft
+				@$(CC) $(OBJS_2) -o $(NAME_2) $(LDFLAGS)
 				@echo "push_swap is made"
+
+all:			$(NAME_2)
 
 #$(OBJ_DIR_1)%.o:	$(SRC_DIR_1)%.c $(INCS)
 #				@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR_2)%.o:	$(SRC_DIR_2)%.c $(INCS)
+$(OBJ_DIR_2)%.o:	$(SRC_DIR_2)%.c
+				@mkdir -p $(dir $@)
 				@$(CC) $(CFLAGS) -c $< -o $@
 
 #$(OBJ_DIR_1):
 #				@mkdir -p $(OBJ_DIR_1)
 
-$(OBJ_DIR_2):
-				@mkdir -p $(OBJ_DIR_2)
-
 clean:
 #				@rm -rf $(OBJS_1)
-				@rm -rf $(OBJS_2)
 #				@rm -rf $(OBJ_DIR_1)
 				@rm -rf $(OBJ_DIR_2)
 				@make clean -C libft

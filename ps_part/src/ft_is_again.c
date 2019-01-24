@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 19:41:37 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/24 16:24:01 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@
 void		ft_min_max(t_data *data, int which)
 {
 	t_stack *tmp;
+	int		i;
 
 	tmp = (which == 1) ? data->head_b : data->head_a;
 	if (!tmp)
 		return ;
+	i = -1;
+	ft_simple_printf("\nMIN MAX\n");
+	ft_simple_printf("data->size[%d] : '%d'\n", which, data->size[which]);
 	data->min[which] = tmp->value;
 	data->max[which] = tmp->value;
 	while (tmp->next)
@@ -28,6 +32,7 @@ void		ft_min_max(t_data *data, int which)
 		data->min[which];
 		data->max[which] = (data->max[which] < tmp->value) ? tmp->value :
 		data->max[which];
+		ft_simple_printf("tmp->value : '%d'\n", tmp->value);
 		tmp = tmp->next;
 	}
 	if (which == 2)

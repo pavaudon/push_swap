@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 15:31:40 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 19:56:08 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/24 16:52:49 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,12 @@ void	ft_end_qs(t_data *data)
 //appel de pivot_a ou pivot_b ou two_three a trier si la taille d'une stack est <= 3
 void	ft_quick_sort(t_data *data, int low, long high)
 {
-	ft_print_stack(data, 'a', 1);
+	//ft_print_stack(data, 'a', 1);
 	high = ft_high(data);
 	if (high == 2147483649)
 		return ;
 	low = ft_low(data);
-	ft_find_pos(data, 'a', 1);
+	//ft_find_pos(data, 'a', 1);
 	if (data->size[0] == data->size[2] && ft_stack_sort(data->head_a))
 		return ;
 	if ((data->size[0] <= 3) || (data->size[1] <= 3))

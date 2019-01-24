@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 12:19:38 by pavaudon          #+#    #+#              #
-#    Updated: 2018/03/09 16:43:57 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/01/24 16:50:06 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,8 +140,6 @@ _IPURPLE=$'\x1b[45m
 _ICYAN=$'\x1b[46m
 _IWHITE=$'\x1b[47m
 
-all : 			$(NAME)
-
 $(NAME) :		$(OBJ_DIR) $(OBJS)
 		@ar rc $(NAME) $(OBJS)
 		@ranlib $(NAME)
@@ -152,6 +150,8 @@ $(NAME) :		$(OBJ_DIR) $(OBJS)
 		@echo "		   _|/---\\\\\    "
 		@echo "		   \        \     "
 		@echo "		${_IPURPLE}${_WHITE}*${_GREEN}M${_YELLOW}A${_BLUE}G${_GREY}I${_CYAN}C ${_YELLOW}M${_WHITE}A${_BLUE}N${_GREEN}A${_YELLOW}G${_BLUE}E${_GREY}D${_GREEN}*${_IPURPLE}${_IGREY}\n"
+
+all : 			$(NAME)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INCS)
 		@$(CC) $(CFLAGS) -c $< -o $@

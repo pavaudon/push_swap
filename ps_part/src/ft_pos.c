@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 20:02:37 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/24 16:33:17 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ void	ft_move_pos(t_data *data, char which)	//int both?
 	t_stack *tmp;
 
 	tmp = (which == 'b') ? data->head_b : data->head_a;
+	if (!tmp)
+		return ;
 	while (tmp)
 	{
 		tmp->move_pos = tmp->actual_pos - tmp->final_pos;
 		tmp = tmp->next;
 	}
 }
-//nombre de bad positions
+//nombre de bad positions a utiliser apres pour reduire le nombre de commandes et pour ft_five a faire
 int		ft_bad_pos(t_data *data, char which)
 {
 	t_stack *tmp;
@@ -31,6 +33,8 @@ int		ft_bad_pos(t_data *data, char which)
 
 	count = 0;
 	tmp = (which == 'b') ? data->head_a : data->head_a;
+	if (!tmp)
+		return (-1);
 	while (tmp)
 	{
 		if (tmp->actual_pos != tmp->final_pos)
@@ -52,6 +56,8 @@ int		ft_final_pos(t_data *data, int value, int which)
 	if (value == data->max[which])
 		return ((which) ? 1 : 3);
 	tmp = (which) ? data->head_b : data->head_a;
+	if (!tmp)
+		return (0);
 	while (tmp)
 	{
 		if (!which)

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 20:09:59 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/24 17:18:06 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int			ft_fill(t_stack *head_a, int argc, char **argv)
 //malloc, init stack, appel fill et size
 int			ft_stack_fill(t_data *data, int argc, char **argv)
 {
+	//enlever le malloc et mettre a null
 	if (!(data->head_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
 		return (0);
 	ft_init_stack(data->head_a);

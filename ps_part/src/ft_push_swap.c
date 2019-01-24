@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 20:04:21 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/24 17:30:18 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_push_swap(t_data *data)
 		ft_error("Nothing to sort");
 		return (1);
 	}
-	ft_find_pos(data, 'a', 1);
+	ft_find_pos(data, 0, 0);
 	ft_simple_printf("STACK BEFORE START\n");
 	ft_print_stack(data, 'a', 1);
 	ft_simple_printf("\n\n");
@@ -104,25 +104,23 @@ int		ft_push_swap(t_data *data)
 		printf("A FAIRE ft_sort_five(data, 0)\n");
 	if (data->size[0] > 5)
 		ft_quick_sort(data, 0, 0);
-	ft_simple_printf("STACK AFTER\n");
-	ft_print_stack(data, 'a', 1);
+	//ft_simple_printf("STACK AFTER\n");
+	//ft_print_stack(data, 'a', 1);
 	ft_print_command(data);
 	return (1);
 }
 
 int		main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	data;
 
-	data = NULL;
+	ft_bzero(&data, sizeof(data));
 	if (argc > 1)
 	{
-		if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
-			return (0);
-		ft_before_ps(data, argc, argv);
-		ft_push_swap(data);
-		ft_cleanup(data);
-		free(data);
+		ft_before_ps(&data, argc, argv);
+		/*ft_push_swap(&data);*/
+		ft_cleanup(&data);
+		free(data.command);
 	}
 	else
 		ft_error("./push_swap [int arguments]");
