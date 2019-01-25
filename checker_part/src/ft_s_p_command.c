@@ -6,12 +6,14 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:12 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/14 19:29:12 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 14:55:54 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+
+//swap stack[0] et stack[1]
 void	ft_s_command(t_data *data, char which)
 {
 	int		swap;
@@ -30,10 +32,12 @@ void	ft_s_command(t_data *data, char which)
 		ft_s_command(data, 'b');
 }
 
+/*
+//put A[0] en B[0]
 void	ft_pa_command(t_data *data)
 {
-	printf("pa COMMAND\n");
-	ft_addbeginstack(&(data->head_b), data->head_a->value, data->size[1]);
+	//printf("pa COMMAND\n");
+	ft_pushfront2(&(data->head_b), data->head_a->value);
 	if (data->size[0] > 1)
 	{
 		data->head_a = data->head_a->next;
@@ -47,11 +51,48 @@ void	ft_pa_command(t_data *data)
 	data->size[0] -= 1;
 	data->size[1] += 1;
 }
+*/
 
+void	ft_pa_command(t_data *data)
+{
+	ft_simple_printf("PA COMMAND\n");
+	if (data->size[1] == 0)
+	{
+		if (data->size[0] > 1)
+		{
+			data->head_a = data->head_a->next;
+			data->head_b = data->head_a->prev;
+		}
+		else
+			data->head_b = data->head_a;
+		data->head_b->prev = NULL;
+		data->head_b->next = NULL;
+	}
+	else
+	{
+		if (data->size[0] > 1)
+		{
+			data->head_a = data->head_a->next;
+			data->head_b->prev = data->head_a->prev;
+		}
+		else
+			data->head_b->prev = data->head_a;
+		data->head_b->prev->next = data->head_b;
+		data->head_b = data->head_b->prev;
+	}
+	if (data->size[0] > 1)
+		data->head_a->prev = NULL;
+	else
+		data->head_a = NULL;
+	data->size[0] -= 1;
+	data->size[1] += 1;
+}
+/*
+//put B[0] en A[0]
 void	ft_pb_command(t_data *data)
 {
-	printf("pb COMMAND\n");
-	ft_addbeginstack(&(data->head_a), data->head_b->value, data->size[0]);
+	//printf("pb COMMAND\n");
+	ft_pushfront2(&(data->head_a), data->head_b->value);
 	if (data->size[1] > 1)
 	{
 		data->head_b = data->head_b->next;
@@ -65,13 +106,48 @@ void	ft_pb_command(t_data *data)
 	data->size[0] += 1;
 	data->size[1] -= 1;
 }
+*/
 
+void	ft_pb_command(t_data *data)
+{
+	ft_simple_printf("PB COMMAND\n");
+	if (data->size[0] == 0)
+	{
+		if (data->size[1] > 1)
+		{
+			data->head_b = data->head_b->next;
+			data->head_a = data->head_b->prev;
+		}
+		else
+			data->head_a = data->head_b;
+		data->head_a->prev = NULL;
+		data->head_a->next = NULL;
+	}
+	else
+	{
+		if (data->size[1] > 1)
+		{
+			data->head_b = data->head_b->next;
+			data->head_a->prev = data->head_b->prev;
+		}
+		else
+			data->head_a->prev = data->head_b;
+		data->head_a->prev->next = data->head_a;
+		data->head_a = data->head_a->prev;
+	}
+	if (data->size[1] > 1)
+		data->head_b->prev = NULL;
+	else
+		data->head_b = NULL;
+	data->size[0] += 1;
+	data->size[1] -= 1;
+}
+//appel pa ou pb
 void	ft_p_command(t_data *data, char which)
 {
-	printf("P COMMAND\n");
-	if (which == 'a' && data->size[0])
+	if (which == 'a' && data->size[0] >= 1)
 		ft_pa_command(data);
-	else if (which == 'b' && data->size[1])
+	else if (which == 'b' && data->size[1] >= 1)
 		ft_pb_command(data);
 	ft_print_stack(data, 'a', 1);
 }

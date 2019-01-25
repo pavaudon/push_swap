@@ -6,12 +6,13 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/15 15:08:25 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 14:27:56 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//size de depart == size[A] et possibilite de connaitre size[B]
 void		ft_size(t_data *data, int which)
 {
 	t_stack *tmp;
@@ -26,13 +27,8 @@ void		ft_size(t_data *data, int which)
 		data->size[0] = data->size[2];
 }
 
-void		ft_init_stack(t_stack *stack)
-{
-	stack->prev = NULL;
-	stack->next = NULL;
-}
-
-int			ft_spe_fill(t_stack *head_a, char *str, int j)
+//si arg = "0 1 2" et non = 0 1 2
+int			ft_spe_fill(t_stack *head_a, char *str)
 {
 	int i;
 	int len;
@@ -41,7 +37,7 @@ int			ft_spe_fill(t_stack *head_a, char *str, int j)
 	len = ft_strlen(str);
 	while (++i < len)
 	{
-		if (!(ft_addbackstack(head_a, ft_atoi(&str[i]), i + j)))
+		if (!(ft_pushback2(&head_a, ft_atoi(&str[i]))))
 			return (0);
 		if (str[i] == '-')
 			i++;
@@ -50,38 +46,43 @@ int			ft_spe_fill(t_stack *head_a, char *str, int j)
 	}
 	return (1);
 }
-
-int			ft_fill(t_stack *head_a, int argc, char **argv)
+//ajout d'un maillon a la fin avec la nouvelle valeur
+int			ft_fill(t_data *data, int argc, char **argv)		//a faire : error si trop de value
 {
 	int i;
 
 	i = 0;
+	ft_simple_printf("FILL\n");
 	while (++i < argc)
 	{
 		if (ft_strchr(argv[i], ' ')) // '/t' enleve
 		{
-			if (!(ft_spe_fill(head_a, argv[i], i - 1)))
+			if (!(ft_spe_fill(data->head_a, argv[i])))
 				return (0);
 		}
 		else
 		{
-			if (!(ft_addbackstack(head_a, ft_atoi(argv[i]), i - 1)))
+			if (!(ft_pushback2(&data->head_a, ft_atoi(argv[i]))))
 				return (0);
 		}
 	}
 	return (1);
 }
-
+//malloc, init stack, appel fill et size
 int			ft_stack_fill(t_data *data, int argc, char **argv)
 {
-	if (!(data->head_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
+	//enlever le malloc et mettre a null
+	ft_simple_printf("STACK FILL\n");
+	data->head_a = NULL;
+	//if (!(data->head_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
+	//	return (0);
+	if (!(ft_fill(data, argc, argv)))
 		return (0);
-	ft_init_stack(data->head_a);
-	if (!(ft_fill(data->head_a, argc, argv)))
-		return (0);
-	if (!(data->head_b = (t_stack*)ft_memalloc(sizeof(t_stack))))
-		return (0);
-	ft_init_stack(data->head_b);
+	ft_simple_printf("AFTER FILL\n");
+	ft_print_stack(data, 'a', 0);
+	data->head_b = NULL;
+	//if (!(data->head_b = (t_stack*)ft_memalloc(sizeof(t_stack))))
+	//	return (0);
 	ft_size(data, 2);
 	return (1);
 }

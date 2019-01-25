@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/15 15:19:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 14:28:33 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,46 @@ int		ft_stack_sort(t_stack *stack)
 		tmp = tmp->next;
 	}
 	return (1);
+}
+
+int			ft_pushback2(t_stack **lst, int val)
+{
+	t_stack	*new;
+	t_stack	*end;
+
+	if (!lst)
+		return (0);
+	end = *lst;
+	while (end && end->next)
+		end = end->next;
+	if (!(new = (t_stack *)ft_memalloc(sizeof(t_stack))))
+		return (0);
+	new->next = NULL;
+	new->value = val;
+	new->prev = end;
+	if (end)
+		end->next = new;
+	else
+		*lst = new;
+	return (1);
+}
+
+int			ft_pushfront2(t_stack **lst, int val)
+{
+	t_stack	*new;
+
+	if (!lst)
+		return (0);
+	if (!(new = (t_stack *)ft_memalloc(sizeof(t_stack))))
+		return (0);
+	new->prev = NULL;
+	new->value = val;
+	new->next = *lst;
+	if (new->next)
+		new->next->prev = new;
+	*lst = new;
+	return (1);
+	
 }
 
 int		ft_addbackstack(t_stack *stack, int value, int i)

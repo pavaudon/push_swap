@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 15:31:40 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/24 16:52:49 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 17:56:54 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ void		ft_pivot_b(t_data *data, int high)
 			ft_rb_command(data, 'b');
 			ft_new_command(data, RB);
 		}
-		else if (i->value >= high)
+		else if (i->value > high)
 		{
 			i = i->next;
 			ft_pb_command(data);
 			ft_new_command(data, PB);
 		}
-		ft_print_stack(data, 'a', 1);
+		else if (i->value == high)
+			return ;
+		//ft_print_stack(data, 'a', 1);
 		i = i->next;
 	}
 }
@@ -49,12 +51,14 @@ void		ft_pivot_a(t_data *data, int high)
 			ft_ra_command(data, 'a');
 			ft_new_command(data, RA);
 		}
-		else if (i->value <= high)
+		else if (i->value < high)
 		{
 			i = i->next;
 			ft_pa_command(data);
 			ft_new_command(data, PA);
 		}
+		else if (i->value == high)
+			return ;
 		ft_print_stack(data, 'a', 1);
 		i = i->next;
 	}
@@ -112,6 +116,7 @@ void	ft_end_qs(t_data *data)
 			ft_new_command(data, PB);
 		}
 	}
+	ft_simple_printf("WTF\n");
 	if (data->size[0] == data->size[2] && ft_stack_sort(data->head_a))
 	{
 		ft_print_stack(data, 'a', 1);
@@ -123,12 +128,13 @@ void	ft_end_qs(t_data *data)
 //appel de pivot_a ou pivot_b ou two_three a trier si la taille d'une stack est <= 3
 void	ft_quick_sort(t_data *data, int low, long high)
 {
+	//ft_simple_printf("QUICKSORT\n");
 	//ft_print_stack(data, 'a', 1);
 	high = ft_high(data);
 	if (high == 2147483649)
 		return ;
 	low = ft_low(data);
-	//ft_find_pos(data, 'a', 1);
+	ft_find_pos(data, 0, 1);
 	if (data->size[0] == data->size[2] && ft_stack_sort(data->head_a))
 		return ;
 	if ((data->size[0] <= 3) || (data->size[1] <= 3))

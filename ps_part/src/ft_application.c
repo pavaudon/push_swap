@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/24 17:20:07 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 12:46:22 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	return (1);
 }
 
-int			ft_pushback(t_stack **lst, int val, int i)
+int			ft_pushback2(t_stack **lst, int val)
 {
 	t_stack	*new;
 	t_stack	*end;
 
-	((void)i);
 	if (!lst)
 		return (0);
 	end = *lst;
@@ -83,11 +82,10 @@ int			ft_pushback(t_stack **lst, int val, int i)
 	return (1);
 }
 
-int			ft_pushfront(t_stack **lst, int val, int i)
+int			ft_pushfront2(t_stack **lst, int val)
 {
 	t_stack	*new;
 
-	((void)i);
 	if (!lst)
 		return (0);
 	if (!(new = (t_stack *)ft_memalloc(sizeof(t_stack))))

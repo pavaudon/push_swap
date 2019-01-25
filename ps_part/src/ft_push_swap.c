@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/24 17:30:18 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 17:30:33 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		ft_before_ps(t_data *data, int argc, char **argv)
 		free(data);
 		ft_error("BAD ARGUMENTS");
 	}
+	ft_simple_printf("AAAAAAA\n");
 	data->count = 0;
 }
 
@@ -84,6 +85,7 @@ void	ft_print_command(t_data *data)
 //appel du bon algo
 int		ft_push_swap(t_data *data)
 {
+	ft_simple_printf("PUSH SWAP\n");
 	if (data->size[0] == 1 || ft_stack_sort(data->head_a))
 	{
 		ft_error("Nothing to sort");
@@ -118,7 +120,7 @@ int		main(int argc, char **argv)
 	if (argc > 1)
 	{
 		ft_before_ps(&data, argc, argv);
-		/*ft_push_swap(&data);*/
+		ft_push_swap(&data);
 		ft_cleanup(&data);
 		free(data.command);
 	}
