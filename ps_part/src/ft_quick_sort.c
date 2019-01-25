@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 15:31:40 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 17:56:54 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 19:57:27 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_pivot_b(t_data *data, int high)
 			ft_pb_command(data);
 			ft_new_command(data, PB);
 		}
-		else if (i->value == high)
+		else
 			return ;
 		//ft_print_stack(data, 'a', 1);
 		i = i->next;
@@ -43,6 +43,7 @@ void		ft_pivot_a(t_data *data, int high)
 	t_stack	*i;
 
 	i = data->head_a;
+	//ca doit boucler la et dans pivot b aussi POURQUOI?????
 	while (data->size[0] > 3)
 	{
 		i = data->head_a;
@@ -68,15 +69,22 @@ void		ft_pivot_a(t_data *data, int high)
 long		ft_high(t_data *data)
 {
 	t_stack *tmp;
+	int		stack;
 
+	stack = 0;
 	if (data->head_a && data->size[0] > 3)
 		tmp = data->head_a;
 	else if (data->head_b && data->size[1] > 3)
+	{
+		stack++;
 		tmp = data->head_b;
+	}
 	else
-		return (2147483649);
+		return (0);
 	while (tmp->next)
 		tmp = tmp->next;
+	while (tmp && (tmp->value == data->max[stack] || tmp->value == data->min[stack]))
+		tmp = tmp->prev;
 	return (tmp->value);
 }
 //si A[0]/B[0] est plus grand que A[end]/B[end] alors low sera A[1]/B[1]
@@ -87,27 +95,27 @@ int		ft_low(t_data *data)
 	if (data->head_a && data->size[0] > 3)
 	{
 		tmp = data->head_a;
-		while (tmp->next)
+		while (tmp && (tmp->value == data->min[0] ||
+		tmp->value == data->max[0]))
 			tmp = tmp->next;
-		if (data->head_a->value > tmp->value)
-			return (data->head_a->next->value);
-		return (data->head_a->value);
+		return (tmp->value);
 	}
 	else if (data->head_b && data->size[1] > 3)
 	{
 		tmp = data->head_b;
-		while (tmp->next)
+		while (tmp && (tmp->value == data->min[1] ||
+		tmp->value == data->max[1]))
 			tmp = tmp->next;
-		if (data->head_b->value > tmp->value)
-			return (data->head_b->next->value);
-		return (data->head_b->value);
+		return (tmp->value);
 	}
+	else
+		ft_simple_printf("\n\nFUUUUUUCK\n\n");
 	return (0);
 }
 //quicksort fini, end_qs met tout B dans A
 void	ft_end_qs(t_data *data)
 {
-	if (data->size[1] <= 3 && !ft_stackb_sort(data))
+	if ((data->size[1] <= 3 && ft_stackb_sort(data)) || ft_stackb_sort(data))
 	{
 		ft_two_three(data, 1, 0);
 		while (data->size[1] != 0)
@@ -124,21 +132,25 @@ void	ft_end_qs(t_data *data)
 	}
 	else
 		ft_simple_printf("GAME OVER\n");
+	ft_print_stack(data, 'a', 1);
+		//ft_quick_sort(data, 0, 0);
 }
 //appel de pivot_a ou pivot_b ou two_three a trier si la taille d'une stack est <= 3
-void	ft_quick_sort(t_data *data, int low, long high)
+void	ft_quick_sort(t_data *data, int low, int high)
 {
 	//ft_simple_printf("QUICKSORT\n");
 	//ft_print_stack(data, 'a', 1);
 	high = ft_high(data);
-	if (high == 2147483649)
-		return ;
 	low = ft_low(data);
 	ft_find_pos(data, 0, 1);
 	if (data->size[0] == data->size[2] && ft_stack_sort(data->head_a))
 		return ;
-	if ((data->size[0] <= 3) || (data->size[1] <= 3))
+	if ((data->size[0] <= 3) || (data->size[1] <= 3)) // verifier si ca passe
+	{
+		ft_simple_printf("\n\nAPPEL THREEEE\n\n");
+		ft_print_stack(data, 'a', 1);
 		ft_two_three(data, 0, 1);
+	}
 	if (data->size[0] > 3 && !ft_stack_sort(data->head_a))
 	{
 		ft_pivot_a(data, high);

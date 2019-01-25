@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 12:39:01 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 19:37:18 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void				ft_min_end(t_data *data, int which);
 void				ft_two_three(t_data *data, int which, int both);
 int					ft_stackb_sort(t_data *data);
 
-void				ft_quick_sort(t_data *data, int low, long high);
+void				ft_quick_sort(t_data *data, int low, int high);
 int					ft_sort_three(t_data *data, int which, int both);
 
 #endif

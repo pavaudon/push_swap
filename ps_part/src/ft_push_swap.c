@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 17:30:33 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/25 18:52:16 by alalonzo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ void		ft_before_ps(t_data *data, int argc, char **argv)
 {
 	if (!ft_check_data(argc, argv) ||
 	!ft_stack_fill(data, argc, argv) ||
-	!ft_is_again(data) || !(data->command = (char*)malloc(sizeof(11501))))
+	!ft_is_again(data) || !(data->command = (char*)malloc(sizeof(char ) * 11501)))
 	{
 		ft_cleanup(data);
-		free(data);
 		ft_error("BAD ARGUMENTS");
 	}
 	ft_simple_printf("AAAAAAA\n");
@@ -112,10 +111,29 @@ int		ft_push_swap(t_data *data)
 	return (1);
 }
 
+void	ft_dataset(t_data *data)
+{
+	data->head_a = NULL;
+	data->head_b = NULL;
+	data->nb_value = 0;
+	data->max[0] = 0;
+	data->max[1] = 0;
+	data->max[2] = 0;
+	data->min[0] = 0;
+	data->min[1] = 0;
+	data->min[2] = 0;
+	data->size[0] = 0;
+	data->size[1] = 0;
+	data->size[2] = 0;
+	data->command = NULL;
+	data->count = 0;
+}
+
 int		main(int argc, char **argv)
 {
 	t_data	data;
 
+//	ft_dataset(&data);
 	ft_bzero(&data, sizeof(data));
 	if (argc > 1)
 	{
