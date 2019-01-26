@@ -6,18 +6,56 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 15:31:40 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 19:57:27 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/26 20:28:12 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/*
+**	(changer les listes en doubles circulaires)
+**	creer fonction qui prend une liste de 4 valeurs et qui la trie en maximum 1 rotate et 1 swap
+**	
+**
+**
+**
+** 1 2 3 4
+**
+**	2 *  |  2 *  |  2 *  |  1
+**	1    |  3    |  4    |  2 *
+**	3 *  |  1    |  1    |  4
+**	4    |  4    |  3    |  3 *
+**
+**	2 *  |  2 *  |  2 *  |  1  	 |
+**	1    |  3    |  4    |  2 *  |
+**	3 *  |  1    |  1    |  4    |
+**	4    |  4    |  3    |  3 *  |
+**       | *<->S | *<->S |
+**
+**
+**	3 *  |	1    |  4  	 |  3 *	 |
+**	4    |	3 *  |  3 *  |  1    |
+**	2 *  |	4    |  1    |  2 *  |
+**	1    |	2 *  |  2 *  |  4    |
+**
+**	2 *  |	4    |  1  	 |  2 *	 |
+**	1    |	2 *  |  2 *  |  4    |
+**	3 *  |	1    |  4    |  3 *  |
+**	4    |	3 *  |  3 *  |  1    |
+*/
 
 #include "push_swap.h"
 //moitie plus petite en bas ou moitie plus grande en haut de A
 void		ft_pivot_b(t_data *data, int high)
 {
 	t_stack	*i;
+	int		cpt;
+	int		size;
 
 	i = data->head_b;
-	while (data->size[1] > 3)
+	size = data->size[1] - 1;
+	cpt = 0;
+	//ft_simple_printf("HEEEEEEEEEERE\n");
+	while (++cpt < size || ft_stackb_sort(data) || data->size[1] > 3)
 	{
 		i = data->head_b;
 		if (i->value < high)
@@ -33,18 +71,21 @@ void		ft_pivot_b(t_data *data, int high)
 		}
 		else
 			return ;
-		//ft_print_stack(data, 'a', 1);
 		i = i->next;
 	}
+	ft_print_stack(data, 'a', 1);
 }
 //moitie plus grand en bas ou moitie plus petite en haut de B
 void		ft_pivot_a(t_data *data, int high)
 {
 	t_stack	*i;
+	int		cpt;
+	int		size;
 
+	cpt = 0;
+	size = data->size[0] - 1;
 	i = data->head_a;
-	//ca doit boucler la et dans pivot b aussi POURQUOI?????
-	while (data->size[0] > 3)
+	while (++cpt < size || ft_stack_sort(data->head_a) || data->size[0] > 3)
 	{
 		i = data->head_a;
 		if (i->value > high)
@@ -72,6 +113,7 @@ long		ft_high(t_data *data)
 	int		stack;
 
 	stack = 0;
+	ft_min_max(data, 1);
 	if (data->head_a && data->size[0] > 3)
 		tmp = data->head_a;
 	else if (data->head_b && data->size[1] > 3)
@@ -115,9 +157,10 @@ int		ft_low(t_data *data)
 //quicksort fini, end_qs met tout B dans A
 void	ft_end_qs(t_data *data)
 {
-	if ((data->size[1] <= 3 && ft_stackb_sort(data)) || ft_stackb_sort(data))
+	if (data->size[1] <= 3)
 	{
-		ft_two_three(data, 1, 0);
+		if ((!ft_stackb_sort(data)) || !ft_stackb_sort(data))
+			ft_two_three(data, 1, 0);
 		while (data->size[1] != 0)
 		{
 			ft_pb_command(data);
@@ -142,13 +185,15 @@ void	ft_quick_sort(t_data *data, int low, int high)
 	//ft_print_stack(data, 'a', 1);
 	high = ft_high(data);
 	low = ft_low(data);
+	ft_simple_printf("high : '%d'\tlow : '%d'\n", high, low);
 	ft_find_pos(data, 0, 1);
 	if (data->size[0] == data->size[2] && ft_stack_sort(data->head_a))
 		return ;
-	if ((data->size[0] <= 3) || (data->size[1] <= 3)) // verifier si ca passe
+	if ((data->size[0] <= 3 && !ft_stack_sort(data->head_a)) ||
+	(data->size[1] <= 3 && !ft_stackb_sort(data))) // verifier si ca passe
 	{
-		ft_simple_printf("\n\nAPPEL THREEEE\n\n");
-		ft_print_stack(data, 'a', 1);
+		//ft_simple_printf("\n\nAPPEL THREEEE\n\n");
+		//ft_print_stack(data, 'a', 1);
 		ft_two_three(data, 0, 1);
 	}
 	if (data->size[0] > 3 && !ft_stack_sort(data->head_a))
@@ -158,7 +203,7 @@ void	ft_quick_sort(t_data *data, int low, int high)
 	}
 	else if (data->size[1] > 3 && !ft_stackb_sort(data))
 	{
-		ft_pivot_b(data, low);
+		ft_pivot_b(data, high);
 		ft_quick_sort(data, 0, 0);
 	}
 	else

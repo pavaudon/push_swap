@@ -199,7 +199,7 @@ void		ft_rrb_command(t_data *data)
 	tmp->prev = NULL;
 	data->head_b->prev = tmp;
 	data->head_b = data->head_b->prev;
-	ft_print_stack(data, 'b', 0);
+	//ft_print_stack(data, 'b', 0);
 }
 
 void		ft_rr_command(t_data *data, char which)

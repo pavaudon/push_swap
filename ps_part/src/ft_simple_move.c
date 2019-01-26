@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:51:35 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 20:01:20 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:44:52 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ void	ft_two_three(t_data *data, int which, int both)
 {
 	if ((!which && ft_stack_sort(data->head_a))
 	|| (which && ft_stackb_sort(data)))
+	{
+		if (both && !which)
+			ft_two_three(data, 1, 0);
 		return ;
+	}
 	if (data->size[which] > 3)
 	{
 		if (both && !which)
