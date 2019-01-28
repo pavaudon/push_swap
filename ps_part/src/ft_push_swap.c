@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 18:52:16 by alalonzo         ###   ########.fr       */
+/*   Updated: 2019/01/28 17:15:38 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ int		ft_push_swap(t_data *data)
 	}
 	if (data->size[0] == 3)
 		ft_sort_three(data, 0, 0);
-	else if (data->size[0] <= 5)
+	else if (data->size[0] == 4)
+		ft_four_sort(data, 0);
+	else if (data->size[0] == 5)
 		printf("A FAIRE ft_sort_five(data, 0)\n");
 	if (data->size[0] > 5)
 		ft_quick_sort(data, 0, 0);

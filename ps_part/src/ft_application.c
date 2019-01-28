@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 12:46:22 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/28 13:53:48 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int			ft_pushback2(t_stack **lst, int val)
 		return (0);
 	new->next = NULL;
 	new->value = val;
+	new->mark = 0;
 	new->prev = end;
 	if (end)
 		end->next = new;

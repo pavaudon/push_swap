@@ -6,44 +6,12 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 15:31:40 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/26 20:28:12 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/28 13:49:35 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-/*
-**	(changer les listes en doubles circulaires)
-**	creer fonction qui prend une liste de 4 valeurs et qui la trie en maximum 1 rotate et 1 swap
-**	
-**
-**
-**
-** 1 2 3 4
-**
-**	2 *  |  2 *  |  2 *  |  1
-**	1    |  3    |  4    |  2 *
-**	3 *  |  1    |  1    |  4
-**	4    |  4    |  3    |  3 *
-**
-**	2 *  |  2 *  |  2 *  |  1  	 |
-**	1    |  3    |  4    |  2 *  |
-**	3 *  |  1    |  1    |  4    |
-**	4    |  4    |  3    |  3 *  |
-**       | *<->S | *<->S |
-**
-**
-**	3 *  |	1    |  4  	 |  3 *	 |
-**	4    |	3 *  |  3 *  |  1    |
-**	2 *  |	4    |  1    |  2 *  |
-**	1    |	2 *  |  2 *  |  4    |
-**
-**	2 *  |	4    |  1  	 |  2 *	 |
-**	1    |	2 *  |  2 *  |  4    |
-**	3 *  |	1    |  4    |  3 *  |
-**	4    |	3 *  |  3 *  |  1    |
-*/
-
 #include "push_swap.h"
+
 //moitie plus petite en bas ou moitie plus grande en haut de A
 void		ft_pivot_b(t_data *data, int high)
 {

@@ -6,7 +6,7 @@
 #    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2019/01/25 18:29:39 by alalonzo         ###   ########.fr        #
+#    Updated: 2019/01/28 17:13:55 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ SRC_2		=	ft_push_swap.c \
 				ft_quick_sort.c \
 				ft_pos.c \
 				ft_three.c \
-				ft_simple_move.c
+				ft_simple_move.c \
+				ft_four_five.c
 
 SRCS_2		=	$(addprefix $(SRC_DIR_2),$(SRC_2))
 
