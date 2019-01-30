@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 14:31:16 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/30 19:11:57 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void		ft_before_checker(t_data *data, int argc, char **argv)
 	!ft_is_again(data))
 	{
 		ft_cleanup(data);
-		free(data);
 		ft_error("BAD ARGUMENTS");
 	}
 }

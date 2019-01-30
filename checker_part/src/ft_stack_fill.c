@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 14:27:56 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/30 19:40:42 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,11 @@ int			ft_fill(t_data *data, int argc, char **argv)		//a faire : error si trop de
 //malloc, init stack, appel fill et size
 int			ft_stack_fill(t_data *data, int argc, char **argv)
 {
-	//enlever le malloc et mettre a null
-	ft_simple_printf("STACK FILL\n");
 	data->head_a = NULL;
-	//if (!(data->head_a = (t_stack*)ft_memalloc(sizeof(t_stack))))
-	//	return (0);
 	if (!(ft_fill(data, argc, argv)))
 		return (0);
-	ft_simple_printf("AFTER FILL\n");
 	ft_print_stack(data, 'a', 0);
 	data->head_b = NULL;
-	//if (!(data->head_b = (t_stack*)ft_memalloc(sizeof(t_stack))))
-	//	return (0);
 	ft_size(data, 2);
 	return (1);
 }

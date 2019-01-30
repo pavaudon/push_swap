@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/28 19:01:14 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/30 15:51:18 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ int		ft_final_pos(t_data *data, int value, int which)
 	pos = data->size[which];
 	ft_min_max(data, which);
 	if (value == data->min[which])
-		return ((which) ? 3 : 1);
+		return ((which) ? pos : 1);
 	if (value == data->max[which])
-		return ((which) ? 1 : 3);
+		return ((which) ? 1 : pos);
 	tmp = (which) ? data->head_b : data->head_a;
 	if (!tmp)
 		return (0);
-	while (tmp->next)
+	while (tmp)
 	{
 		if (!which)
+		{
 			pos -= (value < tmp->value) ? 1 : 0;
+		}
 		else if (which)
 			pos -= (value > tmp->value) ? 1 : 0;
-		if (value == tmp->value)
-			return (pos);
 		tmp = tmp->next;
 	}
 	return (pos);
@@ -106,7 +106,7 @@ void	ft_find_pos(t_data *data, int which, int both)
 		return ;
 	}
 	i = 0;
-	while (tmp->next)
+	while (tmp)
 	{
 		tmp->final_pos = ft_final_pos(data, tmp->value, which);
 		tmp->actual_pos = ++i;

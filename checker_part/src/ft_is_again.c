@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 12:57:59 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/30 19:40:16 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ft_min_max(t_data *data, int which)
 		return ;
 	data->min[which] = tmp->value;
 	data->max[which] = tmp->value;
-	while (tmp->next)
+	while (tmp)
 	{
 		data->min[which] = (data->min[which] > tmp->value) ? tmp->value :
 		data->min[which];
@@ -41,7 +41,6 @@ int			ft_is_again(t_data *data)
 	t_stack *tmp;
 	t_stack *compare;
 
-	ft_simple_printf("IS AGAIN\n");
 	tmp = data->head_a;
 	if (data->size[0] == 1)
 		return (1);
@@ -56,7 +55,6 @@ int			ft_is_again(t_data *data)
 		}
 		tmp = tmp->next;
 	}
-	ft_simple_printf("END IS AGAIN\n");
-	//ft_min_max(data, 2);
+	ft_min_max(data, 2);
 	return (1);
 }

@@ -6,22 +6,22 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:48:01 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/23 19:57:32 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/30 16:15:06 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-
-1 2 3
-
-3 2 1 SA RRA
-3 1 2 RA		OK
-2 1 3 SA		OK
-2 3 1 RRA		OK
-1 3 2 SA RA
-
+**
+**  1 2 3
+**
+**  3 2 1 SA RRA	OK
+**  3 1 2 RA		OK
+**  2 1 3 SA		OK
+**  2 3 1 RRA		OK
+**  1 3 2 SA RA		OK
+**
 */
 
 //application des commandes
@@ -83,13 +83,16 @@ int		ft_sort_three(t_data *data, int which, int both)
 		ft_find_pos(data, which, 0);
 		if (tmp->final_pos == 3 && tmp->next->final_pos == 1)
 			ft_apply_three(data, which, RA);
-		else if (tmp->next->final_pos == 3 && tmp->final_pos == 1)
+		else if ((tmp->next->final_pos == 3 && tmp->final_pos == 1) ||
+		(tmp->final_pos == 3 && tmp->next->final_pos == 2) ||
+		(tmp->final_pos == 2 && tmp->next->final_pos == 1))
 			ft_apply_three(data, which, SA);
-		else if (tmp->next->next->final_pos == 1 && tmp->final_pos == 2)
+		else if (tmp->next->final_pos == 3 && tmp->final_pos == 2)
 			ft_apply_three(data, which, RRA);
 		if (ft_stack_sort(data->head_a))
 			again++;
 	}
+	ft_print_stack(data, 'a' + which, 0);
 	if (!which && both && data->size[1] == 3)
 		return (ft_sort_threeb(data, which));
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/28 18:36:58 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/01/30 15:51:27 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void		ft_min_max(t_data *data, int which)
 	//ft_simple_printf("data->size[%d] : '%d'\n", which, data->size[which]);
 	data->min[which] = tmp->value;
 	data->max[which] = tmp->value;
-	while (tmp->next)
+	while (tmp)
 	{
-		data->min[which] = (data->min[which] >= tmp->value) ? tmp->value :
+		data->min[which] = (data->min[which] > tmp->value) ? tmp->value :
 		data->min[which];
-		data->max[which] = (data->max[which] <= tmp->value) ? tmp->value :
+		data->max[which] = (data->max[which] < tmp->value) ? tmp->value :
 		data->max[which];
 		//ft_simple_printf("tmp->value : '%d'\n", tmp->value);
 		tmp = tmp->next;
