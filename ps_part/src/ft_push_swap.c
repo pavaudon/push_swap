@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/28 17:15:38 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:01:41 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,8 @@ int		ft_push_swap(t_data *data)
 	}
 	if (data->size[0] == 3)
 		ft_sort_three(data, 0, 0);
-	else if (data->size[0] == 4)
-		ft_four_sort(data, 0);
-	else if (data->size[0] == 5)
-		printf("A FAIRE ft_sort_five(data, 0)\n");
+	else if (data->size[0] == 4 || data->size[0] == 5)
+		ft_four_five_sort(data);
 	if (data->size[0] > 5)
 		ft_quick_sort(data, 0, 0);
 	//ft_simple_printf("STACK AFTER\n");
@@ -113,29 +111,10 @@ int		ft_push_swap(t_data *data)
 	return (1);
 }
 
-void	ft_dataset(t_data *data)
-{
-	data->head_a = NULL;
-	data->head_b = NULL;
-	data->nb_value = 0;
-	data->max[0] = 0;
-	data->max[1] = 0;
-	data->max[2] = 0;
-	data->min[0] = 0;
-	data->min[1] = 0;
-	data->min[2] = 0;
-	data->size[0] = 0;
-	data->size[1] = 0;
-	data->size[2] = 0;
-	data->command = NULL;
-	data->count = 0;
-}
-
 int		main(int argc, char **argv)
 {
 	t_data	data;
 
-//	ft_dataset(&data);
 	ft_bzero(&data, sizeof(data));
 	if (argc > 1)
 	{

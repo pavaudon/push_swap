@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/28 17:16:28 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:54:38 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ int					ft_stackb_sort(t_data *data);
 
 void				ft_quick_sort(t_data *data, int low, int high);
 int					ft_sort_three(t_data *data, int which, int both);
-int					ft_four_sort(t_data *data, int which);
+int					ft_only_swap(t_data *data);
+int					ft_circle_sort(t_data *data);
+
+int					ft_four_five_sort(t_data *data);
 
 #endif
