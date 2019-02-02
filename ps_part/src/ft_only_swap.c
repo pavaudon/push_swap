@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:30:56 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/01 20:40:25 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/02 16:53:33 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 
 void	ft_back_swap(t_data *data)
 {
-	ft_simple_printf("FAIRE BACK SWAP\n");
+	ft_ra_command(data, 'a');
+	ft_ra_command(data, 'a');
+	ft_s_command(data, 'a');
+	ft_rr_command(data, 'a');
+	ft_rr_command(data, 'a');
 }
 
 int		ft_only_swap_end(t_data *data)
@@ -41,9 +45,13 @@ int		ft_only_swap_end(t_data *data)
 	ft_s_command(data, 'a');
 	ft_ra_command(data, 'a');
 	ft_ra_command(data, 'a');
-	if (ft_stack_sort(data))
+	if (ft_stack_sort(data->head_a))
 	{
-		ft_simple_printf("AJOUTER COMMANDS\n");
+		ft_new_command(data, RRA);
+		ft_new_command(data, RRA);
+		ft_new_command(data, SA);
+		ft_new_command(data, RA);
+		ft_new_command(data, RA);
 		return (1);
 	}
 	else
@@ -54,17 +62,18 @@ int		ft_only_swap_end(t_data *data)
 int		ft_only_swap_first(t_data *data)
 {
 	ft_s_command(data, 'a');
-	if (ft_stack_sort(data))
+	if (ft_stack_sort(data->head_a))
 		ft_new_command(data, SA);
 	else
 	{
 		ft_s_command(data, 'a');
 		return (0);
 	}
+	ft_simple_printf("ONLY SWAP END OK\n");
 	return (1);
 }
 
-int		ft_only_swap(t_data *data, int which)
+int		ft_only_swap(t_data *data)
 {
 	t_stack *tmp;
 
@@ -79,6 +88,5 @@ int		ft_only_swap(t_data *data, int which)
 	if ((tmp->final_pos == data->size[0] - 1 &&
 	tmp->prev->final_pos == data->size[0]) && ft_only_swap_end(data))
 		return (1);
-	ft_simple_printf("ONLY SWAP END A FAIRE\n");
 	return (0);
 }

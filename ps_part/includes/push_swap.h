@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/01 19:54:38 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/02 17:56:51 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_stack
 	int				final_pos;
 	int				actual_pos;
 	int				move_pos;		//a enlever?
+	int				circle_pos;
 	int				mark;
 	struct s_stack	*next;
 	struct s_stack	*prev;
