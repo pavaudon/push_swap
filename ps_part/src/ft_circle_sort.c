@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:27:17 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/01 19:56:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/03 15:43:40 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		ft_circle_sort(t_data *data)
 	int		res;
 	char	to_do;
 
+	ft_find_pos(data, 0, 0);
 	res = ft_is_circle_sort(data);
 	if (!res)
 		return (0);
