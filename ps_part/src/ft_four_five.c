@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:46:29 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/03 16:05:49 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/06 19:11:48 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void	ft_circle_pos(t_data *data, int first)
 	int		help;
 
 	ft_simple_printf("CIRCLE_POS\n");
+	ft_simple_printf("si max et min ils doivent se toucher\n");
+	ft_simple_printf("si new_first == 2 et min dans A : min == end\n");
 	tmp = data->head_a;
 	help = 1;
 	while (tmp && tmp->value != first)
@@ -131,11 +133,13 @@ int		ft_new_first(t_data *data)
 	int		search;
 	int		follow;
 
-	ft_simple_printf("NEW_FIRST MERDEEE\n");
+	ft_simple_printf("NEW_FIRST\n");
 	tmp = data->head_a;
-	search = (data->head_b->value <= 3) ? 1 : -1;
-	follow = (data->size[1] == 2) ? data->head_b->value -
-		data->head_b->next->value : 0;
+	if (data->head_b->value == data->max[2])
+		return (data->min[0]);
+	search = (data->head_b->final_pos <= 3) ? 1 : -1;
+	follow = (data->size[1] == 2)
+	? data->head_b->final_pos - data->head_b->next->final_pos : 0;
 	search += (follow != 1 && follow != -1) ? 0 : search;
 	while (tmp)
 	{
@@ -147,6 +151,28 @@ int		ft_new_first(t_data *data)
 	return (tmp->value);
 }
 
+int		ft_is_help_sort(t_data *data)
+{
+	t_stack *tmp;
+	int		help;
+
+	tmp = data->head_a;
+	help = 0;
+	while (tmp)
+	{
+		if (++help != tmp->circle_pos)
+			return (0);
+		tmp = tmp->next;
+	}
+	tmp = data->head_a;
+	while (tmp)
+	{
+		ft_simple_printf("VALUE : '%d'\tFP : '%d'\tCP : '%d'\n", tmp->value, tmp->final_pos, tmp->circle_pos);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 void	ft_help_sort(t_data *data)
 {
 	t_stack *tmp;
@@ -155,27 +181,40 @@ void	ft_help_sort(t_data *data)
 	again = 0;
 	ft_simple_printf("HELP_SORT\n");
 	ft_circle_pos(data, ft_new_first(data));
+	ft_simple_printf("CIRCLE POS OK\n");
 	while (!again)
 	{
 		tmp = data->head_a;
 		ft_circle_pos(data, 0);
+		ft_simple_printf("circle pos ok\n");
 		if (tmp->circle_pos == 3 && tmp->next->circle_pos == 1)
+		{
+			ft_ra_command(data, 'a');
 			ft_new_command(data, RA);
+			ft_simple_printf("RA COMMAND\n");
+		}
 		else if ((tmp->next->circle_pos == 3 && tmp->circle_pos == 1) ||
 		(tmp->circle_pos == 3 && tmp->next->circle_pos == 2) ||
 		(tmp->circle_pos == 2 && tmp->next->circle_pos == 1))
+		{
+			ft_s_command(data, 'a');
 			ft_new_command(data, SA);
+			ft_simple_printf("SA COMMAND\n");
+		}
 		else if (tmp->next->circle_pos == 3 && tmp->circle_pos == 2)
+		{
+			ft_rr_command(data, 'a');
 			ft_new_command(data, RRA);
-		if (ft_stack_sort(data->head_a))
+			ft_simple_printf("RRA COMMAND\n");
+		}
+		if (ft_is_help_sort(data))
 			again++;
-	}
-	tmp = data->head_a;
-	ft_simple_printf("HELP_SORT\n");
-	while (tmp)
-	{
-		ft_simple_printf("VALUE : '%d'\tcircle_pos : '%d'\n", tmp->value, tmp->circle_pos);
-		tmp = tmp->next;
+		tmp = data->head_a;
+		while (tmp)
+		{
+			ft_simple_printf("VALUE : '%d'\tcircle_pos : '%d'\n", tmp->value, tmp->circle_pos);
+			tmp = tmp->next;
+		}
 	}
 }
 
@@ -184,16 +223,18 @@ int		ft_hentai_sort(t_data *data)
 	t_stack *tmp;
 
 	ft_p_command(data, 'b');
+	ft_new_command(data, PB);
 	ft_simple_printf("FIRST PB\n");
 	if (!(data->size[1]) && (ft_circle_sort(data) ||
 	ft_stack_sort(data->head_a)))
 		return (1);
-	ft_simple_printf("NOT SORT OR CIRCLE SORT OR SIZE_B != 0\n");
+	ft_simple_printf("NOT SORT OR CIRCLE SORT OR SIZE_B not empty\n");
 	ft_help_sort(data);
 	ft_simple_printf("SECOND HELP SORT\n");
 	ft_p_command(data, 'b');
+	ft_new_command(data, PB);
 	ft_simple_printf("SECOND PB\n");
-	if (ft_circle_sort(data))
+	if (ft_circle_sort(data) || ft_only_swap(data))
 		return (1);
 	else
 	{
@@ -213,16 +254,24 @@ int		ft_four_five_sort(t_data *data)
 		return (1);
 	else
 	{
-		ft_simple_printf("FOUR FIVE\n");
+		if (data->head_a->final_pos == 3)
+			ft_ra_command(data, 'a');
 		ft_p_command(data, 'a');
-		ft_simple_printf("FIRST PA\n");
-		if (data->size[0] == 5)
+		ft_new_command(data, PA);
+		if (data->size[2] == 5)
+		{
+			if (data->head_a->final_pos == 3)
+				ft_ra_command(data, 'a');
 			ft_p_command(data, 'a');
-		ft_simple_printf("SECOND PA\n");
+			ft_new_command(data, PA);
+		}
+		ft_simple_printf("S_B : '%d'\n", data->size[1]);
 		if (data->head_b->value == data->max[2] &&
 		(data->head_b->value < data->head_b->next->value))
+		{
 			ft_s_command(data, 'b');
-		ft_simple_printf("SB COMMAND\n");
+			ft_new_command(data, SB);
+		}
 		if (!ft_stack_sort(data->head_a))
 		{
 			if (data->size[1] == 2 && (data->head_b->final_pos != 2 &&
