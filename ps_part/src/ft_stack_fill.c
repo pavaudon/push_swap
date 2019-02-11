@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/06 19:07:39 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/11 17:40:17 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ int			ft_fill(t_data *data, int argc, char **argv)		//a faire : error si trop de
 	int i;
 
 	i = 0;
-	ft_simple_printf("FILL\n");
 	while (++i < argc)
 	{
-		if (ft_strchr(argv[i], ' ')) // '/t' enleve
+		if (ft_strchr(argv[i], ' '))
 		{
 			if (!(ft_spe_fill(data->head_a, argv[i])))
 				return (0);

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/01 18:01:41 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/11 17:41:34 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		ft_before_ps(t_data *data, int argc, char **argv)
 		ft_cleanup(data);
 		ft_error("BAD ARGUMENTS");
 	}
-	ft_simple_printf("AAAAAAA\n");
 	data->count = 0;
 }
 

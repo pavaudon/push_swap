@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/02 17:56:51 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/11 18:03:47 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void				ft_print_stack(t_data *data, char which, int both);
 void				ft_find_pos(t_data *data, int which, int both);
 void				ft_min_max(t_data *data, int which);
 void				ft_new_command(t_data *data, char add);
+void				ft_apply_command(t_data *data, int which, char command);
 void				ft_max_first(t_data *data, int which);
 void				ft_min_end(t_data *data, int which);
 void				ft_two_three(t_data *data, int which, int both);

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/28 13:53:48 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/11 18:03:28 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int			ft_pushfront2(t_stack **lst, int val)
 	return (1);
 	
 }
-
+/*
 //ajout d'un maillon au debut de la stack
 int		ft_addbeginstack(t_stack **stack, int value, int i)
 {
@@ -126,7 +126,28 @@ int		ft_addbeginstack(t_stack **stack, int value, int i)
 		(*stack)->prev = NULL;
 	}
 	return (1);
+}*/
+
+//application des commandes
+void	ft_apply_command(t_data *data, int which, char command)
+{
+	if (command == SA || command == SB)
+		ft_s_command(data, 'a' + which);
+	else if (command == RB && which)
+		ft_rb_command(data, 'b');
+	else if (command == RA && !which)
+		ft_ra_command(data, 'a');
+	else if (command == RRA || command == RRB)
+		ft_rr_command(data, 'a' + which);
+	else if (command == PA)
+		ft_p_command(data, 'a');
+	else if (command == PB)
+		ft_p_command(data, 'b');
+	else
+		return ;
+	ft_new_command(data, command);
 }
+
 //ajout d'une commande dans char*command a print a la fin et incrementation du nombre de commandes
 void	ft_new_command(t_data *data, char add)
 {

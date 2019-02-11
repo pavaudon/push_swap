@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:27:17 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/03 15:43:40 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/11 18:07:43 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,17 @@ int		ft_is_circle_sort(t_data *data)
 int		ft_circle_sort(t_data *data)
 {
 	int		res;
-	char	to_do;
 
 	ft_find_pos(data, 0, 0);
 	res = ft_is_circle_sort(data);
 	if (!res)
 		return (0);
-	to_do = (res == 1) ? RA : RRA;
 	while (data->head_a->value != data->min[0])
 	{
 		if (res == 1)
-			ft_ra_command(data, 'a');
+			ft_apply_command(data, 0, RA);
 		else
-			ft_rr_command(data, 'a');
-		ft_new_command(data, to_do);
+			ft_apply_command(data, 0, RRA);
 	}
 	ft_print_stack(data, 'a', 0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:48:01 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/30 16:15:06 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/11 18:02:50 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,6 @@
 **
 */
 
-//application des commandes
-void	ft_apply_three(t_data *data, int which, char command)
-{
-	if (command == SA || command == SB)
-		ft_s_command(data, 'a' + which);
-	else if (command == RB && which)
-		ft_rb_command(data, 'b');
-	else if (command == RA && !which)
-		ft_ra_command(data, 'a');
-	else if (command == RRA || command == RRB)
-		ft_rr_command(data, 'a' + which);
-	else
-		return ;
-	ft_new_command(data, command);
-}
 //tri d'une taille de 3 pour B (du plus grand au plus petit)
 int		ft_sort_threeb(t_data *data, int which)
 {
@@ -56,11 +41,11 @@ int		ft_sort_threeb(t_data *data, int which)
 		if ((tmp->final_pos == 1 && tmp->next->final_pos == 3) ||
 		(tmp->final_pos == 2 && tmp->next->final_pos == 1) ||
 		(tmp->final_pos == 3 && tmp->next->final_pos == 2))
-			ft_apply_three(data, which, SB);
+			ft_apply_command(data, which, SB);
 		else if (tmp->next->final_pos == 3 && tmp->final_pos == 2)
-			ft_apply_three(data, which, RRB);
+			ft_apply_command(data, which, RRB);
 		else if (tmp->final_pos == 3 && tmp->next->final_pos == 1)
-			ft_apply_three(data, which, RB);
+			ft_apply_command(data, which, RB);
 		if (ft_stackb_sort(data))
 			again++;
 	}
@@ -82,13 +67,13 @@ int		ft_sort_three(t_data *data, int which, int both)
 		tmp = data->head_a;
 		ft_find_pos(data, which, 0);
 		if (tmp->final_pos == 3 && tmp->next->final_pos == 1)
-			ft_apply_three(data, which, RA);
+			ft_apply_command(data, which, RA);
 		else if ((tmp->next->final_pos == 3 && tmp->final_pos == 1) ||
 		(tmp->final_pos == 3 && tmp->next->final_pos == 2) ||
 		(tmp->final_pos == 2 && tmp->next->final_pos == 1))
-			ft_apply_three(data, which, SA);
+			ft_apply_command(data, which, SA);
 		else if (tmp->next->final_pos == 3 && tmp->final_pos == 2)
-			ft_apply_three(data, which, RRA);
+			ft_apply_command(data, which, RRA);
 		if (ft_stack_sort(data->head_a))
 			again++;
 	}
