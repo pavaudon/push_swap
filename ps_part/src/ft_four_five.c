@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:46:29 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/12 15:59:30 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/12 21:01:02 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ int		ft_hentai_sort(t_data *data)
 	if (data->head_a->value == data->max[2] &&
 	data->head_a->next->final_pos == data->size[2] - 1)
 		ft_apply_command(data, 0, SA);
-	ft_circle_sort(data);
+	ft_circle_sort(data);	//rajouter only swap
 	if (!(data->size[1]) && ft_stack_sort(data->head_a))
 		return (1);
 	ft_simple_printf("NOT SORT OR CIRCLE SORT OR SIZE_B not empty\n");
@@ -255,9 +255,10 @@ int		ft_four_five_sort(t_data *data)
 	}
 	ft_simple_printf("AFTER PB\n");
 	ft_print_stack(data, 'a', 1);
+	ft_min_max(data, 1);
 	if (data->size[1] == 2 &&
-	(data->head_b->value == data->max[2] ||
-	(data->head_b->value < data->head_b->next->value)))
+	(data->head_b->next->final_pos == 4 && data->max[1] == data->max[2])
+	&& (data->head_b->value < data->head_b->next->value))
 		ft_apply_command(data, 1, SB);
 	if (!ft_stack_sort(data->head_a))
 	{
@@ -267,19 +268,19 @@ int		ft_four_five_sort(t_data *data)
 			ft_simple_printf("VALUE : '%d' FINALPOS2 : '%d'\n", tmp->value, tmp->final_pos);
 			tmp = tmp->next;
 		}
-		if (data->size[1] == 2 && ((data->head_b->final_pos == 5
-		&& data->head_b->next->final_pos == 4) ||
-		(data->head_b->final_pos == 2 && data->head_b->next->final_pos == 1)))
+		if ((data->size[1] == 2) &&
+		(((data->head_b->final_pos == 2 && data->head_b->next->final_pos == 1)) ||
+		(data->head_b->final_pos == 5 && data->head_b->next->final_pos == 4)))
 		{
 			ft_simple_printf("GOOOOOOOOOOOOOD\n");
 			ft_sort_three(data, 0, 0);
 		}
-		else if (data->size[1] == 2)
+		else
 			ft_help_sort(data);
+		ft_simple_printf("AFTER FIRST HEL_SORT OR SORT_THREE\n");
+		ft_hentai_sort(data);
+		ft_simple_printf("AFTER HENTAI_SORT\n");
 	}
-	ft_simple_printf("AFTER FIRST HEL_SORT OR SORT_THREE\n");
-	ft_hentai_sort(data);
-	ft_simple_printf("AFTER HENTAI_SORT\n");
 	ft_print_stack(data, 'a', 1);
 	return (1);
 }

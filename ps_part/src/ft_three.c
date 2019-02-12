@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:48:01 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/11 18:02:50 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:50:40 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 **  1 3 2 SA RA		OK
 **
 */
-
+ 
 //tri d'une taille de 3 pour B (du plus grand au plus petit)
 int		ft_sort_threeb(t_data *data, int which)
 {

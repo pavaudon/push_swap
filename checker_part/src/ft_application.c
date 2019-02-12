@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 14:28:33 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:24:12 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,8 @@ int			ft_pushfront2(t_stack **lst, int val)
 		new->next->prev = new;
 	*lst = new;
 	return (1);
-	
 }
-
+/*
 int		ft_addbackstack(t_stack *stack, int value, int i)
 {
 	t_stack *tmp;
@@ -123,7 +122,7 @@ int		ft_addbeginstack(t_stack **stack, int value, int i)
 	}
 	return (1);
 }
-
+*/
 int		ft_is_command(char *command, t_data *data, int len)		// ca marche mais c'est moche donc a ameliorer?
 {
 	if (len == 3)
