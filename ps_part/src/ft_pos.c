@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/30 15:51:18 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:18:01 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ int		ft_final_pos(t_data *data, int value, int which)
 		return (0);
 	while (tmp)
 	{
-		if (!which)
-		{
+	//	if (!which)
+	//	{
 			pos -= (value < tmp->value) ? 1 : 0;
-		}
-		else if (which)
-			pos -= (value > tmp->value) ? 1 : 0;
+	//	}
+	//	else if (which)
+	//		pos -= (value > tmp->value) ? 1 : 0;
 		tmp = tmp->next;
 	}
 	return (pos);

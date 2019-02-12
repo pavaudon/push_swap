@@ -6,14 +6,15 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:12 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/25 14:55:54 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/12 17:17:14 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 //swap stack[0] et stack[1]
+void	ft_s_command(t_data *data, )
+/*
 void	ft_s_command(t_data *data, char which)
 {
 	int		swap;
@@ -31,7 +32,7 @@ void	ft_s_command(t_data *data, char which)
 	if (which == 's')
 		ft_s_command(data, 'b');
 }
-
+*/
 /*
 //put A[0] en B[0]
 void	ft_pa_command(t_data *data)

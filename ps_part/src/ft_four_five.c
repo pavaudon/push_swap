@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:46:29 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/11 19:27:17 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/12 15:59:30 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,9 @@ void	ft_circle_pos(t_data *data, int first)
 	ft_simple_printf("si new_first == 2 et min dans A : min == end\n");
 	tmp = data->head_a;
 	help = 1;
-	ft_simple_printf("AAAA\n");
 	while (tmp && tmp->value != first)
 		tmp = tmp->next;
-	ft_simple_printf("BBBB\n");
 	min = (tmp->final_pos == 2 && (data->min[2] == data->min[0])) ? 1 : 0;
-	ft_simple_printf("CCCCC\n");
 	while (tmp)
 	{
 		//tmp->circle_pos = (tmp->value == data->min[0] && min) ?
@@ -118,7 +115,6 @@ void	ft_circle_pos(t_data *data, int first)
 		tmp->circle_pos = help++;
 		tmp = tmp->next;
 	}
-	ft_simple_printf("DDDD\n");
 	//if (data->head_a->value == first)
 	//	return ;
 	tmp = data->head_a;
@@ -247,6 +243,8 @@ int		ft_hentai_sort(t_data *data)
 /// 2 5 4 3 1 ====== 2 3 5 4 1 || 2 1 5 4 3 == 2 1 5 4 3 PAS TRIE
 int		ft_four_five_sort(t_data *data)
 {
+	t_stack *tmp;
+
 	if (ft_circle_sort(data) || ft_only_swap(data))
 		return (1);
 	while (data->size[0] != 3)
@@ -260,13 +258,22 @@ int		ft_four_five_sort(t_data *data)
 	if (data->size[1] == 2 &&
 	(data->head_b->value == data->max[2] ||
 	(data->head_b->value < data->head_b->next->value)))
-		ft_apply_command(data, 0, SB);
+		ft_apply_command(data, 1, SB);
 	if (!ft_stack_sort(data->head_a))
 	{
-		if (data->size[2] == 5 && ((data->head_b->final_pos == 5
+		tmp = data->head_b;
+		while (tmp)
+		{
+			ft_simple_printf("VALUE : '%d' FINALPOS2 : '%d'\n", tmp->value, tmp->final_pos);
+			tmp = tmp->next;
+		}
+		if (data->size[1] == 2 && ((data->head_b->final_pos == 5
 		&& data->head_b->next->final_pos == 4) ||
 		(data->head_b->final_pos == 2 && data->head_b->next->final_pos == 1)))
+		{
+			ft_simple_printf("GOOOOOOOOOOOOOD\n");
 			ft_sort_three(data, 0, 0);
+		}
 		else if (data->size[1] == 2)
 			ft_help_sort(data);
 	}
