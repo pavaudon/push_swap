@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:30:56 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/02 16:53:33 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/13 19:33:37 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		ft_only_swap_first(t_data *data)
 		ft_s_command(data, 'a');
 		return (0);
 	}
-	ft_simple_printf("ONLY SWAP END OK\n");
 	return (1);
 }
 

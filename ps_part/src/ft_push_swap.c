@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/11 17:41:34 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/13 19:37:37 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	ft_print_command(t_data *data)
 	int i;
 
 	i = -1;
+	ft_simple_printf("\n>> remplacer sa + sb en ss etc <<\n");
+	ft_simple_printf("\n");
 	while (++i <= data->count)
 	{
 		if (data->command[i] == SA)
@@ -90,7 +92,7 @@ int		ft_push_swap(t_data *data)
 		return (1);
 	}
 	ft_find_pos(data, 0, 0);
-	ft_simple_printf("STACK BEFORE START\n");
+	ft_simple_printf("[STACK BEFORE START]\n");
 	ft_print_stack(data, 'a', 1);
 	ft_simple_printf("\n\n");
 	if (data->size[0] == 2)
@@ -104,8 +106,8 @@ int		ft_push_swap(t_data *data)
 		ft_four_five_sort(data);
 	if (data->size[0] > 5)
 		ft_quick_sort(data, 0, 0);
-	//ft_simple_printf("STACK AFTER\n");
-	//ft_print_stack(data, 'a', 1);
+	ft_simple_printf("[STACK AFTER PROCESS]\n");
+	ft_print_stack(data, 'a', 1);
 	ft_print_command(data);
 	return (1);
 }

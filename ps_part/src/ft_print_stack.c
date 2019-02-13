@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/21 16:48:14 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/13 19:40:16 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	ft_print_stack(t_data *data, char which, int both)
 	{
 		ft_simple_printf(">>>>		STACK_%c		<<<<\nEMPTY\n\n",
 		which - 32);
-		ft_simple_printf("SIZE_%c : '%d'\n", which - 32,
-		data->size[which - 97]);
 		if (both && which == 'a')
 			ft_print_stack(data, 'b', 0);
 		return ;

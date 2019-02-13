@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:27:17 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/12 15:55:26 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/13 19:33:31 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_is_circle_sort(t_data *data)
 	}
 	if (!(ft_is_circle_sort_2(data, data->min[0], &sort)))
 		return (0);
-	return ((first <= (data->size[0] / 2)) ? 2 : 1);
+	return ((first <= (data->size[0] / 2)) ? 1 : 2);
 }
 
 int		ft_circle_sort(t_data *data)
@@ -70,6 +70,5 @@ int		ft_circle_sort(t_data *data)
 		else
 			ft_apply_command(data, 0, RRA);
 	}
-	ft_print_stack(data, 'a', 0);
 	return (1);
 }

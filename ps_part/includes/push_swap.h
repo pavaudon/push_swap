@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/11 18:03:47 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/13 19:44:14 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,8 @@ int					ft_only_swap(t_data *data);
 int					ft_circle_sort(t_data *data);
 
 int					ft_four_five_sort(t_data *data);
+int					ft_new_first(t_data *data);
+void				ft_circle_pos(t_data *data, int f_first);
+void				ft_help_c_p(t_data *data, int f_first, int *fp);
 
 #endif
