@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/13 19:44:14 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/15 15:36:28 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_data
 	int				max[3];		//0 == a	1 == b	2 == all
 	int				min[3];
 	int				size[3];
+	int				marks;
 	char			*command;
 	//define des commandes + nombres de commandes en une fonctions pour savoir combien enlever si ca foire?
 	int				count; //pour command[count];

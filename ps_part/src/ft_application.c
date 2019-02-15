@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/11 18:03:28 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/15 15:52:11 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		ft_stack_sort(t_stack *stack)
 	}
 	return (1);
 }
+/*
 //ajout d'un maillon a la fin de la stack
 int		ft_addbackstack(t_stack *stack, int value, int i)
 {
@@ -59,7 +60,7 @@ int		ft_addbackstack(t_stack *stack, int value, int i)
 	}
 	return (1);
 }
-
+*/
 int			ft_pushback2(t_stack **lst, int val)
 {
 	t_stack	*new;
@@ -98,35 +99,7 @@ int			ft_pushfront2(t_stack **lst, int val)
 		new->next->prev = new;
 	*lst = new;
 	return (1);
-	
 }
-/*
-//ajout d'un maillon au debut de la stack
-int		ft_addbeginstack(t_stack **stack, int value, int i)
-{
-	t_stack *new;
-
-	new = NULL;
-	if (i)
-	{
-		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
-			return (0);
-		new->value = value;
-		new->prev = NULL;
-		new->next = *stack;
-		(*stack)->prev = new;
-		*stack = new;
-	}
-	else
-	{
-		if (!*stack && !((*stack) = (t_stack*)ft_memalloc(sizeof(t_stack))))
-			return (0);
-		(*stack)->value = value;
-		(*stack)->next = NULL;
-		(*stack)->prev = NULL;
-	}
-	return (1);
-}*/
 
 //application des commandes
 void	ft_apply_command(t_data *data, int which, char command)
