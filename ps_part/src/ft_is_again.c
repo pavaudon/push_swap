@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_again.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/11 17:39:37 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:53:49 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 void		ft_min_max(t_data *data, int which)
 {
 	t_stack *tmp;
-	int		i;
 
 	tmp = (which == 1) ? data->head_b : data->head_a;
 	if (!tmp)
 		return ;
-	i = -1;
 	data->min[which] = tmp->value;
 	data->max[which] = tmp->value;
 	while (tmp)

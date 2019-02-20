@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_big_list_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/19 18:25:55 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/20 17:24:31 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,51 +42,108 @@
 **
 */
 
-void	ft_between(t_data *data, int value, int *little, int *big)		//plus proche < ou > mark
+
+
+
+/*
+**		SI DEBUT (DONC JUSTE MAX ET MIN MARK) :
+**			_ si min le plus proche
+**				_ si pas between
+**					_ go after min
+**			_ si max le plus proche
+**				_si pas between
+**					_ go to max
+**			_ push all 3 en decroissant				
+**
+*/
+
+void	ft_between(t_data *data, int which, int *little, int *big)		//plus proche < ou > mark
 {
+	t_stack *tmp;
+	int		value;
+
+	tmp = data->head_a;
+	while (which--)
+		value = data->head_b->next->value;
 	*little = data->min[0];
 	*big = data->max[0];
 	while (tmp)
 	{
-		if (tmp->mark && (tmp->value > value && tmp->value < big))
+		if (tmp->mark && (tmp->value > value && tmp->value < *big))
 			*big = tmp->value;
-		if (tmp->mark && (tmp->value < value && tmp->value > little))
+		if (tmp->mark && (tmp->value < value && tmp->value > *little))
 			*little = tmp->value;
 		tmp = tmp->next;
 	}
 }
 
-void	ft_good_place(t_data *data, int **path)
+void	ft_good_place(t_data *data, int *path, int b)
 {
-	//regarder lequel de b et ra ou rra
+	int go;
+
+	if (b == 1)
+		ft_apply_command(data, 1, SB);
+	if (b == 2)
+		ft_apply_command(data, 1, RRB);
+	go = (path[0] <= path[1]) ? path[0] : path[1];
+	while (go)
+	{
+		if (path[0] <= path[1])
+			ft_apply_command(data, 1, RA);
+		else
+			ft_apply_command(data, 1, RRA);
+		go--;
+	}
+}
+
+void	ft_choose_b(t_data *data, int **path)
+{
+	int	b;
+	int big;
+	int little;
+
+	b = 0;
+	if (data->size[1] == 1)
+		ft_good_place(data, path[b], b);
+	while (b++ < data->size[1] - 1)		//gerer si le path est le meme ->> pb le plus grand
+	{
+		if (path[b][0] > path[b + 1][0])
+			little = b + 1;
+		if (path[b][1] < path[b + 1][1])
+			big = b + 1;
+	}
+	if (little < big)
+		ft_good_place(data, path[big], big);
+	else
+		ft_good_place(data, path[little], little);
 }
 
 void	ft_search_b(t_data *data)
 {
-	int		little[3];
-	int		big[3];
+	int		little[data->size[1]];
+	int		big[data->size[1]];
 	int		which;
-	int		path[2][3];
+	int		path[data->size[1]][2];
 	t_stack *tmp;
 
 	which = -1;
 	while (++which < data->size[1])
 	{
 		tmp = data->head_a;
-		ft_between(data, value, &(little[which]), &(big[which]));
+		ft_between(data, which, &(little[which]), &(big[which]));
 		while (tmp && tmp->value != little[which] && tmp->value != big[which])
 		{
-			path[0][which]++;
+			path[which][0]++;
 			tmp = tmp->next;
 		}
 		while (tmp->value != data->head_a->value &&
 		tmp->value != little[which] && tmp->value != big[which])
 		{
-			path[1][which]++;
+			path[which][1]++;
 			tmp = tmp->prev;
 		}
 	}
-	ft_choose_b(data, path));
+	ft_choose_b(data, path);
 }
 
 char	ft_path(t_data *data)
@@ -97,28 +154,28 @@ char	ft_path(t_data *data)
 	int		rr;
 
 	tmp_r = data->head_a;
-	while (tmp->value != data->head_a->value && !tmp->mark)
+	while (tmp_r->value != data->head_a->value && !tmp_r->mark)
 	{
-		tmp = tmp->next;
+		tmp_r = tmp_r->next;
 		r++;
 	}
-	tmp_rr = data->head_a;
-	while (tmp->value != data->head_a->value && !tmp->mark)
+	tmp_rr = tmp_r;
+	while (tmp_rr->value != data->head_a->value && !tmp_rr->mark)
 	{
-		tmp = tmp->prev;
+		tmp_rr = tmp_rr->prev;
 		rr++;
 	}
 	return ((r < rr) ? RA : RRA);
 }
 
-void	ft_search_three(t_data *data, int nb_marks)	//implementer nb_marks?
+void	ft_search_three(t_data *data, int nb_marks)
 {
 	t_stack *tmp;
 
 	tmp = data->head_a;
 	while (tmp->value != data->head_a->value && data->size[1] < 3 && nb_marks)
 	{
-		if (!(tmp->marks))
+		if (!(tmp->mark))
 		{
 			ft_apply_command(data, 1, PB);
 			nb_marks--;
@@ -137,6 +194,8 @@ int		ft_bl_start(t_data *data)
 			ft_search_three(data, data->marks < data->size[2]);
 		ft_search_b(data);
 		ft_apply_command(data, 1, PB);
+		data->head_a->mark = 1;
+		data->marks += 1;
 		if (!(data->size[1]) && (ft_circle_sort(data) || ft_only_swap(data)))
 			return (1);
 	}
@@ -152,7 +211,7 @@ int		ft_bl_start(t_data *data)
 	}
 }
 
-int		main__big_list(t_data *data)
+int		main_big_list(t_data *data)
 {
 	t_stack *tmp;
 

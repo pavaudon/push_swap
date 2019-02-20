@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
+#    By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2019/02/13 19:44:37 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/02/20 17:05:47 by unicorn          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRC_2		=	ft_push_swap.c \
 				ft_four_five.c \
 				ft_four_five_pr.c \
 				ft_only_swap.c \
-				ft_circle_sort.c
+				ft_circle_sort.c \
+				ft_big_list_sort.c
 
 SRCS_2		=	$(addprefix $(SRC_DIR_2),$(SRC_2))
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/15 15:36:28 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/20 17:04:51 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void				ft_min_end(t_data *data, int which);
 void				ft_two_three(t_data *data, int which, int both);
 int					ft_stackb_sort(t_data *data);
 
-void				ft_quick_sort(t_data *data, int low, int high);
 int					ft_sort_three(t_data *data, int which, int both);
 int					ft_only_swap(t_data *data);
 int					ft_circle_sort(t_data *data);
@@ -98,5 +97,7 @@ int					ft_four_five_sort(t_data *data);
 int					ft_new_first(t_data *data);
 void				ft_circle_pos(t_data *data, int f_first);
 void				ft_help_c_p(t_data *data, int f_first, int *fp);
+
+int					main_big_list(t_data *data);
 
 #endif

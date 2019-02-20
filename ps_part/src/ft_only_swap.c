@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_only_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:30:56 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/13 19:33:37 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/20 16:54:11 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ void	ft_back_swap(t_data *data)
 
 int		ft_only_swap_end(t_data *data)
 {
-	t_stack *tmp;
-
-	tmp = data->head_a;
 	ft_rr_command(data, 'a');
 	ft_rr_command(data, 'a');
 	ft_s_command(data, 'a');
