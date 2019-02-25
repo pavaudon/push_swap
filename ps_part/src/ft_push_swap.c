@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/20 17:05:12 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/02/25 19:46:09 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		ft_push_swap(t_data *data)
 		ft_four_five_sort(data);
 	if (data->size[0] > 5)
 		main_big_list(data);
-	ft_simple_printf("[STACK AFTER PROCESS]\n");
+	ft_simple_printf("\n[STACK AFTER PROCESS]\n");
 	ft_print_stack(data, 'a', 1);
 	ft_print_command(data);
 	return (1);

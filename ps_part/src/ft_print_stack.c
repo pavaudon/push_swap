@@ -6,12 +6,12 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/13 19:40:16 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/25 19:45:25 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 void	ft_print_stack(t_data *data, char which, int both)
 {
 	t_stack *tmp;
@@ -36,4 +36,37 @@ void	ft_print_stack(t_data *data, char which, int both)
 	ft_simple_printf("\n");
 	if (both && which == 'a')
 		ft_print_stack(data, 'b', 0);
+}
+*/
+
+void	ft_print_stack(t_data *data, char which, int both)
+{
+	t_stack *tmp;
+	int		mark;
+
+	tmp = (which == 'a') ? data->head_a : data->head_b;
+	mark = (which == 'a' && data->size[2] > 5) ? 1 : 0;
+	if (!tmp)
+	{
+		ft_simple_printf(">>>>		STACK_%c		<<<<\nEMPTY\n\n",
+		which - 32);
+		if (both && which == 'a')
+			ft_print_stack(data, 'b', 0);
+		return ;
+	}
+	ft_simple_printf(">>>>		STACK_%c		<<<<\n", which - 32);
+	ft_simple_printf("SIZE_%c : '%d'\n", which - 32, (which == 'b') ?
+	data->size[1] : data->size[0]);
+	while (tmp)
+	{
+		if (mark && tmp->mark)
+			ft_simple_printf("%d\tMARK\n", tmp->value);
+		else
+			ft_simple_printf("%d\n", tmp->value);
+		tmp = tmp->next;
+	}
+	ft_simple_printf("\n");
+	if (both && which == 'a')
+		ft_print_stack(data, 'b', 0);
+	ft_simple_printf("END PRINT STACK\n");
 }

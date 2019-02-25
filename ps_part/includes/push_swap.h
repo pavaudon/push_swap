@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/20 17:04:51 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/02/25 18:22:22 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ typedef struct		s_stack
 	int				value;
 	int				final_pos;
 	int				actual_pos;
-	int				move_pos;		//a enlever?
 	int				circle_pos;
 	int				mark;
+	int				mvb;
+	int				mva;
+	int				mv_count;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
