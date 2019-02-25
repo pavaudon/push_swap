@@ -6,43 +6,11 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/12 16:18:01 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/25 19:54:11 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//nombre de move a faire pour etre a la bonne place (a enlever?)
-void	ft_move_pos(t_data *data, char which)	//int both?
-{
-	t_stack *tmp;
-
-	tmp = (which == 'b') ? data->head_b : data->head_a;
-	if (!tmp)
-		return ;
-	while (tmp)
-	{
-		tmp->move_pos = tmp->actual_pos - tmp->final_pos;
-		tmp = tmp->next;
-	}
-}
-//nombre de bad positions a utiliser apres pour reduire le nombre de commandes et pour ft_five a faire
-int		ft_bad_pos(t_data *data, char which)
-{
-	t_stack *tmp;
-	int		count;
-
-	count = 0;
-	tmp = (which == 'b') ? data->head_a : data->head_a;
-	if (!tmp)
-		return (-1);
-	while (tmp)
-	{
-		if (tmp->actual_pos != tmp->final_pos)
-			count++;
-		tmp = tmp->next;
-	}
-	return (count);
-}
 
 int		ft_final_pos(t_data *data, int value, int which)
 {
@@ -60,12 +28,7 @@ int		ft_final_pos(t_data *data, int value, int which)
 		return (0);
 	while (tmp)
 	{
-	//	if (!which)
-	//	{
-			pos -= (value < tmp->value) ? 1 : 0;
-	//	}
-	//	else if (which)
-	//		pos -= (value > tmp->value) ? 1 : 0;
+		pos -= (value < tmp->value) ? 1 : 0;
 		tmp = tmp->next;
 	}
 	return (pos);

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/25 19:51:28 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/25 20:38:32 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,119 +53,8 @@
 **			_ si max le plus proche
 **				_si pas between
 **					_ go to max
-**			_ push all 3 en decroissant				
+**			_ push all 3 en decroissant
 **
-*/
-/*
-void	ft_between(t_data *data, int which, int *little, int *big)		//plus proche < ou > mark
-{
-	t_stack *tmp;
-	int		value;
-
-	tmp = data->head_b;
-	ft_simple_printf("LIST B\n");
-	while (tmp)
-	{
-		ft_simple_printf("value : '%d'\n", tmp->value);
-		tmp = tmp->next;
-	}
-	tmp = data->head_b;
-	while (tmp && which--)
-		tmp = tmp->next;
-	value = tmp->value;
-	tmp = data->head_a;
-	ft_simple_printf("VALUE DANS BETWEEN : '%d'\n", value);
-	*little = data->min[0];
-	*big = data->max[0];
-	while (tmp)
-	{
-		if (tmp->mark && (tmp->value > value && tmp->value < *big))
-			*big = tmp->value;
-		if (tmp->mark && (tmp->value < value && tmp->value > *little))
-			*little = tmp->value;
-		tmp = tmp->next;
-	}
-}
-
-void	ft_good_place(t_data *data, int *path, int b)
-{
-	int go;
-
-	if (b == 1)
-		ft_apply_command(data, 1, SB);
-	if (b == 2)
-		ft_apply_command(data, 1, RRB);
-	go = (path[0] <= path[1]) ? path[0] : path[1];
-	while (go)
-	{
-		if (path[0] <= path[1])
-			ft_apply_command(data, 1, RA);
-		else
-			ft_apply_command(data, 1, RRA);
-		go--;
-	}
-}
-
-void	ft_choose_b(t_data *data, int **path)
-{
-	int	b;
-	int big;
-	int little;
-
-	b = 0;
-	if (data->size[1] == 1)
-		ft_good_place(data, path[b], b);
-	little = b;
-	big = b;
-	while (++b < data->size[1])
-	{
-		if (path[little][0] > path[b][0])
-			little = b;
-		if (path[big][1] < path[b][1])
-			big = b;
-	}
-	if (little < big)
-		ft_good_place(data, path[big], big);
-	else
-		ft_good_place(data, path[little], little);
-	free(path);
-}
-
-void	ft_search_b(t_data *data)
-{
-	int		little[data->size[1]];
-	int		big[data->size[1]];
-	int		which;
-	int		**path;
-	t_stack *tmp;
-
-	which = -1;
-	if (!(path = (int**)ft_memalloc(sizeof(int*) * data->size[1])))
-		return ;
-	while (++which < data->size[1])
-	{
-		if (!(path[which] = (int*)ft_memalloc(sizeof(int) * 2)))
-		{
-			free(path);
-			return ;
-		}
-		tmp = data->head_a;
-		ft_between(data, which, &(little[which]), &(big[which]));
-		ft_simple_printf("LITTLE : '%d' < VALUE : '%d' < BIG : '%d'\n", little[which], which, big[which]);
-		while (tmp && tmp->value != little[which] && tmp->value != big[which])
-		{
-			path[which][0]++;
-			tmp = tmp->next;
-		}
-		while (tmp->value != data->head_a->value &&
-		tmp->value != little[which] && tmp->value != big[which])
-		{
-			path[which][1]++;
-			tmp = tmp->prev;
-		}
-	}
-	ft_choose_b(data, path);
-}
 */
 
 int		move_top(t_stack *to_move, t_stack *head)
@@ -232,6 +121,7 @@ int		move_to_limit(t_data *data, int nb)
 		}
 		tmp = tmp->next;
 	}
+	ft_simple_printf("MOVE TO LIMIT\n'%d' < '%d' < '%d'\n", limit_low->value, nb, limit_up->value);
 	low = move_top(limit_low, data->head_a) + 1;
 	up = move_top(limit_up, data->head_a);
 	return (ft_abs(up) < ft_abs(low) ? up : low);
@@ -242,7 +132,7 @@ void	get_move_count(t_data *data)
 	t_stack *tmp;
 
 	tmp = data->head_b;
-	while (tmp != NULL)
+	while (tmp)
 	{
 		tmp->mvb = move_top(tmp, data->head_b);
 		tmp->mva = move_to_limit(data, tmp->value);
@@ -256,22 +146,19 @@ void	push_opti(t_data *data)
 	t_stack	*move;
 	t_stack	*tmp;
 
-	ft_simple_printf("push opti\n");
+	ft_simple_printf("push opti SB : '%d'\n", data->size[1]);
 	while (data->size[1])
 	{
+		ft_simple_printf("\nSIZE_B : '%d'\n", data->size[1]);
 		get_move_count(data);
-		ft_simple_printf("after get move count\n");
-		tmp = data->head_b;
-		move = data->head_b->next;
-		ft_simple_printf("aaa\n");
+		move = data->head_b;
+		tmp = (data->size[1] > 1) ? data->head_b->next : NULL;
 		while (tmp)
 		{
-			ft_simple_printf("bbb\n");
 			if (move->mv_count > tmp->mv_count)
 				move = tmp;
 			tmp = tmp->next;
 		}
-		ft_simple_printf("go to the opti value : '%d'\n", tmp->value);
 		while (move->mvb > 0 && move->mvb--)
 			ft_apply_command(data, 1, RB);
 		while (move->mvb < 0 && ++move->mvb)
@@ -280,11 +167,11 @@ void	push_opti(t_data *data)
 			ft_apply_command(data, 0, RA);
 		while (move->mva < 0 && ++move->mva)
 			ft_apply_command(data, 0, RRA);
-		ft_simple_printf("after move to good place\n");
 		move->mark = 1;
+		data->marks += 1;
 		ft_apply_command(data, 1, PB);
-		ft_simple_printf("pb\n");
 	}
+	ft_simple_printf("end push opti\n");
 }
 
 char	ft_path(t_data *data)
@@ -340,8 +227,7 @@ int		ft_bl_start(t_data *data)
 			ft_get_unmark(data, data->size[2] - data->marks);
 		ft_simple_printf("after get unmarks : SB '%d'\n", data->size[1]);
 		push_opti(data);
-		ft_simple_printf("after push opti\n");
-		data->marks += 1;
+		printf("after push opti\n");
 		ft_simple_printf("end boucle\n");
 		ft_print_stack(data, 'a', 1);
 		if (!(data->size[1]) && (ft_circle_sort(data) || ft_only_swap(data)))

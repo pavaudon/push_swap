@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/25 19:45:25 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/25 20:08:05 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,4 @@ void	ft_print_stack(t_data *data, char which, int both)
 	ft_simple_printf("\n");
 	if (both && which == 'a')
 		ft_print_stack(data, 'b', 0);
-	ft_simple_printf("END PRINT STACK\n");
 }
