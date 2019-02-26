@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/26 18:38:03 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/26 21:35:45 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,9 @@ void	push_opti(t_data *data)
 	t_stack	*move;
 	t_stack	*tmp;
 
-	while (data->size[1])
+	while ((move = data->head_b) != NULL)
 	{
 		get_move_count(data);
-		move = data->head_b;
 		tmp = (data->size[1] > 1) ? data->head_b->next : NULL;
 		while (tmp)
 		{
@@ -176,6 +175,7 @@ char	ft_path(t_data *data)
 	int		r;
 	int		rr;
 
+	ft_simple_printf("PATH\n");
 	r = 0;
 	rr = 1;
 	tmp = data->head_a;
@@ -184,7 +184,7 @@ char	ft_path(t_data *data)
 		tmp = tmp->next;
 		r++;
 	}
-	while (tmp->next)
+	while (tmp && tmp->next)
 		tmp = tmp->next;
 	while (tmp->prev && tmp->mark)
 	{
@@ -198,27 +198,45 @@ void	ft_get_unmark(t_data *data, int unmarks)
 {
 	t_stack *tmp;
 
+	ft_simple_printf("GETUNMARK : '%d'\n", unmarks);
 	while ((data->size[1] < 3) && unmarks)
 	{
+		ft_simple_printf("AAA\n");
 		tmp = data->head_a;
+		ft_simple_printf("BBB\n");
 		if (tmp->mark == 0)
 		{
+			ft_simple_printf("CCCC\n");
 			ft_apply_command(data, 0, PA);
+			ft_simple_printf("DDD\n");
 			unmarks--;
+			ft_simple_printf("EEEE\n");
 		}
 		else
+		{
+			ft_simple_printf("FFFF '%d'\n", unmarks);
+			ft_print_stack(data, 'a', 0);
 			ft_apply_command(data, 0, ft_path(data));
+			ft_simple_printf("GGGG\n");
+		}
 	}
+	ft_simple_printf("end\n");
 }
 
 int		ft_bl_start(t_data *data)
 {
+	ft_simple_printf("a MARKS : '%d'\n", data->marks);
+	ft_print_stack(data, 'a', 0);
 	while (data->marks < data->size[2])
 	{
+		ft_simple_printf("b marks : (marks '%d' SB : '%d') - S2 '%d'\n", data->marks, data->size[1], data->size[2]);
 		while (data->size[1] < 3 &&
 		((data->marks + data->size[1]) < data->size[2]))
 			ft_get_unmark(data, data->size[2] - data->marks);
+		ft_simple_printf("c\n");
 		push_opti(data);
+		//data->marks += 1;
+		ft_simple_printf("d\n");
 		if (!(data->size[1]) && (ft_circle_sort(data) || ft_only_swap(data)))
 			return (1);
 	}
@@ -244,36 +262,21 @@ void	ft_count_g_p(t_data *data, t_stack *check)
 	tmp = check;
 	value = tmp->value;
 	count = 0;
-	ft_simple_printf("count_g_p\n");
-	ft_simple_printf("MAX ==== '%d'\n", data->max[0]);
 	while (tmp)
 	{
-		//ft_simple_printf("boucle\n");
-		while (tmp && tmp->value != data->max[0])
+		while (tmp && (tmp->value != data->max[0]))
 		{
-			//ft_simple_printf("value : '%d' != max : '%d'\n", tmp->value, data->max[0]);
-			if (tmp->value > value)
-			{
-				ft_simple_printf("tmp : '%d' > value : '%d'\n", tmp->value, value);
-				count++;
+			if (tmp->value > value && ++count)
 				value = tmp->value;
-			}
-		//	ft_simple_printf("BEFORE NEXT\n");
 			tmp = tmp->next;
-		//	ft_simple_printf("AFTER NEXT\n");
 		}
-		//ft_simple_printf("after tmp ou max\n");
 		if (tmp && tmp->value == data->max[0])
 		{
-			ft_simple_printf("MAX\n");
-			check->cgp = count;
-			ft_simple_printf("cgp = count : '%d'\n", count);
+			check->cgp = count + 1;
 			data->count_g_p = (count > data->count_g_p)
-			? count : data->count_g_p;
-			ft_simple_printf("count_g_p == '%d'\n", data->count_g_p);
+			? count + 1 : data->count_g_p;
 			return ;
 		}
-		//ft_simple_printf("again\n");
 		tmp = data->head_a;
 	}
 }
@@ -287,17 +290,16 @@ void	ft_mark_g_p(t_data *data)
 	data->marks += data->count_g_p;
 	while (tmp && tmp->cgp != data->count_g_p)
 		tmp = tmp->next;
+	if (!tmp)
+		return ;
 	tmp->mark = 1;
 	value = tmp->value;
 	while (tmp)
 	{
 		while (tmp && tmp->value != data->max[0])
 		{
-			if (tmp->value > value)
-			{
-				value = tmp->value;
+			if (tmp->value > value && ((value = tmp->value) || 1))
 				tmp->mark = 1;
-			}
 			tmp = tmp->next;
 		}
 		if (tmp && tmp->value == data->max[0])
@@ -312,30 +314,23 @@ void	ft_good_place(t_data *data)
 
 	data->count_g_p = 0;
 	tmp = data->head_a;
-	ft_simple_printf("GOOD PLACE\tMIN ==== '%d'\tSIZE === '%d'\n", data->min[0], data->size[0]);
 	while (tmp && (tmp->value != data->min[0]))
-	{
-		ft_simple_printf("valueeeee : '%d'\n", tmp->value);
 		tmp = tmp->next;
-	}
-	if (tmp && tmp->final_pos == data->size[0])
+	if (tmp && tmp->final_pos != data->size[0])
 		tmp = tmp->next;
 	else
 		tmp = data->head_a;
 	while (tmp)
 	{
-		ft_simple_printf("boucle\n");
 		while (tmp && tmp->value != data->max[0])
 		{
-			ft_simple_printf("value : '%d' != max : '%d'\n", tmp->value, data->max[0]);
 			ft_count_g_p(data, tmp);
 			tmp = tmp->next;
 		}
-		ft_simple_printf("after tmp ou max\n");
 		if (tmp && tmp->value == data->max[0])
-			break ;
-		ft_simple_printf("again to max\n");
-		tmp = data->head_a;
+			tmp = NULL;
+		else
+			tmp = data->head_a;
 	}
 	if (data->count_g_p != 0)
 		ft_mark_g_p(data);
@@ -351,7 +346,6 @@ int		main_big_list(t_data *data)
 	ft_simple_printf("BIG LIST\n");
 	while (tmp)
 	{
-		ft_simple_printf("FUCK : '%d'\n", tmp->value);
 		if (tmp->value == data->min[2] || tmp->value == data->max[2])
 			tmp->mark++;
 		tmp = tmp->next;
