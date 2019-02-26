@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/25 20:38:32 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:38:03 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ int		move_to_limit(t_data *data, int nb)
 		}
 		tmp = tmp->next;
 	}
-	ft_simple_printf("MOVE TO LIMIT\n'%d' < '%d' < '%d'\n", limit_low->value, nb, limit_up->value);
 	low = move_top(limit_low, data->head_a) + 1;
 	up = move_top(limit_up, data->head_a);
 	return (ft_abs(up) < ft_abs(low) ? up : low);
@@ -146,10 +145,8 @@ void	push_opti(t_data *data)
 	t_stack	*move;
 	t_stack	*tmp;
 
-	ft_simple_printf("push opti SB : '%d'\n", data->size[1]);
 	while (data->size[1])
 	{
-		ft_simple_printf("\nSIZE_B : '%d'\n", data->size[1]);
 		get_move_count(data);
 		move = data->head_b;
 		tmp = (data->size[1] > 1) ? data->head_b->next : NULL;
@@ -161,17 +158,16 @@ void	push_opti(t_data *data)
 		}
 		while (move->mvb > 0 && move->mvb--)
 			ft_apply_command(data, 1, RB);
-		while (move->mvb < 0 && ++move->mvb)
+		while (move->mvb < 0 && move->mvb++)
 			ft_apply_command(data, 1, RRB);
 		while (move->mva > 0 && move->mva--)
 			ft_apply_command(data, 0, RA);
-		while (move->mva < 0 && ++move->mva)
+		while (move->mva < 0 && move->mva++)
 			ft_apply_command(data, 0, RRA);
 		move->mark = 1;
 		data->marks += 1;
 		ft_apply_command(data, 1, PB);
 	}
-	ft_simple_printf("end push opti\n");
 }
 
 char	ft_path(t_data *data)
@@ -219,17 +215,10 @@ int		ft_bl_start(t_data *data)
 {
 	while (data->marks < data->size[2])
 	{
-		ft_simple_printf("debut boucle\n");
-		ft_print_stack(data, 'a', 1);
-		ft_simple_printf("NB_MARKS : '%d'\n", data->marks);
 		while (data->size[1] < 3 &&
 		((data->marks + data->size[1]) < data->size[2]))
 			ft_get_unmark(data, data->size[2] - data->marks);
-		ft_simple_printf("after get unmarks : SB '%d'\n", data->size[1]);
 		push_opti(data);
-		printf("after push opti\n");
-		ft_simple_printf("end boucle\n");
-		ft_print_stack(data, 'a', 1);
 		if (!(data->size[1]) && (ft_circle_sort(data) || ft_only_swap(data)))
 			return (1);
 	}
@@ -245,6 +234,113 @@ int		ft_bl_start(t_data *data)
 	}
 }
 
+//ft_count_g_p a commencer par chaque elem apres min qui compte combien plus grand jusqu'a max
+void	ft_count_g_p(t_data *data, t_stack *check)
+{
+	t_stack *tmp;
+	int		value;
+	int		count;
+
+	tmp = check;
+	value = tmp->value;
+	count = 0;
+	ft_simple_printf("count_g_p\n");
+	ft_simple_printf("MAX ==== '%d'\n", data->max[0]);
+	while (tmp)
+	{
+		//ft_simple_printf("boucle\n");
+		while (tmp && tmp->value != data->max[0])
+		{
+			//ft_simple_printf("value : '%d' != max : '%d'\n", tmp->value, data->max[0]);
+			if (tmp->value > value)
+			{
+				ft_simple_printf("tmp : '%d' > value : '%d'\n", tmp->value, value);
+				count++;
+				value = tmp->value;
+			}
+		//	ft_simple_printf("BEFORE NEXT\n");
+			tmp = tmp->next;
+		//	ft_simple_printf("AFTER NEXT\n");
+		}
+		//ft_simple_printf("after tmp ou max\n");
+		if (tmp && tmp->value == data->max[0])
+		{
+			ft_simple_printf("MAX\n");
+			check->cgp = count;
+			ft_simple_printf("cgp = count : '%d'\n", count);
+			data->count_g_p = (count > data->count_g_p)
+			? count : data->count_g_p;
+			ft_simple_printf("count_g_p == '%d'\n", data->count_g_p);
+			return ;
+		}
+		//ft_simple_printf("again\n");
+		tmp = data->head_a;
+	}
+}
+
+void	ft_mark_g_p(t_data *data)
+{
+	t_stack *tmp;
+	int		value;
+
+	tmp = data->head_a;
+	data->marks += data->count_g_p;
+	while (tmp && tmp->cgp != data->count_g_p)
+		tmp = tmp->next;
+	tmp->mark = 1;
+	value = tmp->value;
+	while (tmp)
+	{
+		while (tmp && tmp->value != data->max[0])
+		{
+			if (tmp->value > value)
+			{
+				value = tmp->value;
+				tmp->mark = 1;
+			}
+			tmp = tmp->next;
+		}
+		if (tmp && tmp->value == data->max[0])
+			return ;
+		tmp = data->head_a;
+	}
+}
+
+void	ft_good_place(t_data *data)
+{
+	t_stack *tmp;
+
+	data->count_g_p = 0;
+	tmp = data->head_a;
+	ft_simple_printf("GOOD PLACE\tMIN ==== '%d'\tSIZE === '%d'\n", data->min[0], data->size[0]);
+	while (tmp && (tmp->value != data->min[0]))
+	{
+		ft_simple_printf("valueeeee : '%d'\n", tmp->value);
+		tmp = tmp->next;
+	}
+	if (tmp && tmp->final_pos == data->size[0])
+		tmp = tmp->next;
+	else
+		tmp = data->head_a;
+	while (tmp)
+	{
+		ft_simple_printf("boucle\n");
+		while (tmp && tmp->value != data->max[0])
+		{
+			ft_simple_printf("value : '%d' != max : '%d'\n", tmp->value, data->max[0]);
+			ft_count_g_p(data, tmp);
+			tmp = tmp->next;
+		}
+		ft_simple_printf("after tmp ou max\n");
+		if (tmp && tmp->value == data->max[0])
+			break ;
+		ft_simple_printf("again to max\n");
+		tmp = data->head_a;
+	}
+	if (data->count_g_p != 0)
+		ft_mark_g_p(data);
+}
+
 int		main_big_list(t_data *data)
 {
 	t_stack *tmp;
@@ -255,11 +351,14 @@ int		main_big_list(t_data *data)
 	ft_simple_printf("BIG LIST\n");
 	while (tmp)
 	{
+		ft_simple_printf("FUCK : '%d'\n", tmp->value);
 		if (tmp->value == data->min[2] || tmp->value == data->max[2])
 			tmp->mark++;
 		tmp = tmp->next;
 	}
 	ft_simple_printf("MARK MIN MAX OK\n");
 	data->marks = 2;
+	ft_find_pos(data, 0, 0);
+	ft_good_place(data);
 	return (ft_bl_start(data));
 }

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/25 18:22:22 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/26 18:38:42 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_stack
 	int				mvb;
 	int				mva;
 	int				mv_count;
+	int				cgp;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -53,6 +54,7 @@ typedef struct		s_data
 	int				size[3];
 	int				marks;
 	char			*command;
+	int				count_g_p;
 	//define des commandes + nombres de commandes en une fonctions pour savoir combien enlever si ca foire?
 	int				count; //pour command[count];
 }					t_data;
