@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/25 19:46:09 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 20:53:44 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,15 @@ void	ft_print_command(t_data *data)
 //appel du bon algo
 int		ft_push_swap(t_data *data)
 {
-	ft_simple_printf("PUSH SWAP\n");
+	ft_simple_printf("DEGAGER LES PUTAINS DE PRINT DE LISTES DE SA MERE\n");
 	if (data->size[0] == 1 || ft_stack_sort(data->head_a))
 	{
 		ft_error("Nothing to sort");
 		return (1);
 	}
 	ft_find_pos(data, 0, 0);
-	ft_simple_printf("[STACK BEFORE START]\n");
-	ft_print_stack(data, 'a', 1);
+	//ft_simple_printf("[STACK BEFORE START]\n");
+	//ft_print_stack(data, 'a', 1);
 	ft_simple_printf("\n\n");
 	if (data->size[0] == 2)
 	{
@@ -101,13 +101,16 @@ int		ft_push_swap(t_data *data)
 		ft_new_command(data, SA);
 	}
 	if (data->size[0] == 3)
-		ft_sort_three(data, 0, 0);
+		ft_sort_three(data, 0);
 	else if (data->size[0] == 4 || data->size[0] == 5)
 		ft_four_five_sort(data);
 	if (data->size[0] > 5)
+	{
+		ft_simple_printf("glear;gmersmrg'\n");
 		main_big_list(data);
-	ft_simple_printf("\n[STACK AFTER PROCESS]\n");
-	ft_print_stack(data, 'a', 1);
+	}
+	//ft_simple_printf("\n[STACK AFTER PROCESS]\n");
+	//ft_print_stack(data, 'a', 1);
 	ft_print_command(data);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/30 19:11:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:17:34 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,19 @@ int			main(int argc, char **argv)
 	t_data	data;
 
 	ft_bzero(&data, sizeof(data));
+	if (argc > 500)	// A TESTER
+	{
+		ft_error("too many arguments");
+		return (0);
+	}
 	if (argc > 1)
 	{
-		//if (!(data = (t_data*)ft_memalloc(sizeof(t_data))))
-		//	return (0);
 		ft_before_checker(&data, argc, argv);
 		if (ft_checker(&data))
 			ft_simple_printf("OK\n");
 		else
 			ft_simple_printf("KO\n");
 		ft_cleanup(&data);
-		//free(data);
 	}
 	else
 		ft_error("./checker [int arguments]");

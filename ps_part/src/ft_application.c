@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/15 15:52:11 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 20:44:21 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_error(char *error)
 {
-	ft_simple_printf("%s\n", error);		//error\n first like subject?
-	exit (1);		//pas a la norme?
+	ft_simple_printf("%s\n", error);
+	exit (1);
 }
-//verification de stack A
+
 int		ft_stack_sort(t_stack *stack)
 {
 	t_stack *tmp;
@@ -33,35 +33,8 @@ int		ft_stack_sort(t_stack *stack)
 	}
 	return (1);
 }
-/*
-//ajout d'un maillon a la fin de la stack
-int		ft_addbackstack(t_stack *stack, int value, int i)
-{
-	t_stack *tmp;
-	t_stack	*new;
 
-	if (i)
-	{
-		if (!(new = (t_stack*)ft_memalloc(sizeof(t_stack))))
-			return (0);
-		new->value = value;
-		new->next = NULL;
-		tmp = stack;
-		while (tmp->next)
-			tmp = tmp->next;
-		new->prev = tmp;
-		tmp->next = new;
-	}
-	else
-	{
-		stack->value = value;
-		stack->next = NULL;
-		stack->prev = NULL;
-	}
-	return (1);
-}
-*/
-int			ft_pushback2(t_stack **lst, int val)
+int			ft_add_back(t_stack **lst, int val)
 {
 	t_stack	*new;
 	t_stack	*end;
@@ -81,23 +54,6 @@ int			ft_pushback2(t_stack **lst, int val)
 		end->next = new;
 	else
 		*lst = new;
-	return (1);
-}
-
-int			ft_pushfront2(t_stack **lst, int val)
-{
-	t_stack	*new;
-
-	if (!lst)
-		return (0);
-	if (!(new = (t_stack *)ft_memalloc(sizeof(t_stack))))
-		return (0);
-	new->prev = NULL;
-	new->value = val;
-	new->next = *lst;
-	if (new->next)
-		new->next->prev = new;
-	*lst = new;
 	return (1);
 }
 

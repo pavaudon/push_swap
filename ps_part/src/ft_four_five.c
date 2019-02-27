@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:46:29 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/13 19:43:06 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 19:22:25 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ int		ft_four_five_sort(t_data *data)
 	((data->head_b->final_pos == 2 && data->head_b->next->final_pos != 1) ||
 	(data->head_b->final_pos == 4 && data->head_b->next->final_pos == 5)))
 	|| (data->size[1] == 1 && (data->max[1] == data->max[2])))
-		ft_sort_three(data, 0, 0);
+		ft_sort_three(data, 0);
 	else
 		ft_help_sort(data);
 	ft_hentai_sort(data);

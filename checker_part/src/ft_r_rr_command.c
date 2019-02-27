@@ -12,31 +12,6 @@
 
 #include "push_swap.h"
 
-/*
-// [first] become [end]
-void			ft_ra_command(t_data *data, char which)
-{
-	if (data->size[0] < 2)
-		return ;
-	ft_pushback2(&data->head_a, data->head_a->value);
-	data->head_a = data->head_a->next;
-	free(data->head_a->prev);
-	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
-	if (which == 'r')
-		ft_rb_command(data, 'b');
-}
-
-void			ft_rb_command(t_data *data, char which)
-{
-	if (data->size[1] < 2)
-		return ;
-	ft_pushback2(data->head_b, data->head_b->value);
-	data->head_b = data->head_b->next;
-	free(data->head_b->prev);
-	ft_print_stack(data, which, 0);
-}
-*/
-
 void		ft_ra_command(t_data *data, char which)
 {
 	t_stack *tmp;
@@ -62,24 +37,6 @@ void		ft_ra_command(t_data *data, char which)
 	if (which == 'r')
 		ft_rb_command(data, 'b');
 }
-/*
-void		ft_rb_command(t_data *data, char which)
-{
-	t_stack *tmp;
-
-	ft_simple_printf("RB COMMAND\n");
-	tmp = data->head_b;
-	if (data->size[1] < 2)
-		return ;
-	while (tmp)
-		tmp = tmp->next;
-	tmp->next = data->head_b;
-	data->head_b = data->head_b->next;
-	data->head_b->prev = NULL;
-	tmp->next->prev = tmp;
-	ft_print_stack(data, which, 0);
-}
-*/
 
 void		ft_rb_command(t_data *data, char which)
 {
@@ -102,83 +59,6 @@ void		ft_rb_command(t_data *data, char which)
 	tmp->next->next = NULL;
 	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
 }
-
-/*
-static t_stack	*get_prelast(t_stack *stack)
-{
-	if ((!stack) || (!stack->next))
-		return (NULL);
-	while (stack->next->next)
-		stack = stack->next;
-	return (stack);
-}
-
-void			ft_del_end_stack(t_stack *stack)
-{
-	t_stack		*pre_last;
-
-	pre_last = get_prelast(stack);
-	if (!pre_last)
-		return ;
-	if (pre_last->next)
-		free(pre_last->next);
-	pre_last->next = NULL;
-}
-
-// [end] become [first]
-void			ft_rr_command(t_data *data, char which)
-{
-	t_stack *tmp;
-
-	printf("RR COMMAND\n");
-	if ((which == 'b' && data->size[1] < 2) ||
-	((which == 'a' || which == 'r') && data->size[0] < 2))
-		return ;
-	tmp = (which == 'b') ? data->head_b : data->head_a;
-	while (tmp->next)
-		tmp = tmp->next;
-	ft_pushfront2((which == 'b') ? &(data->head_b) : &(data->head_a),
-		tmp->value);
-	if (which == 'b')
-		ft_del_end_stack(data->head_b);
-	else
-		ft_del_end_stack(data->head_a);
-	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
-	if (which == 'r')
-		ft_rr_command(data, 'b');
-}
-*/
-/*
-void		ft_rr_command(t_data *data, char which)
-{
-	t_stack *tmp;
-
-	ft_simple_printf("RRR COMMAND\n");
-	if ((which == 'b' && data->size[1] < 2) ||
-	((which == 'a' || which == 'r') && data->size[0] < 2))
-		return ;
-	tmp = (which == 'b') ? data->head_b : data->head_a;
-	while (tmp)
-		tmp = tmp->next;
-	if (which == 'b')
-	{
-		data->head_b->prev = tmp;
-		tmp->prev->next = NULL;
-		tmp->prev = NULL;
-		data->head_b = data->head_b->prev;
-	}
-	else
-	{
-		data->head_a->prev = tmp;
-		tmp->prev->next = NULL;
-		tmp->prev = NULL;
-		data->head_a = data->head_a->prev;
-	}
-	ft_print_stack(data, (which == 'r' ? 'a' : which), 0);
-	if (which == 'r')
-		ft_rr_command(data, 'b');
-}
-*/
 
 void		ft_rrb_command(t_data *data)
 {

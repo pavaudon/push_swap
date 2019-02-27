@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/26 18:38:42 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 20:49:07 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int					ft_is_again(t_data *data);
 
 int					ft_stack_sort(t_stack *stack);
 
-int					ft_addbackstack(t_stack *stack, int value, int i);
-int					ft_addbeginstack(t_stack **stack, int value, int i);
-int					ft_pushfront2(t_stack **lst, int val);
-int					ft_pushback2(t_stack **lst, int val);
+int					ft_add_back(t_stack **lst, int val);
 
 void				ft_error(char *error);
 
@@ -93,7 +90,7 @@ void				ft_min_end(t_data *data, int which);
 void				ft_two_three(t_data *data, int which, int both);
 int					ft_stackb_sort(t_data *data);
 
-int					ft_sort_three(t_data *data, int which, int both);
+int					ft_sort_three(t_data *data, int which);
 int					ft_only_swap(t_data *data);
 int					ft_circle_sort(t_data *data);
 
@@ -103,5 +100,7 @@ void				ft_circle_pos(t_data *data, int f_first);
 void				ft_help_c_p(t_data *data, int f_first, int *fp);
 
 int					main_big_list(t_data *data);
+void				ft_good_place(t_data *data);
+void				push_opti(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:12 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/12 18:46:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:19:37 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,45 +43,6 @@ void	ft_s_command(t_data *data, char which)
 		ft_s_command(data, 'b');
 	ft_print_stack(data, 'a', 0);
 }
-/*
-void	ft_s_command(t_data *data, char which)
-{
-	int		swap;
-	t_stack	*tmp;
-
-	printf("S COMMAND\n");
-	if (which == 'b' ? data->size[1] > 1 : data->size[0] > 1)
-	{
-		swap = (which == 'b') ? data->head_b->value : data->head_a->value;
-		tmp = (which == 'b') ? data->head_b : data->head_a;
-		tmp->value = tmp->next->value;
-		tmp->next->value = swap;
-	}
-	ft_print_stack(data, (which == 's' ? 'a' : which), 0);
-	if (which == 's')
-		ft_s_command(data, 'b');
-}
-*/
-/*
-//put A[0] en B[0]
-void	ft_pa_command(t_data *data)
-{
-	//printf("pa COMMAND\n");
-	ft_pushfront2(&(data->head_b), data->head_a->value);
-	if (data->size[0] > 1)
-	{
-		data->head_a = data->head_a->next;
-		free(data->head_a->prev);
-	}
-	else
-	{
-		free(data->head_a);
-		data->head_a = NULL;
-	}
-	data->size[0] -= 1;
-	data->size[1] += 1;
-}
-*/
 
 void	ft_pa_command(t_data *data)
 {
@@ -117,26 +78,6 @@ void	ft_pa_command(t_data *data)
 	data->size[0] -= 1;
 	data->size[1] += 1;
 }
-/*
-//put B[0] en A[0]
-void	ft_pb_command(t_data *data)
-{
-	//printf("pb COMMAND\n");
-	ft_pushfront2(&(data->head_a), data->head_b->value);
-	if (data->size[1] > 1)
-	{
-		data->head_b = data->head_b->next;
-		free(data->head_b->prev);
-	}
-	else
-	{
-		free(data->head_b);
-		data->head_b = NULL;
-	}
-	data->size[0] += 1;
-	data->size[1] -= 1;
-}
-*/
 
 void	ft_pb_command(t_data *data)
 {

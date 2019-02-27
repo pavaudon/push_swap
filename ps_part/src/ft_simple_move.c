@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:51:35 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/01/26 16:44:52 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 19:23:13 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_two_three(t_data *data, int which, int both)
 		ft_new_command(data, SA + which);
 	}
 	if (data->size[which] == 3)
-		ft_sort_three(data, which, 0);
+		ft_sort_three(data, which);
 	if (both && !which)
 		ft_two_three(data, 1, 0);
 }

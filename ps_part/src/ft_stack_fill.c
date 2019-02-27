@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/11 17:40:17 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/27 20:44:46 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		ft_size(t_data *data, int which)
 }
 
 //si arg = "0 1 2" et non = 0 1 2
-int			ft_spe_fill(t_stack *head_a, char *str)
+int			ft_spe_fill(t_data *data, char *str)
 {
 	int i;
 	int len;
@@ -37,7 +37,7 @@ int			ft_spe_fill(t_stack *head_a, char *str)
 	len = ft_strlen(str);
 	while (++i < len)
 	{
-		if (!(ft_pushback2(&head_a, ft_atoi(&str[i]))))
+		if (!(ft_add_back(&data->head_a, ft_atoi(&str[i]))))
 			return (0);
 		if (str[i] == '-')
 			i++;
@@ -56,12 +56,12 @@ int			ft_fill(t_data *data, int argc, char **argv)		//a faire : error si trop de
 	{
 		if (ft_strchr(argv[i], ' '))
 		{
-			if (!(ft_spe_fill(data->head_a, argv[i])))
+			if (!(ft_spe_fill(data, argv[i])))
 				return (0);
 		}
 		else
 		{
-			if (!(ft_pushback2(&data->head_a, ft_atoi(argv[i]))))
+			if (!(ft_add_back(&data->head_a, ft_atoi(argv[i]))))
 				return (0);
 		}
 	}
