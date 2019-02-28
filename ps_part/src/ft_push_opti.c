@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 20:41:49 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 20:42:33 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/28 21:01:24 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	push_opti(t_data *data)
 	while ((move = data->head_b) != NULL)
 	{
 		get_move_count(data);
-		tmp = (data->size[1] > 1) ? data->head_b->next : NULL;
+		tmp = (data->head_b ? data->head_b->next : data->head_b);
 		while (tmp)
 		{
 			if (move->mv_count > tmp->mv_count)
@@ -120,6 +120,6 @@ void	push_opti(t_data *data)
 			ft_apply_command(data, 0, RRA);
 		move->mark = 1;
 		data->marks += 1;
-		ft_apply_command(data, 1, PB);
+		ft_apply_command(data, 1, PA);
 	}
 }

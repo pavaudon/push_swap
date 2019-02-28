@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_s_p_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:12 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/20 16:56:32 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/02/28 21:00:52 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,79 +45,54 @@ void	ft_s_command(t_data *data, char which)
 
 void	ft_pa_command(t_data *data)
 {
-	//ft_simple_printf("PA COMMAND\n");
-	if (data->size[1] == 0)
-	{
-		if (data->size[0] > 1)
-		{
-			data->head_a = data->head_a->next;
-			data->head_b = data->head_a->prev;
-		}
-		else
-			data->head_b = data->head_a;
+	t_stack	*ea;
+	t_stack	*eb;
+
+	eb = data->head_a;
+	ea = data->head_b;
+	if (!data->size[1])
+		return ;
+	data->head_b = ea->next;
+	if (data->head_b)
 		data->head_b->prev = NULL;
-		data->head_b->next = NULL;
-	}
-	else
-	{
-		if (data->size[0] > 1)
-		{
-			data->head_a = data->head_a->next;
-			data->head_b->prev = data->head_a->prev;
-		}
-		else
-			data->head_b->prev = data->head_a;
-		data->head_b->prev->next = data->head_b;
-		data->head_b = data->head_b->prev;
-	}
-	if (data->size[0] > 1)
-		data->head_a->prev = NULL;
-	else
-		data->head_a = NULL;
-	data->size[0] -= 1;
-	data->size[1] += 1;
+	ea->next = eb;
+	if (eb)
+		eb->prev = ea;
+	ea->prev = NULL;
+	data->head_a = ea;
+	data->size[1]--;
+	data->size[0]++;
+	return ;
 }
 
 void	ft_pb_command(t_data *data)
 {
-	//ft_simple_printf("PB COMMAND\n");
-	if (data->size[0] == 0)
-	{
-		if (data->size[1] > 1)
-		{
-			data->head_b = data->head_b->next;
-			data->head_a = data->head_b->prev;
-		}
-		else
-			data->head_a = data->head_b;
+	t_stack	*ea;
+	t_stack	*eb;
+
+	ea = data->head_a;
+	eb = data->head_b;
+	if (!data->size[0])
+		return ;
+	data->head_a = ea->next;
+	if (data->head_a)
 		data->head_a->prev = NULL;
-		data->head_a->next = NULL;
-	}
-	else
-	{
-		if (data->size[1] > 1)
-		{
-			data->head_b = data->head_b->next;
-			data->head_a->prev = data->head_b->prev;
-		}
-		else
-			data->head_a->prev = data->head_b;
-		data->head_a->prev->next = data->head_a;
-		data->head_a = data->head_a->prev;
-	}
-	if (data->size[1] > 1)
-		data->head_b->prev = NULL;
-	else
-		data->head_b = NULL;
-	data->size[0] += 1;
-	data->size[1] -= 1;
+	ea->next = eb;
+	if (eb)
+		eb->prev = ea;
+	ea->prev = NULL;
+	data->head_b = ea;
+	data->size[0]--;
+	data->size[1]++;
+	return ;
 }
+
 //appel pa ou pb
 void	ft_p_command(t_data *data, char which)
 {
-	if (which == 'a' && data->size[0] >= 1)
+	if (which == 'a')
 		ft_pa_command(data);
-	else if (which == 'b' && data->size[1] >= 1)
+	else if (which == 'b')
 		ft_pb_command(data);
 	//ft_print_stack(data, 'a', 1);
 }

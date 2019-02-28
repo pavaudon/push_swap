@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 20:44:21 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/28 20:29:12 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_apply_command(t_data *data, int which, char command)
 	else if (command == RA && !which)
 		ft_ra_command(data, 'a');
 	else if (command == RRA || command == RRB)
-		ft_rr_command(data, 'a' + which);
+		ft_rr_command(data, 'a' + (command == RRB));
 	else if (command == PA)
 		ft_p_command(data, 'a');
 	else if (command == PB)

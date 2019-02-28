@@ -65,12 +65,8 @@ void		ft_rrb_command(t_data *data)
 {
 	t_stack *tmp;
 
-	if (data->size[1] <= 2)
-	{
-		if (data->size[1] == 2)
-			ft_s_command(data, 'a');
+	if (data->size[1] < 2)
 		return ;
-	}
 	tmp = data->head_b;
 	while (tmp->next)
 		tmp = tmp->next;
@@ -88,9 +84,8 @@ void		ft_rr_command(t_data *data, char which)
 
 	if (which == 'a' || which == 'r')
 	{
-		if (data->size[0] <= 2)
+		if (data->size[0] < 2)
 		{
-			ft_s_command(data, 'a');
 			if (which == 'r')
 				ft_rrb_command(data);
 			return ;

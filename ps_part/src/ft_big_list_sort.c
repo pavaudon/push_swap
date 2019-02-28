@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 20:47:45 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/28 21:08:02 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	ft_path(t_data *data)
 	}
 	while (tmp && tmp->next)
 		tmp = tmp->next;
-	while (tmp->prev && tmp->mark)
+	while (tmp && tmp->prev && tmp->mark)
 	{
 		tmp = tmp->prev;
 		rr++;
@@ -66,20 +66,47 @@ char	ft_path(t_data *data)
 	return ((r < rr) ? RA : RRA);
 }
 
+void	go_to_unmark(t_data *data)
+{
+	int		u;
+	int		d;
+	t_stack	*cu;
+	t_stack	*cd;
+
+	d = 0;
+	u = 0;
+	cd = data->head_a;
+	while (cd && cd->mark && ++d)
+		cd = cd->next;
+	cu = cd ? cd : data->head_a;
+	while (cu && cu->next)
+		cu = cu->next;
+	while (cu && cu->mark && ++u)
+		cu = cu->prev;
+	u++;
+	if (d < u)
+		u = -d;
+	while (u != 0)
+	{
+		ft_apply_command(data, 0, u > 0 ? RRA : RA);
+		u += (u < 0) ? 1 : -1;
+	}
+}
+
 void	ft_get_unmark(t_data *data, int unmarks)
 {
 	t_stack *tmp;
 
-	while ((data->size[1] < 12) && unmarks)			//changement de pa pour test
+	while ((data->size[1] < (data->size[2] / 3)) && unmarks)			//changement de pa pour test
 	{
 		tmp = data->head_a;
 		if (tmp->mark == 0)
 		{
-			ft_apply_command(data, 0, PA);
+			ft_apply_command(data, 0, PB);
 			unmarks--;
 		}
 		else
-			ft_apply_command(data, 0, ft_path(data));
+			go_to_unmark(data);
 	}
 }
 
@@ -87,7 +114,7 @@ int		ft_bl_start(t_data *data)
 {
 	while (data->marks < data->size[2])
 	{
-		while (data->size[1] < 12 &&
+		while (data->size[1] < (data->size[2] / 3) &&
 		((data->marks + data->size[1]) < data->size[2]))			//changement de pa pour test
 			ft_get_unmark(data, data->size[2] - data->marks);
 		push_opti(data);

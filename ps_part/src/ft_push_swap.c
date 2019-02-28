@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 20:53:44 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/28 21:03:55 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		ft_push_swap(t_data *data)
 	ft_find_pos(data, 0, 0);
 	//ft_simple_printf("[STACK BEFORE START]\n");
 	//ft_print_stack(data, 'a', 1);
-	ft_simple_printf("\n\n");
+	//ft_simple_printf("\n\n");
 	if (data->size[0] == 2)
 	{
 		ft_s_command(data, 0);
@@ -111,7 +111,8 @@ int		ft_push_swap(t_data *data)
 	}
 	//ft_simple_printf("\n[STACK AFTER PROCESS]\n");
 	//ft_print_stack(data, 'a', 1);
-	ft_print_command(data);
+	//ft_print_command(data);
+	ft_simple_printf("\n{%d} commandes utilisees\n", data->count); //A ENLEVER
 	return (1);
 }
 
