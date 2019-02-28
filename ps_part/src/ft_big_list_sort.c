@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/28 21:08:02 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/02/28 21:30:27 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,6 @@ int		main_big_list(t_data *data)
 	}
 	data->marks = 2;
 	ft_find_pos(data, 0, 0);
-	ft_good_place(data);
+	//ft_good_place(data);
 	return (ft_bl_start(data));
 }
