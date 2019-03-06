@@ -6,19 +6,17 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:12 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/28 19:18:09 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 20:04:57 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//swap stack[0] et stack[1]
 void	ft_s_process(t_stack *old_two, t_stack *old_one)
 {
 	t_stack	*third;
 
 	third = old_two->next;
-
 	old_one->prev = old_two;
 	old_two->next = old_one;
 	old_two->prev = NULL;
@@ -46,19 +44,17 @@ void	ft_s_command(t_data *data, char which)
 
 void	ft_pa_command(t_data *data)
 {
-	ft_simple_printf("PA COMMAND\n");
 	t_stack	*ea;
 	t_stack	*eb;
 
+	ft_simple_printf("PA COMMAND\n");
 	eb = data->head_a;
 	ea = data->head_b;
-
 	if (!data->size[1])
 		return ;
 	data->head_b = ea->next;
 	if (data->head_b)
 		data->head_b->prev = NULL;
-
 	ea->next = eb;
 	if (eb)
 		eb->prev = ea;
@@ -71,19 +67,17 @@ void	ft_pa_command(t_data *data)
 
 void	ft_pb_command(t_data *data)
 {
-	ft_simple_printf("PB COMMAND\n");
 	t_stack	*ea;
 	t_stack	*eb;
 
+	ft_simple_printf("PB COMMAND\n");
 	ea = data->head_a;
 	eb = data->head_b;
-
 	if (!data->size[0])
 		return ;
 	data->head_a = ea->next;
 	if (data->head_a)
 		data->head_a->prev = NULL;
-
 	ea->next = eb;
 	if (eb)
 		eb->prev = ea;
@@ -93,7 +87,7 @@ void	ft_pb_command(t_data *data)
 	data->size[1]++;
 	return ;
 }
-//appel pa ou pb
+
 void	ft_p_command(t_data *data, char which)
 {
 	if (which == 'a' && data->size[1] >= 1)

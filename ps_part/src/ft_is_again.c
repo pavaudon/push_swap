@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_again.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/20 16:53:49 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:32:16 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//min et max d'une stack et de la liste
 void		ft_min_max(t_data *data, int which)
 {
 	t_stack *tmp;

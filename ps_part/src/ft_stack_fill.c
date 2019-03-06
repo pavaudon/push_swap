@@ -6,13 +6,12 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 20:44:46 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 19:41:14 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//size de depart == size[A] et possibilite de connaitre size[B]
 void		ft_size(t_data *data, int which)
 {
 	t_stack *tmp;
@@ -27,7 +26,6 @@ void		ft_size(t_data *data, int which)
 		data->size[0] = data->size[2];
 }
 
-//si arg = "0 1 2" et non = 0 1 2
 int			ft_spe_fill(t_data *data, char *str)
 {
 	int i;
@@ -46,8 +44,8 @@ int			ft_spe_fill(t_data *data, char *str)
 	}
 	return (1);
 }
-//ajout d'un maillon a la fin avec la nouvelle valeur
-int			ft_fill(t_data *data, int argc, char **argv)		//a faire : error si trop de value
+
+int			ft_fill(t_data *data, int argc, char **argv)
 {
 	int i;
 
@@ -67,7 +65,7 @@ int			ft_fill(t_data *data, int argc, char **argv)		//a faire : error si trop de
 	}
 	return (1);
 }
-//malloc, init stack, appel fill et size
+
 int			ft_stack_fill(t_data *data, int argc, char **argv)
 {
 	data->head_a = NULL;

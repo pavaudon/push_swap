@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 20:49:07 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 20:16:32 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define RRB 'J'
 # define RRR 'K'
 
+# define MAX_VAL 2
+# define MIN_VAL 1
+# define LAST_VAL 0
+
 typedef struct		s_stack
 {
 	int				value;
@@ -40,6 +44,8 @@ typedef struct		s_stack
 	int				mva;
 	int				mv_count;
 	int				cgp;
+	int				wgt;
+	struct s_stack	*nxtw;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -49,14 +55,12 @@ typedef struct		s_data
 	t_stack			*head_a;
 	t_stack			*head_b;
 	int				nb_value;
-	int				max[3];		//0 == a	1 == b	2 == all
+	int				max[3];
 	int				min[3];
 	int				size[3];
 	int				marks;
 	char			*command;
-	int				count_g_p;
-	//define des commandes + nombres de commandes en une fonctions pour savoir combien enlever si ca foire?
-	int				count; //pour command[count];
+	int				count;
 }					t_data;
 
 int					ft_check_data(int argc, char **argv);
@@ -100,7 +104,8 @@ void				ft_circle_pos(t_data *data, int f_first);
 void				ft_help_c_p(t_data *data, int f_first, int *fp);
 
 int					main_big_list(t_data *data);
-void				ft_good_place(t_data *data);
 void				push_opti(t_data *data);
+void				premark(t_data *data);
+t_stack				*get_link(t_data *data, int where);
 
 #endif

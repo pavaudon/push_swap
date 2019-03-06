@@ -6,19 +6,19 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/28 20:29:12 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 20:11:03 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(char *error)
+void		ft_error(char *error)
 {
 	ft_simple_printf("%s\n", error);
-	exit (1);
+	exit(1);
 }
 
-int		ft_stack_sort(t_stack *stack)
+int			ft_stack_sort(t_stack *stack)
 {
 	t_stack *tmp;
 
@@ -57,8 +57,7 @@ int			ft_add_back(t_stack **lst, int val)
 	return (1);
 }
 
-//application des commandes
-void	ft_apply_command(t_data *data, int which, char command)
+void		ft_apply_command(t_data *data, int which, char command)
 {
 	if (command == SA || command == SB)
 		ft_s_command(data, 'a' + which);
@@ -77,8 +76,7 @@ void	ft_apply_command(t_data *data, int which, char command)
 	ft_new_command(data, command);
 }
 
-//ajout d'une commande dans char*command a print a la fin et incrementation du nombre de commandes
-void	ft_new_command(t_data *data, char add)
+void		ft_new_command(t_data *data, char add)
 {
 	data->command[data->count++] = add;
 	data->command[data->count] = '\0';

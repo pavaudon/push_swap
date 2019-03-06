@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 15:10:51 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 20:01:43 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int			ft_is_again(t_data *data)
 		return (1);
 	while (tmp->next)
 	{
-	//ft_simple_printf("TONPERE\n");
 		compare = tmp->next;
 		while (compare)
 		{
@@ -57,6 +56,5 @@ int			ft_is_again(t_data *data)
 		tmp = tmp->next;
 	}
 	ft_min_max(data, 2);
-	//ft_simple_printf("TAMERE\n");
 	return (1);
 }

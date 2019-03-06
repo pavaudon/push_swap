@@ -6,19 +6,19 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 15:29:27 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 20:12:19 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_error(char *error)
+void		ft_error(char *error)
 {
 	ft_simple_printf("%s\n", error);
-	exit (1);
+	exit(1);
 }
 
-int		ft_stack_sort(t_stack *stack)
+int			ft_stack_sort(t_stack *stack)
 {
 	t_stack *tmp;
 
@@ -54,7 +54,7 @@ int			ft_add_back(t_stack **lst, int val)
 	return (1);
 }
 
-int		ft_is_command(char *command, t_data *data, int len)
+int			ft_is_command(char *command, t_data *data, int len)
 {
 	if (len == 3)
 	{

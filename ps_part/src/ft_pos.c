@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/25 19:54:11 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 19:33:58 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_final_pos(t_data *data, int value, int which)
 	}
 	return (pos);
 }
-//only actual_pos
+
 void	ft_actual_pos(t_data *data, int which, int both)
 {
 	t_stack *tmp;
@@ -55,7 +55,7 @@ void	ft_actual_pos(t_data *data, int which, int both)
 	if (both && !which)
 		ft_actual_pos(data, 1, 0);
 }
-//maj de actual_pos et appel de final_pos
+
 void	ft_find_pos(t_data *data, int which, int both)
 {
 	t_stack	*tmp;

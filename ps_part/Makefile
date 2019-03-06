@@ -6,7 +6,7 @@
 #    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2019/02/27 20:49:20 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/03/06 18:35:17 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRC_2		=	ft_push_swap.c \
 				ft_circle_sort.c \
 				ft_big_list_sort.c \
 				ft_push_opti.c \
-				ft_good_place.c
+				ft_good_place.c \
+				ft_better_good_place.c
 
 SRCS_2		=	$(addprefix $(SRC_DIR_2),$(SRC_2))
 
@@ -65,7 +66,7 @@ INCS		=	$(INC) $(INCLIB)
 
 CC			=	gcc
 
-CFLAGS		=	-Wextra -Werror -Wall -I$(INC) -I$(INCLIB) -g
+CFLAGS		=	-Wextra -Werror -Wall -I$(INC) -I$(INCLIB) -g -O0
 LDFLAGS		=	-L./libft -lft
 
 #all:			$(NAME_1)

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 15:17:34 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/06 20:05:55 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int			ft_checker(t_data *data)
 		len = 0;
 		len = (command[2] == '\n') ? 2 : len;
 		len = (command[3] == '\n') ? 3 : len;
-		printf("COMMAND : '%s'\n", command);   //a enlever
 		if ((data->size[2] > 1 && len == 0) || (len < 2 || len > 3) ||
 		!ft_is_command(command, data, len))
 			ft_error("Error : bad command");
@@ -73,11 +72,6 @@ int			main(int argc, char **argv)
 	t_data	data;
 
 	ft_bzero(&data, sizeof(data));
-	if (argc > 500)	// A TESTER
-	{
-		ft_error("too many arguments");
-		return (0);
-	}
 	if (argc > 1)
 	{
 		ft_before_checker(&data, argc, argv);
