@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 20:16:32 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/07 18:37:30 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@ int					main_big_list(t_data *data);
 void				push_opti(t_data *data);
 void				premark(t_data *data);
 t_stack				*get_link(t_data *data, int where);
+
+void				ft_look_command(t_data *data);
 
 #endif

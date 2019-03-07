@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 19:45:08 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/07 19:30:19 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ int			ft_push_swap(t_data *data)
 		ft_four_five_sort(data);
 	if (data->size[0] > 5)
 		main_big_list(data);
-	ft_print_command(data);
-	ft_simple_printf("\n{%d} commandes utilisees\n", data->count);
+	ft_look_command(data);
 	return (1);
 }
 

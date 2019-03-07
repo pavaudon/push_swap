@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 20:31:20 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/07 19:26:38 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_print_stack(t_data *data, char which, int both)
 		ft_print_stack(data, 'b', 0);
 }
 
-void		ft_print_command(char command)	// remplacer sa + sb en ss etc
+void		ft_print_command(char command)
 {
 	if (command == SA)
 		ft_simple_printf("SA\n");
@@ -64,32 +64,82 @@ void		ft_print_command(char command)	// remplacer sa + sb en ss etc
 		ft_simple_printf("RRR\n");
 }
 
-char		*ft_double_command(t_data *data)
+void		ft_double_s(t_data *data, int *delete)
 {
-	int i;
-	int delete;
-	char	*str;
-
-	str = data->command;
+	int		i;
+	int		same;
 
 	i = 0;
-	delete = 0;
-	while (data->command[i]) //*str
+	while (i < data->count)
 	{
-		if (data->command[i] == SA || data->command[i] == SB)	// si i + 1 existe 
+		same = 1;
+		if (data->command[i] == SA || data->command[i] == SB)
 		{
-			//i + 1 existe et == l'autre
-			//i == ss et i + 1 == .
-			//delete++
-			//i + 2
-		}s
+			while ((i + same) < data->count && data->command[i + same] == data->command[i])
+				same++;
+			if (same % 2 == 0)
+			{
+				*delete += same;
+				while (same)
+				{
+					data->command[i] = '.';
+					same--;
+					i++;
+				}
+			}
+			else
+				i++;
+		}
+		else
+			i++;
 	}
 }
 
-void		ft_look_command(t_data)
+void		ft_double_command(t_data *data)
 {
-	d
-	ft_print_command(data->command[i])
+	int		i;
+	int		delete;
+
+	i = 0;
+	delete = 0;
+	ft_double_s(data, &delete);
+	while (i < data->count - 1)
+	{
+		if ((data->command[i] == SA && data->command[i + 1] == SB)
+			|| (data->command[i] == SB && data->command[i + 1] == SA))
+		{
+			data->command[i] = SS;
+			data->command[++i] = '.';
+			delete++;
+		}
+		if ((data->command[i] == RA && data->command[i + 1] == RB)
+			|| (data->command[i] == RB && data->command[i + 1] == RA))
+		{
+			data->command[i] = RR;
+			data->command[++i] = '.';
+			delete++;
+		}
+		if ((data->command[i] == RRA && data->command[i + 1] == RRB)
+			|| (data->command[i] == RRB && data->command[i + 1] == RRA))
+		{
+			data->command[i] = RRR;
+			data->command[++i] = '.';
+			delete++;
+		}
+		i++;
+	}
+	ft_simple_printf("COUNT : '%d' - DELETE TA MERE : '%d' == '%d'\n", data->count, delete, data->count - delete);
 }
 
-"xx S. ra"
+void		ft_look_command(t_data *data)
+{
+	int i;
+
+	i = -1;
+	ft_double_command(data);
+	while (data->command[++i])
+	{
+		if (data->command[i] != '.')
+			ft_print_command(data->command[i]);
+	}
+}

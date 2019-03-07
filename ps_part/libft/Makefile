@@ -6,7 +6,7 @@
 #    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 12:19:38 by pavaudon          #+#    #+#              #
-#    Updated: 2019/01/24 16:50:54 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/03/07 15:07:10 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,7 +155,7 @@ all : 			$(NAME)
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c $(INCS)
 		@$(CC) $(CFLAGS) -c $< -o $@
-#		@echo "*MAGIC IN PROCESS*"
+		@echo "*MAGIC IN PROCESS*"
 
 $(OBJ_DIR):
 		@mkdir -p $(OBJ_DIR)
