@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 20:11:03 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:37:12 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void		ft_apply_command(t_data *data, int which, char command)
 
 void		ft_new_command(t_data *data, char add)
 {
-	data->command[data->count++] = add;
+	data->count += (data->count) ? 0 : 1;
+	data->command[data->count] = add;
+	data->count++;
 	data->command[data->count] = '\0';
 }

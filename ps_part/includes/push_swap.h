@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/07 18:37:30 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:31:24 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 typedef struct		s_stack
 {
 	int				value;
-	int				final_pos;
+	int				final_p;
 	int				actual_pos;
 	int				circle_pos;
 	int				mark;
@@ -54,7 +54,6 @@ typedef struct		s_data
 {
 	t_stack			*head_a;
 	t_stack			*head_b;
-	int				nb_value;
 	int				max[3];
 	int				min[3];
 	int				size[3];
@@ -109,5 +108,10 @@ void				premark(t_data *data);
 t_stack				*get_link(t_data *data, int where);
 
 void				ft_look_command(t_data *data);
+
+
+
+
+void	tameredanstonpere(t_data *data);
 
 #endif

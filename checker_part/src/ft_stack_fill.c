@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 20:02:14 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 15:27:24 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int			ft_stack_fill(t_data *data, int argc, char **argv)
 	data->head_a = NULL;
 	if (!(ft_fill(data, argc, argv)))
 		return (0);
-	ft_print_stack(data, 'a', 0);
 	data->head_b = NULL;
 	ft_size(data, 2);
 	return (1);

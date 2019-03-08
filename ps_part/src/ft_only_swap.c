@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:30:56 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/25 15:34:13 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 16:03:00 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ int		ft_only_swap(t_data *data)
 	tmp = data->head_a;
 	if (data->size[0] <= 3)
 		return (0);
-	if ((tmp->final_pos == 2 && tmp->next->final_pos == 1) &&
+	if ((tmp->final_p == 2 && tmp->next->final_p == 1) &&
 	ft_only_swap_first(data))
 		return (1);
 	while (tmp->next)
 		tmp = tmp->next;
-	if ((tmp->final_pos == data->size[0] - 1 &&
-	tmp->prev->final_pos == data->size[0]) && ft_only_swap_end(data))
+	if ((tmp->final_p == data->size[0] - 1 &&
+	tmp->prev->final_p == data->size[0]) && ft_only_swap_end(data))
 		return (1);
 	return (0);
 }

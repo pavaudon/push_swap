@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 20:05:55 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 15:27:13 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int			ft_checker(t_data *data)
 	int		len;
 
 	ft_bzero(command, 5);
-	ft_print_stack(data, 'a', 0);
 	while (read(0, &command, 4))
 	{
 		len = 0;

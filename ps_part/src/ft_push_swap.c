@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/07 19:30:19 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 18:34:38 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		ft_before_ps(t_data *data, int argc, char **argv)
 		|| !(data->command = (char*)malloc(sizeof(char ) * 11501)))
 	{
 		ft_cleanup(data);
-		ft_error("BAD ARGUMENTS");
+		ft_error("BAD ARGUMENTS");	//error
 	}
 	data->count = 0;
 }
@@ -52,9 +52,10 @@ int			ft_push_swap(t_data *data)
 {
 	if (data->size[0] == 1 || ft_stack_sort(data->head_a))
 	{
-		ft_error("Nothing to sort");
+		ft_error("Nothing to sort");	//error
 		return (1);
 	}
+	ft_simple_printf("CHOOSE ALGO\n");
 	ft_find_pos(data, 0, 0);
 	if (data->size[0] == 2)
 	{
@@ -67,6 +68,7 @@ int			ft_push_swap(t_data *data)
 		ft_four_five_sort(data);
 	if (data->size[0] > 5)
 		main_big_list(data);
+	ft_print_stack(data, 'a', 1);
 	ft_look_command(data);
 	return (1);
 }
@@ -84,6 +86,6 @@ int			main(int argc, char **argv)
 		free(data.command);
 	}
 	else
-		ft_error("./push_swap [int arguments]");
+		ft_error("./push_swap [int arguments]");	//a enlever car ne doit rien ecrire
 	return (0);
 }

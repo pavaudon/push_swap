@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 16:35:38 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 19:33:58 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 16:02:23 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_find_pos(t_data *data, int which, int both)
 	i = 0;
 	while (tmp)
 	{
-		tmp->final_pos = ft_final_pos(data, tmp->value, which);
+		tmp->final_p = ft_final_pos(data, tmp->value, which);
 		tmp->actual_pos = ++i;
 		tmp = tmp->next;
 	}

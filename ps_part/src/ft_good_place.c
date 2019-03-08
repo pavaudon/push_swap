@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_good_place.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:46:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 18:47:02 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 15:31:48 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void		premark(t_data *data)
 			tmp_a = get_link(data, LAST_VAL);
 	}
 	tmp_a->wgt = rev_count(data, tmp_a);
-	ft_simple_printf("\n");
 	tmp_a = get_link(data, MIN_VAL);
 	while (tmp_a)
 	{

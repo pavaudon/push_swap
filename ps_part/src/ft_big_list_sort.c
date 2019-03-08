@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 19:30:43 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 17:37:10 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_get_unmark(t_data *data, int unmarks)
 {
 	t_stack *tmp;
 
-	while ((data->size[1] < (data->size[2] / 3)) && unmarks)			//changement de pa pour test
+	while ((data->size[1] < (data->size[2] / 2)) && unmarks)			//changement de pa pour test
 	{
 		tmp = data->head_a;
 		if (tmp->mark == 0)
@@ -84,7 +84,7 @@ int		ft_bl_start(t_data *data)
 {
 	while (data->marks < data->size[2])
 	{
-		while (data->size[1] < (data->size[2] / 3)
+		while (data->size[1] < (data->size[2] / 2)
 			&& ((data->marks + data->size[1]) < data->size[2]))			//changement de pa pour test
 			ft_get_unmark(data, data->size[2] - data->marks);
 		push_opti(data);
@@ -107,7 +107,7 @@ void	ft_check_min_max(t_data *data)
 	{
 		tmp = min->value;
 		min->value = max->value;
-		max->value = min->value;
+		max->value = tmp;
 	}
 }
 

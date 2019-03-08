@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:27:17 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/13 19:33:31 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/08 16:04:09 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_is_circle_sort_2(t_data *data, int value, int *sort)
 	*sort += 1;
 	while (tmp && tmp->value != value)
 	{
-		if (*sort != tmp->final_pos)
+		if (*sort != tmp->final_p)
 			return (0);
 		tmp = tmp->next;
 		*sort += 1;
@@ -45,7 +45,7 @@ int		ft_is_circle_sort(t_data *data)
 	while (tmp)
 	{
 		if (tmp->actual_pos != first &&
-		(tmp->actual_pos - first + 1) != tmp->final_pos)
+		(tmp->actual_pos - first + 1) != tmp->final_p)
 			return (0);
 		sort++;
 		tmp = tmp->next;
