@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_four_five.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:46:29 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 21:21:15 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/11 18:14:23 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_help_sort(t_data *data)
 	ft_simple_printf("PUTE\n");
 	while (!again)
 	{
-		ft_simple_printf("TAMERE\n");
+		//ft_simple_printf("TAMERE\n");
 		tmp = data->head_a;
 		if (tmp->circle_pos == 3 && tmp->next->circle_pos == 1)
 			ft_apply_command(data, 0, RA);

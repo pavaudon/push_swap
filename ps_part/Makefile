@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
+#    By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2019/03/08 21:19:19 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/03/11 18:14:56 by unicorn          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ LDFLAGS		=	-L./libft -lft
 
 $(NAME_2):		$(OBJS_2)
 				@make -C libft/
-				@$(CC) $(OBJS_2) -o $(NAME_2) $(LDFLAGS) -g -fsanitize=address
+				@$(CC) $(OBJS_2) -o $(NAME_2) $(LDFLAGS) -g
 				@echo "push_swap is made"
 
 all:			$(NAME_2)

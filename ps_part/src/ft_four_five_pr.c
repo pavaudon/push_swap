@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_four_five_pr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:42:23 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 21:28:02 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/11 18:15:38 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ void	ft_circle_pos(t_data *data, int f_first)
 {
 	t_stack *tmp;
 	int		help;
-	int		fp[2];
+	int		*fp;
 	int		subst;
 
 	ft_simple_printf("F_FIRST : '%d'\n", f_first);
 	ft_simple_printf("CIRCLE POS\n");
+	if (!(fp =(int*)ft_memalloc(sizeof(int) * 3)))
+		return ;
 	ft_help_c_p(data, f_first, fp);
 	help = 2;
 	ft_print_stack(data, 'a', 1);
@@ -65,6 +67,7 @@ void	ft_circle_pos(t_data *data, int f_first)
 			tmp->circle_pos = 1;
 		tmp = tmp->next;
 	}
+	//free(fp);
 	tameredanstonpere(data);
 	ft_simple_printf("END CIRCLE POS\n");
 }

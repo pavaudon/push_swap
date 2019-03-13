@@ -116,6 +116,7 @@ void		ft_useless_p(t_data *data, int *delete)
 				while (same)
 				{
 					data->command[i] = '.';
+					data->command[i + 1] = '.';
 					same--;
 					i++;
 				}
@@ -164,10 +165,8 @@ void		ft_double_command(t_data *data, int *delete)
 
 void		ft_look_command(t_data *data)
 {
-	int i;
 	int delete;
 
-	i = -1;
 	delete = 0;
 	ft_double_s(data, &delete);
 	ft_useless_p(data, &delete);
