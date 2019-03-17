@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_application.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 20:37:12 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/17 16:13:37 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int			ft_add_back(t_stack **lst, int val)
 
 void		ft_apply_command(t_data *data, int which, char command)
 {
+	//ft_simple_printf("APPLY COMMAND : '%c'\n", command);
 	if (command == SA || command == SB)
 		ft_s_command(data, 'a' + which);
 	else if (command == RB && which)
@@ -78,7 +79,6 @@ void		ft_apply_command(t_data *data, int which, char command)
 
 void		ft_new_command(t_data *data, char add)
 {
-	data->count += (data->count) ? 0 : 1;
 	data->command[data->count] = add;
 	data->count++;
 	data->command[data->count] = '\0';

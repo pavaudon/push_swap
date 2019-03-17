@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_simple_move.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:51:35 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 19:41:52 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/17 18:17:10 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,30 @@ int		ft_stackb_sort(t_data *data)
 	}
 	return (1);
 }
-
-void	ft_two_three(t_data *data, int which, int both)
+/*
+void	ft_two_three(t_data *data)
 {
-	if ((!which && ft_stack_sort(data->head_a))
-	|| (which && ft_stackb_sort(data)))
-	{
-		if (both && !which)
-			ft_two_three(data, 1, 0);
+	if (ft_stack_sort(data->head_a) || data->size[0] > 3)
 		return ;
-	}
-	if (data->size[which] > 3)
+	if (data->size[0] == 2)
 	{
-		if (both && !which)
-			ft_two_three(data, 1, 0);
-		return ;
+		ft_s_command(data, 'a');
+		ft_new_command(data, SA);
 	}
-	if (data->size[which] == 2)
-	{
-		ft_s_command(data, 'a' + which);
-		ft_new_command(data, SA + which);
-	}
-	if (data->size[which] == 3)
+	if (data->size[0] == 3)
 		ft_sort_three(data, which);
-	if (both && !which)
-		ft_two_three(data, 1, 0);
 }
 
-void	ft_max_first(t_data *data, int which)
+void	ft_max_first(t_data *data)
 {
-	if (!which && data->head_a->value == data->max[which])
+	if (data->head_a->value == data->max[0])
 	{
-		ft_ra_command(data, which);
+		ft_ra_command(data, 0);
 		ft_new_command(data, RA);
 	}
 }
 
-void	ft_min_end(t_data *data, int which)
+void	ft_min_end(t_data *data)
 {
 	t_stack *tmp;
 
@@ -72,7 +59,7 @@ void	ft_min_end(t_data *data, int which)
 		tmp = tmp->next;
 	if (tmp->value == data->min[2])
 	{
-		ft_rr_command(data, which);
-		ft_new_command(data, (which) ? RRB : RRA);
+		ft_rr_command(data, 0);
+		ft_new_command(data, RRA);
 	}
-}
+}*/

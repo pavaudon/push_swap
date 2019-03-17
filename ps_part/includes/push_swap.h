@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 20:31:24 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/17 18:19:54 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,18 @@ typedef struct		s_data
 int					ft_check_data(int argc, char **argv);
 int					ft_stack_fill(t_data *data, int argc, char **argv);
 int					ft_is_again(t_data *data);
+int					ft_add_back(t_stack **lst, int val);
 
 int					ft_stack_sort(t_stack *stack);
 
-int					ft_add_back(t_stack **lst, int val);
+//int					ft_stackb_sort(t_data *data);
 
 void				ft_error(char *error);
 
+void				ft_apply_command(t_data *data, int which, char command);
+void				ft_new_command(t_data *data, char add);
 int					ft_is_command(char *command, t_data *data, int len);
+void				ft_look_command(t_data *data);
 
 void				ft_s_command(t_data *data, char which);
 void				ft_p_command(t_data *data, char which);
@@ -82,20 +86,16 @@ void				ft_rr_command(t_data *data, char which);
 void				ft_pa_command(t_data *data);
 void				ft_pb_command(t_data *data);
 
-void				ft_print_stack(t_data *data, char which, int both);
-
 void				ft_find_pos(t_data *data, int which, int both);
 void				ft_min_max(t_data *data, int which);
-void				ft_new_command(t_data *data, char add);
-void				ft_apply_command(t_data *data, int which, char command);
-void				ft_max_first(t_data *data, int which);
-void				ft_min_end(t_data *data, int which);
-void				ft_two_three(t_data *data, int which, int both);
-int					ft_stackb_sort(t_data *data);
 
-int					ft_sort_three(t_data *data, int which);
+//void				ft_max_first(t_data *data, int which);
+//void				ft_min_end(t_data *data, int which);
 int					ft_only_swap(t_data *data);
 int					ft_circle_sort(t_data *data);
+
+void				ft_two_three(t_data *data);
+int					ft_sort_three(t_data *data);
 
 int					ft_four_five_sort(t_data *data);
 int					ft_new_first(t_data *data);
@@ -107,11 +107,7 @@ void				push_opti(t_data *data);
 void				premark(t_data *data);
 t_stack				*get_link(t_data *data, int where);
 
-void				ft_look_command(t_data *data);
+void	ft_print_stack(t_data *data, char which, int both);
 
-
-
-
-void	tameredanstonpere(t_data *data);
 
 #endif

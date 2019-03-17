@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_big_list_sort.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 17:37:10 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/14 18:23:41 by unicorn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,28 @@ char	ft_path(t_data *data)
 
 void	go_to_unmark(t_data *data)
 {
-	int		u;
-	int		d;
-	t_stack	*cu;
-	t_stack	*cd;
+	int		up;
+	int		down;
+	t_stack	*tmp_up;
+	t_stack	*tmp_down;
 
-	d = 0;
-	u = 0;
-	cd = data->head_a;
-	while (cd && cd->mark && ++d)
-		cd = cd->next;
-	cu = cd ? cd : data->head_a;
-	while (cu && cu->next)
-		cu = cu->next;
-	while (cu && cu->mark && ++u)
-		cu = cu->prev;
-	u++;
-	if (d < u)
-		u = -d;
-	while (u != 0)
+	down = 0;
+	up = 0;
+	tmp_down = data->head_a;
+	while (tmp_down && tmp_down->mark && ++down)
+		tmp_down = tmp_down->next;
+	tmp_up = tmp_down ? tmp_down : data->head_a;
+	while (tmp_up && tmp_up->next)
+		tmp_up = tmp_up->next;
+	while (tmp_up && tmp_up->mark && ++up)
+		tmp_up = tmp_up->prev;
+	up++;
+	if (down < up)
+		up = -down;
+	while (up != 0)
 	{
-		ft_apply_command(data, 0, u > 0 ? RRA : RA);
-		u += (u < 0) ? 1 : -1;
+		ft_apply_command(data, 0, up > 0 ? RRA : RA);
+		up += (up < 0) ? 1 : -1;
 	}
 }
 
