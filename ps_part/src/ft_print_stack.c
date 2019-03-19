@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/19 16:36:04 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/19 19:42:03 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,9 +160,9 @@ void		ft_look_command(t_data *data)
 	delete = 0;
 	//ft_simple_printf("tester si ca trie toujours avec les delete sinon fuck a retirer\n");
 	i = -1;
-	ft_double_s(data, &delete, 0);
-	ft_useless_p(data, &delete, 0);
-	ft_double_command(data, &delete, 0);
+	//ft_double_s(data, &delete, 0);
+	//ft_useless_p(data, &delete, 0);
+	//ft_double_command(data, &delete, 0);
 	//ft_simple_printf("COUNT : '%d' - DELETE TA MERE : '%d' == '%d'\n", data->count, delete, data->count - delete);
 	while (data->command[++i])
 	{
