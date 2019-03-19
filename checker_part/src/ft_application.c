@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 20:12:19 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:44:37 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int			ft_is_command(char *command, t_data *data, int len)
 		else if (command[0] == 'r' && (command[1] == 'a' || command[1] == 'r'))
 			ft_ra_command(data, command[1]);
 		else if (command[0] == 'r' && command[1] == 'b')
-			ft_rb_command(data, command[1]);
+			ft_rb_command(data);
 		else
 			return (0);
 	}

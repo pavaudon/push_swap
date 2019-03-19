@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_application.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:52:59 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/17 16:13:37 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/19 19:24:19 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int			ft_add_back(t_stack **lst, int val)
 
 void		ft_apply_command(t_data *data, int which, char command)
 {
-	//ft_simple_printf("APPLY COMMAND : '%c'\n", command);
 	if (command == SA || command == SB)
 		ft_s_command(data, 'a' + which);
 	else if (command == RB && which)
@@ -77,9 +76,23 @@ void		ft_apply_command(t_data *data, int which, char command)
 	ft_new_command(data, command);
 }
 
+char	*ft_strfn(t_data *data, size_t size)
+{
+	char	*new;
+
+	data->bigger += size;
+	if ((new = ft_strnew(data->count + size)))
+	{
+		ft_strcpy(new, data->command);
+		free(data->command);
+	}
+	return (new);
+}
+
 void		ft_new_command(t_data *data, char add)
 {
+	if ((size_t)data->count == data->bigger - 1)
+		data->command = ft_strfn(data, 500);
 	data->command[data->count] = add;
 	data->count++;
-	data->command[data->count] = '\0';
 }

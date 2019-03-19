@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 15:27:13 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:58:03 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int			ft_checker(t_data *data)
 		len = 0;
 		len = (command[2] == '\n') ? 2 : len;
 		len = (command[3] == '\n') ? 3 : len;
-		if ((data->size[2] > 1 && len == 0) || (len < 2 || len > 3) ||
-		!ft_is_command(command, data, len))
+		//printf("'%s'\nLEN : '%d'\n", command, len);
+		if ((len < 2 || len > 3) || !ft_is_command(command, data, len))	//(data->size[2] > 1 && len == 0)
 			ft_error("Error : bad command");
 		ft_bzero(command, 5);
 	}
@@ -80,7 +80,5 @@ int			main(int argc, char **argv)
 			ft_simple_printf("KO\n");
 		ft_cleanup(&data);
 	}
-	else
-		ft_error("./checker [int arguments]");
 	return (0);
 }

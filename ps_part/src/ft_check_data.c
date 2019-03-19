@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 19:29:58 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:12:12 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_is_nb(char *str)
 		if (i > 0 && str[i] && (str[i] == ' ' || str[i] == ' '))
 			i++;
 		arg = 0;
-		if (ft_isdigit(str[i]) || (str[i] == '-' && arg == 0))
+		if ((str[i] == '-' && arg == 0) || ft_isdigit(str[i]))
 		{
 			i++;
 			while (str[i] && (ft_isdigit(str[i])))
@@ -31,6 +31,8 @@ int		ft_is_nb(char *str)
 				i++;
 				arg++;
 			}
+			if (str[i] && str[i] == '-')
+				return (0);
 		}
 		else
 			return (0);
@@ -67,6 +69,15 @@ long	ft_atol(char *str)
 
 int		ft_int_max_min(char *str)
 {
+	int i;
+
+	i = 0;
+	if (str[i] == '-')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+		i++;
+	if ((str[0] == '-' && i > 11) || i > 10)
+		return (0);
 	if (str[0] == '-' && ft_atol(str) < -2147483648)
 		return (0);
 	if (str[0] != '-' && ft_atol(str) > 2147483647)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/17 18:34:31 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/19 16:36:04 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,27 @@ void	ft_print_stack(t_data *data, char which, int both)	//a enlever car useless 
 void		ft_print_command(char command)
 {
 	if (command == SA)
-		ft_simple_printf("SA\n");
+		ft_simple_printf("sa\n");
 	if (command == SB)
-		ft_simple_printf("SB\n");
+		ft_simple_printf("sb\n");
 	if (command == SS)
-		ft_simple_printf("SS\n");
+		ft_simple_printf("ss\n");
 	if (command == PA)
-		ft_simple_printf("PA\n");
+		ft_simple_printf("pa\n");
 	if (command == PB)
-		ft_simple_printf("PB\n");
+		ft_simple_printf("pb\n");
 	if (command == RA)
-		ft_simple_printf("RA\n");
+		ft_simple_printf("ra\n");
 	if (command == RB)
-		ft_simple_printf("RB\n");
+		ft_simple_printf("rb\n");
 	if (command == RR)
-		ft_simple_printf("RR\n");
+		ft_simple_printf("rr\n");
 	if (command == RRA)
-		ft_simple_printf("RRA\n");
+		ft_simple_printf("rra\n");
 	if (command == RRB)
-		ft_simple_printf("RRB\n");
+		ft_simple_printf("rrb\n");
 	if (command == RRR)
-		ft_simple_printf("RRR\n");
+		ft_simple_printf("rrr\n");
 }
 
 void		ft_double_s(t_data *data, int *delete, int i)
@@ -79,10 +79,9 @@ void		ft_double_s(t_data *data, int *delete, int i)
 			if (same % 2 == 0)
 			{
 				*delete += same;
-				while (same)
+				while (same--)
 				{
 					data->command[i] = '.';
-					same--;
 					i++;
 				}
 			}
@@ -159,18 +158,12 @@ void		ft_look_command(t_data *data)
 	int i;
 
 	delete = 0;
-	ft_simple_printf("tester si ca trie toujours avec les delete sinon fuck a retirer\n");
-	i = -1;
-	while (data->command[++i])
-	{
-		if (data->command[i] != '.')
-			ft_print_command(data->command[i]);
-	}
+	//ft_simple_printf("tester si ca trie toujours avec les delete sinon fuck a retirer\n");
 	i = -1;
 	ft_double_s(data, &delete, 0);
 	ft_useless_p(data, &delete, 0);
 	ft_double_command(data, &delete, 0);
-	ft_simple_printf("COUNT : '%d' - DELETE TA MERE : '%d' == '%d'\n", data->count, delete, data->count - delete);
+	//ft_simple_printf("COUNT : '%d' - DELETE TA MERE : '%d' == '%d'\n", data->count, delete, data->count - delete);
 	while (data->command[++i])
 	{
 		if (data->command[i] != '.')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/17 18:20:23 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/19 19:21:46 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void		ft_before_ps(t_data *data, int argc, char **argv)
 	if (!ft_check_data(argc, argv)
 		|| !ft_stack_fill(data, argc, argv)
 		|| !ft_is_again(data)
-		|| !(data->command = (char*)malloc(sizeof(char ) * 11501)))		//a environ 800 segfault pour command
+		|| !(data->command = (char*)malloc(sizeof(char ) * 500)))		//a environ 800 segfault pour command
 	{
 		ft_cleanup(data);
 		ft_error("BAD ARGUMENTS");	//error
 	}
 	data->count = 0;
+	data->bigger = 500;
 }
 
 int			ft_push_swap(t_data *data)
@@ -67,7 +68,6 @@ int			ft_push_swap(t_data *data)
 		ft_four_five_sort(data);
 	else if (data->size[0] > 5)
 		main_big_list(data);
-	ft_print_stack(data, 'a', 1);
 	ft_look_command(data);
 	return (1);
 }
@@ -84,7 +84,5 @@ int			main(int argc, char **argv)
 		ft_cleanup(&data);
 		free(data.command);
 	}
-	else
-		ft_error("./push_swap [int arguments]");	//a enlever car ne doit rien ecrire
 	return (0);
 }

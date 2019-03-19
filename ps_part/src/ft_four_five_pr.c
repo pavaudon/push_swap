@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_four_five_pr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:42:23 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/17 17:47:18 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/19 14:02:35 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_help_c_p(t_data *data, int f_first, int *fp)
 {
 	t_stack	*tmp;
 	int		i;
-	
+
 	tmp = data->head_a;
 	i = 0;
 	while (tmp)
@@ -32,7 +32,7 @@ void	ft_circle_pos(t_data *data, int f_first)
 	t_stack *tmp;
 	int		*fp;
 
-	if (!(fp =(int*)ft_memalloc(sizeof(int) * 2)))
+	if (!(fp = (int*)ft_memalloc(sizeof(int) * 2)))
 		return ;
 	ft_help_c_p(data, f_first, fp);
 	tmp = data->head_a;

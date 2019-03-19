@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+         #
+#    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2019/03/11 18:14:56 by unicorn          ###   ########.fr        #
+#    Updated: 2019/03/19 14:09:18 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ SRC_2		=	ft_push_swap.c \
 				ft_print_stack.c \
 				ft_pos.c \
 				ft_three.c \
-				ft_simple_move.c \
 				ft_four_five.c \
 				ft_four_five_pr.c \
 				ft_only_swap.c \

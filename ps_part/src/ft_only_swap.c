@@ -6,25 +6,11 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:30:56 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 16:03:00 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/19 14:06:00 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-**	faire un only_swap_first :
-**		_ only SA?
-**		# donner un tmp de la liste, swap et si sort_list, faire SA sur la liste
-*/
-
-/*
-**	faire un only_swap_end :
-**		# faire stack_sort avec une taille jusqu'a size - 3 ?
-**		# OU si A[end] == max -1 et A[end - 1] == max
-**				commandes sur un tmp si sort sur A ou return 0
-**			_ rra rra sa ra ra
-*/
 
 void	ft_back_swap(t_data *data)
 {

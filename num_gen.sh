@@ -30,8 +30,7 @@ if [[ $2 == "-r" ]]; then
 fi
 echo ${sequence[@]}
 
-./ps_part/push_swap ${sequence[@]}
-#| ./checker_part/checker ${sequence[@]}
+./ps_part/push_swap ${sequence[@]} | ./checker_part/checker ${sequence[@]}
 
 
 # ./num_gen.sh nb_arg

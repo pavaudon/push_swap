@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 15:21:13 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/19 19:23:10 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ typedef struct		s_data
 	int				nb_value;
 	int				max[3];		//0 == a	1 == b	2 == all
 	int				min[3];
-	int				size[3];
-	//char*/char**/t_command*	command;	
-	//define des commandes + nombres de commandes en une fonctions pour savoir combien enlever si ca foire?
-	//int			count; pour command[count];
+	size_t			size[3];
 }					t_data;
 
 int					ft_check_data(int argc, char **argv);
@@ -70,10 +67,8 @@ int					ft_is_command(char *command, t_data *data, int len);
 
 void				ft_s_command(t_data *data, char which);
 void				ft_p_command(t_data *data, char which);
-void				ft_rb_command(t_data *data, char which);
+void				ft_rb_command(t_data *data);
 void				ft_ra_command(t_data *data, char which);
 void				ft_rr_command(t_data *data, char which);
-
-void				ft_print_stack(t_data *data, char which, int both);
 
 #endif

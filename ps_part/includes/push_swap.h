@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:02:22 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/17 18:19:54 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/19 19:23:57 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct		s_data
 	int				marks;
 	char			*command;
 	int				count;
+	size_t			bigger;
 }					t_data;
 
 int					ft_check_data(int argc, char **argv);
@@ -68,8 +69,6 @@ int					ft_is_again(t_data *data);
 int					ft_add_back(t_stack **lst, int val);
 
 int					ft_stack_sort(t_stack *stack);
-
-//int					ft_stackb_sort(t_data *data);
 
 void				ft_error(char *error);
 

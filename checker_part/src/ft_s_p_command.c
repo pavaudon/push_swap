@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:12 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/06 20:04:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:40:03 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_s_command(t_data *data, char which)
 	}
 	if (which == 's' && data->size[1] > 1)
 		ft_s_command(data, 'b');
-	ft_print_stack(data, 'a', 0);
 }
 
 void	ft_pa_command(t_data *data)
@@ -47,7 +46,6 @@ void	ft_pa_command(t_data *data)
 	t_stack	*ea;
 	t_stack	*eb;
 
-	ft_simple_printf("PA COMMAND\n");
 	eb = data->head_a;
 	ea = data->head_b;
 	if (!data->size[1])
@@ -70,7 +68,6 @@ void	ft_pb_command(t_data *data)
 	t_stack	*ea;
 	t_stack	*eb;
 
-	ft_simple_printf("PB COMMAND\n");
 	ea = data->head_a;
 	eb = data->head_b;
 	if (!data->size[0])
@@ -94,5 +91,4 @@ void	ft_p_command(t_data *data, char which)
 		ft_pa_command(data);
 	else if (which == 'b' && data->size[0] >= 1)
 		ft_pb_command(data);
-	ft_print_stack(data, 'a', 1);
 }
