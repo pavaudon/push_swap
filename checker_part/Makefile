@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pavaudon <lalicornede42@gmail.com>         +#+  +:+       +#+         #
+#    By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:25:18 by pavaudon          #+#    #+#              #
-#    Updated: 2018/05/17 14:25:19 by pavaudon         ###   ########.fr        #
+#    Updated: 2019/03/21 19:02:00 by pavaudon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ SRC_1			=	ft_checker.c \
 						ft_is_again.c \
 						ft_application.c \
 						ft_s_p_command.c \
-						ft_r_rr_command.c \
-						ft_print_stack.c
+						ft_r_rr_command.c
 
 SRCS_1		=	$(addprefix $(SRC_DIR_1),$(SRC_1))
 

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 13:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/19 19:21:46 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/21 19:05:51 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int			ft_push_swap(t_data *data)
 	else if (data->size[0] > 5)
 		main_big_list(data);
 	ft_look_command(data);
+	//ft_print_stack(data, 'a', 1);
 	return (1);
 }
 

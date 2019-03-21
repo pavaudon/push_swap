@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/19 19:46:56 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/21 18:32:57 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	ft_check_min_max(t_data *data)
 		min->value = max->value;
 		max->value = tmp;
 	}
-	//demarquer min et max das ce cas la
 }
 
 int		main_big_list(t_data *data)

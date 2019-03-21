@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/19 19:33:05 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/21 19:01:09 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ void		ft_cleanup(t_data *data)
 
 int			ft_checker(t_data *data)
 {
-	char	command[5];
+	char	*command;
 	int		len;
 
-	ft_bzero(command, 5);
-	while (read(0, &command, 4))
+	command = NULL;
+	while (get_next_line(0, &command))
 	{
-		len = 0;
-		len = (command[2] == '\n') ? 2 : len;
-		len = (command[3] == '\n') ? 3 : len;
-		//printf("'%s'\nLEN : '%d'\n", command, len);
+		len = ft_strlen(command);
 		if ((len < 2 || len > 3) || !ft_is_command(command, data, len))	//(data->size[2] > 1 && len == 0)
+		{
+			printf("'%s'\nLEN : '%d'\n", command, len);
 			ft_error("Error : bad command");
-		ft_bzero(command, 5);
+		}
+		free(command);
 	}
 	return (data->size[2] == 1 || ((data->size[0] == data->size[2])
 	&& (ft_stack_sort(data->head_a) && data->size[1] == 0)));
@@ -66,6 +66,32 @@ void		ft_before_checker(t_data *data, int argc, char **argv)
 	}
 }
 
+void	ft_print_stack(t_data *data, char which, int both)	//a enlever car useless au rendu
+{
+	t_stack *tmp;
+
+	tmp = (which == 'a') ? data->head_a : data->head_b;
+	if (!tmp)
+	{
+		ft_simple_printf(">>>>		STACK_%c		<<<<\nEMPTY\n\n",
+		which - 32);
+		if (both && which == 'a')
+			ft_print_stack(data, 'b', 0);
+		return ;
+	}
+	ft_simple_printf(">>>>		STACK_%c		<<<<\n", which - 32);
+	ft_simple_printf("SIZE_%c : '%d'\n", which - 32, (which == 'b') ?
+	data->size[1] : data->size[0]);
+	while (tmp)
+	{
+		ft_simple_printf("%d\n", tmp->value);
+		tmp = tmp->next;
+	}
+	ft_simple_printf("\n");
+	if (both && which == 'a')
+		ft_print_stack(data, 'b', 0);
+}
+
 int			main(int argc, char **argv)
 {
 	t_data	data;
@@ -77,7 +103,10 @@ int			main(int argc, char **argv)
 		if (ft_checker(&data))
 			ft_simple_printf("OK\n");
 		else
+		{
+			ft_print_stack(&data, 'a', 1);
 			ft_simple_printf("KO\n");
+		}
 		ft_cleanup(&data);
 	}
 	return (0);
