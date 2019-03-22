@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:12 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/19 16:40:03 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/22 16:22:14 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	ft_pb_command(t_data *data)
 
 void	ft_p_command(t_data *data, char which)
 {
-	if (which == 'a' && data->size[1] >= 1)
+	if (which == 'a')
 		ft_pa_command(data);
-	else if (which == 'b' && data->size[0] >= 1)
+	else if (which == 'b')
 		ft_pb_command(data);
 }

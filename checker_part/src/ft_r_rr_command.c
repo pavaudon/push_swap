@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:20:49 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/19 16:45:45 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/22 16:25:06 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,8 @@ void		ft_rrb_command(t_data *data)
 {
 	t_stack *tmp;
 
-	if (data->size[1] <= 2)
-	{
-		if (data->size[1] == 2)
-			ft_s_command(data, 'a');
+	if (data->size[1] < 2)
 		return ;
-	}
 	tmp = data->head_b;
 	while (tmp->next)
 		tmp = tmp->next;
@@ -82,9 +78,8 @@ void		ft_rr_command(t_data *data, char which)
 
 	if (which == 'a' || which == 'r')
 	{
-		if (data->size[0] <= 2)
+		if (data->size[0] < 2)
 		{
-			ft_s_command(data, 'a');
 			if (which == 'r')
 				ft_rrb_command(data);
 			return ;

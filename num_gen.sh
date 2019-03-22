@@ -30,15 +30,13 @@ if [[ $2 == "-r" ]]; then
 fi
 echo ${sequence[@]}
 
-
-./ps_part/push_swap ${sequence[@]} | ./checker_llopez ${sequence[@]}
-
 ./ps_part/push_swap ${sequence[@]} | ./checker_part/checker ${sequence[@]}
 
+./ps_part/push_swap ${sequence[@]} | ./checker_llopez ${sequence[@]}
 
 # ./num_gen.sh nb_arg
 #			tri a l'envers
 # ./num_gen.sh nb_arg -r
 #			tri random
 # ./num_gen.sh
-#			tri a l'envers avec 0 - 10 paar defaut
+#			tri a l'envers avec 0 - 10 par defaut

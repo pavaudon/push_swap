@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/21 19:01:09 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/22 16:22:30 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_checker(t_data *data)
 	int		len;
 
 	command = NULL;
-	while (get_next_line(0, &command))
+	while ((get_next_line(0, &command)) > 0)
 	{
 		len = ft_strlen(command);
 		if ((len < 2 || len > 3) || !ft_is_command(command, data, len))	//(data->size[2] > 1 && len == 0)

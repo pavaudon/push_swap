@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 13:53:54 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/21 18:32:57 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/22 16:04:47 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,21 @@ void	ft_check_min_max(t_data *data)
 {
 	t_stack *min;
 	t_stack	*max;
-	int		tmp;
+	t_stack	*tmp;
+	char	command;
 
 	min = get_link(data, MIN_VAL);
 	max = get_link(data, MAX_VAL);
+	tmp = data->head_a;
+	command = (max->actual_pos > (data->size[2] / 2)) ? RRA : RA;
 	if ((min->actual_pos == max->actual_pos + 1)
 		|| (min->actual_pos == data->size[0] && max->actual_pos == 1))
 	{
-		tmp = min->value;
-		min->value = max->value;
-		max->value = tmp;
+		while (tmp && tmp->value != max->value)
+		{
+			ft_apply_command(data, 0, command);
+			tmp = data->head_a;
+		}
 	}
 }
 
