@@ -30,6 +30,8 @@ if [[ $2 == "-r" ]]; then
 fi
 echo ${sequence[@]}
 
+#./ps_part/push_swap ${sequence[@]}
+
 ./ps_part/push_swap ${sequence[@]} | ./checker_part/checker ${sequence[@]}
 
 ./ps_part/push_swap ${sequence[@]} | ./checker_llopez ${sequence[@]}

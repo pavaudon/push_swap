@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:21:31 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/22 16:12:47 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/22 20:53:28 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,30 +95,24 @@ void		ft_double_s(t_data *data, int *delete, int i)
 
 void		ft_useless_p(t_data *data, int *delete, int i)
 {
-	int		same;
+	int		again;
 
 	while (i < data->count)
 	{
-		same = 1;
-		if (data->command[i] == PB)
+		again = 0;
+		if (i < data->count && data->command[i] == PB
+			&& data->command[i + 1] == PA)
 		{
-			while ((i + same) < data->count
-				&& data->command[i + same] == PA)
-				same++;
-			if (same % 2 == 0)
-			{
-				*delete += same;
-				while (same--)
-				{
-					data->command[i] = '.';
-					i++;
-				}
-			}
-			else
-				i++;
+			*delete += 2;
+			data->command[i] = '.';
+			data->command[i + 1] = '.';
+			i += 2;
+			again = 1;
 		}
 		else
 			i++;
+		if (i == data->count && again)
+			i = 0;
 	}
 	//ft_simple_printf("JUST USELESS P : '%d'\n", *delete);
 }
@@ -158,10 +152,9 @@ void		ft_look_command(t_data *data)
 	int i;
 
 	delete = 0;
-	//ft_simple_printf("tester si ca trie toujours avec les delete sinon fuck a retirer\n");
 	i = -1;
 	ft_double_s(data, &delete, 0);
-	//ft_useless_p(data, &delete, 0);
+	ft_useless_p(data, &delete, 0);
 	ft_double_command(data, &delete, 0);
 	//ft_simple_printf("COUNT : '%d' - DELETE TA MERE : '%d' == '%d'\n", data->count, delete, data->count - delete);
 	while (data->command[++i])
