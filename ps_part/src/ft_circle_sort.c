@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:27:17 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/08 16:04:09 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/23 14:20:48 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int		ft_is_circle_sort(t_data *data)
 	first = tmp->actual_pos;
 	while (tmp)
 	{
-		if (tmp->actual_pos != first &&
-		(tmp->actual_pos - first + 1) != tmp->final_p)
+		if (tmp->actual_pos != first
+			&& (tmp->actual_pos - first + 1) != tmp->final_p)
 			return (0);
 		sort++;
 		tmp = tmp->next;

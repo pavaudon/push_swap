@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_three.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:48:01 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/17 18:14:39 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/23 14:19:29 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		ft_sort_three(t_data *data)
 		ft_find_pos(data, 0, 0);
 		if (tmp->final_p == 3 && tmp->next->final_p == 1)
 			ft_apply_command(data, 0, RA);
-		else if ((tmp->next->final_p == 3 && tmp->final_p == 1) ||
-		(tmp->final_p == 3 && tmp->next->final_p == 2) ||
-		(tmp->final_p == 2 && tmp->next->final_p == 1))
+		else if ((tmp->next->final_p == 3 && tmp->final_p == 1)
+			|| (tmp->final_p == 3 && tmp->next->final_p == 2)
+			|| (tmp->final_p == 2 && tmp->next->final_p == 1))
 			ft_apply_command(data, 0, SA);
 		else if (tmp->next->final_p == 3 && tmp->final_p == 2)
 			ft_apply_command(data, 0, RRA);

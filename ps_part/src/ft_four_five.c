@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_four_five.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: unicorn <unicorn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 17:46:29 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/17 18:18:16 by unicorn          ###   ########.fr       */
+/*   Updated: 2019/03/23 14:21:27 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	ft_help_sort(t_data *data)
 		tmp = data->head_a;
 		if (tmp->circle_pos == 3 && tmp->next->circle_pos == 1)
 			ft_apply_command(data, 0, RA);
-		else if ((tmp->next->circle_pos == 3 && tmp->circle_pos == 1) ||
-		(tmp->circle_pos == 3 && tmp->next->circle_pos == 2) ||
-		(tmp->circle_pos == 2 && tmp->next->circle_pos == 1))
+		else if ((tmp->next->circle_pos == 3 && tmp->circle_pos == 1)
+			|| (tmp->circle_pos == 3 && tmp->next->circle_pos == 2)
+			|| (tmp->circle_pos == 2 && tmp->next->circle_pos == 1))
 			ft_apply_command(data, 0, SA);
 		else if (tmp->next->circle_pos == 3 && tmp->circle_pos == 2)
 			ft_apply_command(data, 0, RRA);
@@ -58,8 +58,8 @@ int		ft_hentai_sort(t_data *data)
 	if (!data->size[1] && (ft_circle_sort(data) || ft_only_swap(data)))
 		return (1);
 	ft_only_swap(data);
-	if (data->head_a->value == data->max[2] &&
-	data->head_a->next->final_p == data->size[2] - 1)
+	if (data->head_a->value == data->max[2]
+		&& data->head_a->next->final_p == data->size[2] - 1)
 		ft_apply_command(data, 0, SA);
 	if (data->head_a->value != data->max[2] && data->head_b->final_p != 4)
 	{

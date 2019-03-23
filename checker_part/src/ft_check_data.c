@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:15 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/02/27 15:07:37 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/23 14:23:13 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ long	ft_atol(char *str)
 	n = 0;
 	neg = 1;
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\r' || str[i] == '\t' ||
-			str[i] == '\v' || str[i] == '\n' || str[i] == '\f')
+	while (str[i] == ' ' || str[i] == '\r' || str[i] == '\t'
+		|| str[i] == '\v' || str[i] == '\n' || str[i] == '\f')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

@@ -6,7 +6,7 @@
 /*   By: pavaudon <pavaudon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:54:25 by pavaudon          #+#    #+#             */
-/*   Updated: 2019/03/22 16:22:30 by pavaudon         ###   ########.fr       */
+/*   Updated: 2019/03/23 14:23:44 by pavaudon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ int			ft_checker(t_data *data)
 
 void		ft_before_checker(t_data *data, int argc, char **argv)
 {
-	if (!ft_check_data(argc, argv) ||
-	!ft_stack_fill(data, argc, argv) ||
-	!ft_is_again(data))
+	if (!ft_check_data(argc, argv)
+		|| !ft_stack_fill(data, argc, argv) || !ft_is_again(data))
 	{
 		ft_cleanup(data);
 		ft_error("BAD ARGUMENTS");
